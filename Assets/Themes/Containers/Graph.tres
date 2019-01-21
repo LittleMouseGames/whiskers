@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.186813, 0.224803, 0.300781, 1 )
+
+[resource]
+
+GraphEdit/colors/activity = Color( 1, 1, 1, 1 )
+GraphEdit/colors/grid_major = Color( 1, 1, 1, 0.2 )
+GraphEdit/colors/grid_minor = Color( 1, 1, 1, 0.05 )
+GraphEdit/constants/bezier_len_neg = 160
+GraphEdit/constants/bezier_len_pos = 80
+GraphEdit/constants/port_grab_distance_horizontal = 48
+GraphEdit/constants/port_grab_distance_vertical = 6
+GraphEdit/icons/minus = null
+GraphEdit/icons/more = null
+GraphEdit/icons/reset = null
+GraphEdit/icons/snap = null
+GraphEdit/styles/bg = SubResource( 6 )
+LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.941176, 0.941176, 0.941176, 1 )
+LineEdit/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource( 8 )
+LineEdit/styles/normal = SubResource( 8 )
+LineEdit/styles/read_only = null
+

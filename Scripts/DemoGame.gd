@@ -1,0 +1,56 @@
+extends Panel
+
+export var speed = 1
+var player 
+var currentTab 
+var buttonAct
+
+func _ready():
+	player = get_node("PlayField/Player")
+
+func _physics_process(delta):
+	if(currentTab == 1):
+		if Input.is_action_pressed("player_right") or buttonAct == 'right':
+			player.set_global_position(Vector2(player.get_global_position().x + speed, player.get_global_position().y))
+		if Input.is_action_pressed("player_left") or buttonAct == 'left':
+			player.set_global_position(Vector2(player.get_global_position().x - speed, player.get_global_position().y))
+		if Input.is_action_pressed("player_up") or buttonAct == 'up':
+			player.set_global_position(Vector2(player.get_global_position().x, player.get_global_position().y - speed))
+		if Input.is_action_pressed("player_down") or buttonAct == 'down':
+			player.set_global_position(Vector2(player.get_global_position().x, player.get_global_position().y + speed))
+
+
+func _on_Area2D2_area_entered(area):
+	get_node("PlayField/Player/E").show()
+
+
+func _on_Area2D2_area_exited(area):
+	get_node("PlayField/Player/E").hide()
+
+
+func _on_Graph_tab_selected(tab):
+	currentTab = tab
+
+func _on_D_button_down():
+	buttonAct = 'right'
+
+func _on_S_button_down():
+	buttonAct = 'down'
+
+func _on_W_button_down():
+	buttonAct = 'up'
+
+func _on_A_button_down():
+	buttonAct = 'left'
+
+func _on_D_button_up():
+	buttonAct = ''
+
+func _on_S_button_up():
+	buttonAct = ''
+
+func _on_W_button_up():
+	buttonAct = ''
+
+func _on_A_button_up():
+	buttonAct = ''

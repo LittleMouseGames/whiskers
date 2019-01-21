@@ -1,0 +1,859 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/MenuController.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Themes/MenuObj/Panel.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/Themes/Containers/Tab.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/Node Images/diaIco.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Node Images/optIco.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Node Images/jumIco.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Node Images/conIco.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Node Images/expIco.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/ItemList.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Graph.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=14]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+bg_color = Color( 0.317647, 0.337255, 0.384314, 1 )
+border_color = Color( 0.317647, 0.337255, 0.384314, 1 )
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+border_width_top = 1
+border_color = Color( 0.321569, 0.356863, 0.439216, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+border_width_bottom = 4
+border_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="Theme" id=10]
+
+TextEdit/colors/background_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+TextEdit/colors/brace_mismatch_color = Color( 1, 0.2, 0.2, 1 )
+TextEdit/colors/breakpoint_color = Color( 0.8, 0.8, 0.4, 0.2 )
+TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+TextEdit/colors/code_folding_color = Color( 0.8, 0.8, 0.8, 1 )
+TextEdit/colors/completion_background_color = Color( 0.172549, 0.164706, 0.196078, 1 )
+TextEdit/colors/completion_existing_color = Color( 0.87451, 0.87451, 0.87451, 0.129412 )
+TextEdit/colors/completion_font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
+TextEdit/colors/completion_scroll_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_selected_color = Color( 0.262745, 0.258824, 0.266667, 1 )
+TextEdit/colors/current_line_color = Color( 0.317647, 0.337255, 0.384314, 0.654902 )
+TextEdit/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+TextEdit/colors/function_color = Color( 0.4, 0.635294, 0.807843, 1 )
+TextEdit/colors/line_number_color = Color( 0.666667, 0.666667, 0.666667, 0.4 )
+TextEdit/colors/mark_color = Color( 1, 0.4, 0.4, 0.4 )
+TextEdit/colors/member_variable_color = Color( 0.341176, 0.701961, 1, 1 )
+TextEdit/colors/number_color = Color( 0.341176, 0.701961, 1, 1 )
+TextEdit/colors/safe_line_number_color = Color( 0.666667, 0.784314, 0.666667, 0.6 )
+TextEdit/colors/selection_color = Color( 0.317647, 0.337255, 0.384314, 1 )
+TextEdit/colors/symbol_color = Color( 0.341176, 0.701961, 1, 1 )
+TextEdit/colors/word_highlighted_color = Color( 0.509804, 0.52549, 0.552941, 1 )
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = null
+TextEdit/styles/read_only = null
+
+[sub_resource type="StyleBoxFlat" id=11]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.186813, 0.224803, 0.300781, 1 )
+
+[sub_resource type="Theme" id=13]
+
+GraphEdit/colors/activity = Color( 1, 1, 1, 1 )
+GraphEdit/colors/grid_major = Color( 1, 1, 1, 0.2 )
+GraphEdit/colors/grid_minor = Color( 1, 1, 1, 0.05 )
+GraphEdit/constants/bezier_len_neg = 160
+GraphEdit/constants/bezier_len_pos = 80
+GraphEdit/constants/port_grab_distance_horizontal = 48
+GraphEdit/constants/port_grab_distance_vertical = 6
+GraphEdit/icons/minus = null
+GraphEdit/icons/more = null
+GraphEdit/icons/reset = null
+GraphEdit/icons/snap = null
+GraphEdit/styles/bg = SubResource( 11 )
+LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.941176, 0.941176, 0.941176, 1 )
+LineEdit/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource( 12 )
+LineEdit/styles/normal = SubResource( 12 )
+LineEdit/styles/read_only = null
+
+[sub_resource type="StyleBoxFlat" id=14]
+
+bg_color = Color( 0.0980392, 0.113725, 0.152941, 1 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+
+bg_color = Color( 0.176471, 0.486275, 0.654902, 1 )
+
+[sub_resource type="RectangleShape2D" id=16]
+
+extents = Vector2( 51.1839, 49.7567 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+
+bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+
+bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+
+[node name="Editor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Mount" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Modals" type="Control" parent="Mount"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+
+[node name="Save" type="FileDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -303.5
+margin_top = -179.5
+margin_right = 303.5
+margin_bottom = 179.5
+theme = ExtResource( 1 )
+window_title = "Save Whiskers Project"
+resizable = true
+access = 2
+filters = PoolStringArray( "*.json; Whiskers JSON File" )
+current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
+current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+
+[node name="Open" type="FileDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -303.5
+margin_top = -179.5
+margin_right = 303.5
+margin_bottom = 179.5
+theme = ExtResource( 1 )
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.json; Whiskers JSON File" )
+current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
+current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+
+[node name="QuitConf" type="ConfirmationDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -205.0
+margin_top = -37.0
+margin_right = 90.0
+margin_bottom = 38.0
+theme = ExtResource( 1 )
+window_title = "Quit?"
+dialog_text = "Are you sure you want to quit? Any unsaved
+ work will be lost!"
+dialog_hide_on_ok = false
+
+[node name="About" type="WindowDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -87.0
+margin_right = 188.0
+margin_bottom = 87.0
+theme = ExtResource( 1 )
+window_title = "About Whiskers"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/Modals/About"]
+anchor_right = 1.0
+margin_top = 7.0
+margin_bottom = 71.0
+dragger_visibility = 2
+
+[node name="TextureRect" type="TextureRect" parent="Mount/Modals/About/HSplitContainer"]
+margin_right = 200.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Mount/Modals/About/HSplitContainer"]
+margin_left = 200.0
+margin_right = 400.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 25
+
+[node name="Label" type="Label" parent="Mount/Modals/About/HSplitContainer/VSplitContainer"]
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 56.0
+text = "Whiskers v0.0.1 ALPHA
+© 2019 Chris Bolton
+© 2019 LittleMouseGames"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Mount/Modals/About"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = -88.0
+margin_right = -8.0
+margin_bottom = -9.0
+text = "Whiskers is Open Source Software! Proudly created and maintained by FinchMFG @LittleMouseGames! If you paid for this software, please demand a refund! 
+
+Say hello anytime hello@littlemousegames.com"
+
+[node name="MainWindow" type="VSplitContainer" parent="Mount"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+dragger_visibility = 2
+
+[node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
+margin_right = 1004.0
+margin_bottom = 30.0
+dragger_visibility = 2
+
+[node name="Menus" type="GridContainer" parent="Mount/MainWindow/MenuBar"]
+margin_right = 903.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+script = ExtResource( 3 )
+
+[node name="File" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+margin_right = 35.0
+margin_bottom = 22.0
+text = "File"
+
+[node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/File"]
+editor/display_folded = true
+visible = false
+margin_left = 10.4972
+margin_top = 34.3308
+margin_right = 143.497
+margin_bottom = 108.331
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 4 )
+
+[node name="PanelContainer" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 132.0
+margin_bottom = 73.0002
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 124.0
+margin_bottom = 65.0002
+
+[node name="Save" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+editor/display_folded = true
+margin_right = 116.0
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Save"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+margin_left = 58.0
+margin_right = 116.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-S"
+align = 2
+
+[node name="Open" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 18.0
+margin_right = 116.0
+margin_bottom = 32.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Open"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open/HSplitContainer"]
+margin_left = 58.0
+margin_right = 116.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-O"
+align = 2
+
+[node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 116.0
+margin_bottom = 40.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="Quit" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 44.0
+margin_right = 116.0
+margin_bottom = 58.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Quit"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit/HSplitContainer"]
+margin_left = 58.0
+margin_right = 116.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-Q"
+align = 2
+
+[node name="Help" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+margin_left = 39.0
+margin_right = 81.0
+margin_bottom = 22.0
+text = "Help"
+
+[node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/Help"]
+visible = false
+margin_left = 47.8414
+margin_top = 34.425
+margin_right = 180.841
+margin_bottom = 64.425
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 4 )
+
+[node name="PanelContainer" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 132.0
+margin_bottom = 29.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 124.0
+margin_bottom = 21.0
+
+[node name="About" type="Button" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer"]
+editor/display_folded = true
+margin_right = 117.0
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "About"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About/HSplitContainer"]
+margin_left = 58.0
+margin_right = 117.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-H"
+align = 2
+
+[node name="Actions" type="GridContainer" parent="Mount/MainWindow/MenuBar"]
+editor/display_folded = true
+margin_left = 903.0
+margin_right = 1004.0
+margin_bottom = 30.0
+
+[node name="Update" type="ToolButton" parent="Mount/MainWindow/MenuBar/Actions"]
+margin_right = 101.0
+margin_bottom = 22.0
+text = "Update Demo"
+
+[node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
+margin_top = 30.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
+margin_right = 230.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 230, 0 )
+theme = ExtResource( 5 )
+tab_align = 0
+drag_to_rearrange_enabled = true
+
+[node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 31.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Basic" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_right = 220.0
+margin_bottom = 129.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Basic"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Basic Nodes"
+
+[node name="BasicNodes" type="ItemList" parent="Mount/MainWindow/Editor/Info/Nodes/Basic"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 129.0
+rect_min_size = Vector2( 0, 111 )
+custom_styles/bg = SubResource( 7 )
+items = [ "Dialogue Node", ExtResource( 6 ), false, "Option Node", ExtResource( 7 ), false, "Jump Node", ExtResource( 8 ), false ]
+
+[node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 133.0
+margin_right = 220.0
+margin_bottom = 137.0
+custom_styles/separator = SubResource( 8 )
+
+[node name="Advanced" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 141.0
+margin_right = 220.0
+margin_bottom = 224.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Advanced"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Advanced Nodes"
+
+[node name="AdvancedNodes" type="ItemList" parent="Mount/MainWindow/Editor/Info/Nodes/Advanced"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 65 )
+custom_styles/bg = SubResource( 7 )
+items = [ "Conditional Node", ExtResource( 9 ), false, "Expression Node", ExtResource( 10 ), false ]
+
+[node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 31.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Name" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
+margin_right = 220.0
+margin_bottom = 42.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Info/Name"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Character Name"
+
+[node name="ItemList" type="LineEdit" parent="Mount/MainWindow/Editor/Info/Info/Name"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/normal = SubResource( 9 )
+placeholder_text = "Name"
+
+[node name="HSeparator2" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Info"]
+margin_top = 46.0
+margin_right = 220.0
+margin_bottom = 50.0
+custom_styles/separator = SubResource( 8 )
+
+[node name="DocVars" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+margin_top = 54.0
+margin_right = 220.0
+margin_bottom = 147.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Info/DocVars"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Document Variables"
+
+[node name="ItemList" type="TextEdit" parent="Mount/MainWindow/Editor/Info/Info/DocVars"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 93.0
+rect_min_size = Vector2( 0, 75 )
+theme = SubResource( 10 )
+text = "var demo = true"
+syntax_highlighting = true
+show_line_numbers = true
+highlight_all_occurrences = true
+script = ExtResource( 11 )
+
+[node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
+margin_left = 242.0
+margin_right = 1004.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 600, 0 )
+theme = ExtResource( 5 )
+tab_align = 0
+drag_to_rearrange_enabled = true
+
+[node name="Dialogue Graph" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 31.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 13 )
+right_disconnects = true
+scroll_offset = Vector2( -5, -26 )
+script = ExtResource( 12 )
+
+[node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 31.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_styles/panel = SubResource( 14 )
+script = ExtResource( 13 )
+speed = 2
+
+[node name="PlayField" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="NPC" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField"]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.892
+margin_top = -140.945
+margin_right = -3.89197
+margin_bottom = -83.9446
+custom_styles/panel = SubResource( 15 )
+
+[node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
+position = Vector2( 28.4531, -28.8561 )
+scale = Vector2( 0.201783, 0.201783 )
+texture = ExtResource( 14 )
+
+[node name="Area2D" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
+position = Vector2( 26.4634, 24.2581 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC/Area2D"]
+position = Vector2( 2.09503, 5.64336 )
+shape = SubResource( 16 )
+
+[node name="Player" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField"]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.869
+margin_top = 44.5054
+margin_right = -87.8693
+margin_bottom = 101.505
+custom_styles/panel = SubResource( 17 )
+
+[node name="E" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.7106
+margin_top = 8.18164
+margin_right = -12.7106
+margin_bottom = 42.1816
+custom_styles/panel = SubResource( 18 )
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/E"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "E"
+align = 1
+valign = 1
+
+[node name="Area2D2" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
+position = Vector2( 25.9418, 24.566 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2"]
+position = Vector2( 2.09503, 4.69334 )
+shape = SubResource( 16 )
+
+[node name="Keys" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="D" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.0
+margin_top = -47.0
+margin_right = -12.0
+margin_bottom = -13.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/Keys/D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "D"
+align = 1
+valign = 1
+
+[node name="S" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -84.1062
+margin_top = -47.0
+margin_right = -50.1062
+margin_bottom = -13.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/Keys/S"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "S"
+align = 1
+valign = 1
+
+[node name="W" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -84.1062
+margin_top = -85.0
+margin_right = -50.1062
+margin_bottom = -51.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/Keys/W"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "W"
+align = 1
+valign = 1
+
+[node name="A" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -122.475
+margin_top = -47.0
+margin_right = -88.4751
+margin_bottom = -13.0
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/Keys/A"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "A"
+align = 1
+valign = 1
+
+[connection signal="confirmed" from="Mount/Modals/Save" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Save_confirmed"]
+[connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File" to="Mount/MainWindow/MenuBar/Menus" method="_on_File_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_Save_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_Open_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help" to="Mount/MainWindow/MenuBar/Menus" method="_on_Help_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_About_pressed"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
+[connection signal="tab_selected" from="Mount/MainWindow/Editor/Graph" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Graph_tab_selected"]
+[connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_connection_request"]
+[connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_disconnection_request"]
+[connection signal="area_entered" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Area2D2_area_entered"]
+[connection signal="area_exited" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Area2D2_area_exited"]
+[connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/D" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_D_button_down"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/Keys/D" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_D_button_up"]
+[connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/S" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_S_button_down"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/Keys/S" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_S_button_up"]
+[connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/W" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_W_button_down"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/Keys/W" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_W_button_up"]
+[connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/A" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_A_button_down"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/Keys/A" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_A_button_up"]

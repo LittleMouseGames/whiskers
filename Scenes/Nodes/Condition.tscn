@@ -1,0 +1,124 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Themes/Nodes/conditionPlugin.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+
+[node name="Condition" type="GraphNode"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -147.0
+margin_top = -220.0
+margin_right = 26.0
+margin_bottom = -144.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/frame = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_constants/port_offset = 0
+title = "Conditional Node"
+show_close = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
+slot/2/left_enabled = true
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = true
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 163.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer"]
+editor/display_folded = true
+margin_right = 34.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/HBoxContainer3"]
+margin_right = 34.0
+margin_bottom = 14.0
+text = "Input"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer"]
+editor/display_folded = true
+margin_left = 127.0
+margin_right = 153.0
+margin_bottom = 14.0
+size_flags_horizontal = 10
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/HBoxContainer4"]
+margin_right = 26.0
+margin_bottom = 14.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "true"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+visible = false
+margin_left = 10.0
+margin_top = 47.0
+margin_right = 163.0
+margin_bottom = 50.0
+custom_constants/separation = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 51.0
+margin_right = 163.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer2"]
+margin_right = 74.0
+margin_bottom = 14.0
+size_flags_horizontal = 11
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer2/HBoxContainer5"]
+margin_right = 69.0
+margin_bottom = 14.0
+text = "Expression"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer2"]
+margin_left = 78.0
+margin_right = 153.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2/HBoxContainer4"]
+margin_left = 45.0
+margin_right = 75.0
+margin_bottom = 14.0
+text = "false"
+align = 2
+
+[connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Option_dragged"]
+[connection signal="resize_request" from="." to="." method="_on_Dialogue_resize_request"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Themes/Nodes/dialoguePlugin.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+
+[node name="Dialogue" type="GraphNode"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -506.0
+margin_top = -294.0
+margin_right = -305.0
+margin_bottom = -219.0
+mouse_filter = 1
+custom_styles/frame = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_constants/port_offset = 0
+title = "Dialogue Node"
+show_close = true
+resizable = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+
+[node name="Lines" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 191.0
+margin_bottom = 63.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 30 )
+alignment = 2
+
+[node name="LineEdit" type="TextEdit" parent="Lines"]
+margin_right = 181.0
+margin_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_styles/focus = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+wrap_enabled = true
+caret_blink = true
+
+[connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Dialogue_dragged"]
+[connection signal="resize_request" from="." to="." method="_on_Dialogue_resize_request"]
+[connection signal="resized" from="." to="." method="_on_Dialogue_resized"]
