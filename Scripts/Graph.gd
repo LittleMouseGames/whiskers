@@ -56,6 +56,13 @@ func _on_UtilityNodes_item_activated(index):
 #=======> SAVING
 var data = {} # this is the final data, an array of all nodes that we write to file
 func _processData(connectionList):
+	# We should save our 'info' tab data!
+	data['info'] = {
+		'name':get_node("../../Info/Info/Name/Input").get_text(),
+		'display_name':get_node("../../Info/Info/DName/Input").get_text(),
+		'document_vars':get_node("../../Info/Info/DocVars/ItemList").get_text(),
+	}
+	# lets save our GraphNodes!
 	for i in range(0, connectionList.size()):
 		var name = connectionList[i].from
 		# Our schema
@@ -126,6 +133,11 @@ func _open_whiskers(path):
 		file.open(path, File.READ)
 		var loadData = parse_json(file.get_as_text())
 		var nodeDataKeys = loadData.keys()
+		# we should restore our `info` tab data!
+		get_node("../../Info/Info/DName/Input").set_text(loadData['info']['display_name'])
+		get_node("../../Info/Info/Name/Input").set_text(loadData['info']['name'])
+		get_node("../../Info/Info/DocVars/ItemList").set_text(loadData['info']['document_vars'])
+		# we should load our GraphNodes!
 		for i in range(0, nodeDataKeys.size()):
 			var type
 			var node = loadData[nodeDataKeys[i]]
@@ -145,20 +157,27 @@ func _open_whiskers(path):
 				type = 'Start.tscn'
 			if('Comment' in nodeDataKeys[i]):
 				type = 'Comment.tscn'
-			_load_node(type, node['location'], nodeDataKeys[i], node['text'])
+			if(type):
+				_load_node(type, node['location'], nodeDataKeys[i], node['text'])
 		
 		#everything has been loaded and added to the graph, lets connect them all!
 		for i in range(0, nodeDataKeys.size()):
-			var connectTo = loadData[nodeDataKeys[i]]['connects_to']
-			# for each key
-			for x in range(1, connectTo.size()+1):
-				connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+			if not('info' in nodeDataKeys[i]):
+				var connectTo = loadData[nodeDataKeys[i]]['connects_to']
+				# for each key
+				for x in range(1, connectTo.size()+1):
+					connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
 
 #=== NEW FILE handling
 func _on_New_confirmed():
 	_clear_graph()
 
 func _clear_graph():
+	# we should restore our `info` tab data!
+	get_node("../../Info/Info/DName/Input").set_text('')
+	get_node("../../Info/Info/Name/Input").set_text('')
+	get_node("../../Info/Info/DocVars/ItemList").set_text('var demo = true')
+	# we should clear the GraphEdit of GraphNodes
 	for child in self.get_children():
 		if ("Control" in child.get_class()):
 			pass
