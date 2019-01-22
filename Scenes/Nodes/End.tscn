@@ -1,10 +1,17 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Themes/Nodes/expressionPlugin.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
 
-[node name="Expression" type="GraphNode"]
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.145098, 0.145098, 0.176471, 1 )
+
+[node name="End" type="GraphNode"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -20,29 +27,24 @@ custom_styles/frame = ExtResource( 1 )
 custom_styles/selectedframe = ExtResource( 1 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
-title = "Logic Node"
+title = "End Node"
 show_close = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color( 1, 1, 1, 1 )
-slot/0/right_enabled = true
+slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 
-[node name="Lines" type="VBoxContainer" parent="."]
+[node name="LineEdit" type="Label" parent="."]
 margin_left = 10.0
 margin_top = 33.0
 margin_right = 187.0
 margin_bottom = 57.0
-
-[node name="LineEdit" type="LineEdit" parent="Lines"]
-margin_right = 177.0
-margin_bottom = 24.0
 hint_tooltip = "Function calling and one line expressions"
-custom_styles/focus = ExtResource( 3 )
-custom_styles/normal = ExtResource( 3 )
-placeholder_text = "littleMouse == 'awesome'"
+custom_styles/normal = SubResource( 3 )
+text = "Put me at the end!"
 
 [connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Option_dragged"]

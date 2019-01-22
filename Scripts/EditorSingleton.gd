@@ -32,4 +32,5 @@ func _input(event):
 		match event.button_index:
 			BUTTON_LEFT:
 				if(!inMenu):
-					EditorSingleton._close_all()
+					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
+					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()

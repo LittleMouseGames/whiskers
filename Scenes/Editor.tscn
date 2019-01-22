@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -10,10 +10,15 @@
 [ext_resource path="res://Assets/Node Images/jumIco.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Node Images/conIco.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Node Images/expIco.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/ItemList.gd" type="Script" id=11]
-[ext_resource path="res://Scenes/Graph.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=13]
-[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Node Images/starIco.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Node Images/endIco.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/ItemList.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrabber.tres" type="StyleBox" id=14]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrapperPressed.tres" type="StyleBox" id=15]
+[ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=16]
+[ext_resource path="res://Scripts/Graph.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=18]
+[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -119,6 +124,15 @@ TextEdit/styles/read_only = null
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
+[sub_resource type="StyleBoxFlat" id=21]
+
+content_margin_bottom = 7.0
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id=12]
 
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
@@ -128,7 +142,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.186813, 0.224803, 0.300781, 1 )
 
-[sub_resource type="Theme" id=13]
+[sub_resource type="Theme" id=15]
 
 GraphEdit/colors/activity = Color( 1, 1, 1, 1 )
 GraphEdit/colors/grid_major = Color( 1, 1, 1, 0.2 )
@@ -142,6 +156,15 @@ GraphEdit/icons/more = null
 GraphEdit/icons/reset = null
 GraphEdit/icons/snap = null
 GraphEdit/styles/bg = SubResource( 11 )
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = ExtResource( 14 )
+HScrollBar/styles/grabber_highlight = ExtResource( 15 )
+HScrollBar/styles/grabber_pressed = ExtResource( 15 )
+HScrollBar/styles/scroll = SubResource( 21 )
+HScrollBar/styles/scroll_focus = null
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.941176, 0.941176, 0.941176, 1 )
@@ -154,24 +177,33 @@ LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource( 12 )
 LineEdit/styles/normal = SubResource( 12 )
 LineEdit/styles/read_only = null
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = ExtResource( 14 )
+VScrollBar/styles/grabber_highlight = ExtResource( 15 )
+VScrollBar/styles/grabber_pressed = ExtResource( 15 )
+VScrollBar/styles/scroll = ExtResource( 16 )
+VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=16]
 
 bg_color = Color( 0.0980392, 0.113725, 0.152941, 1 )
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=17]
 
 bg_color = Color( 0.176471, 0.486275, 0.654902, 1 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=18]
 
 extents = Vector2( 51.1839, 49.7567 )
 
-[sub_resource type="StyleBoxFlat" id=17]
+[sub_resource type="StyleBoxFlat" id=19]
 
 bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=20]
 
 bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
 
@@ -543,6 +575,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Basic" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+editor/display_folded = true
 margin_right = 220.0
 margin_bottom = 129.0
 dragger_visibility = 2
@@ -568,6 +601,7 @@ margin_bottom = 137.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Advanced" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+editor/display_folded = true
 margin_top = 141.0
 margin_right = 220.0
 margin_bottom = 224.0
@@ -586,6 +620,32 @@ margin_bottom = 83.0
 rect_min_size = Vector2( 0, 65 )
 custom_styles/bg = SubResource( 7 )
 items = [ "Conditional Node", ExtResource( 9 ), false, "Expression Node", ExtResource( 10 ), false ]
+
+[node name="HSeparator2" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 228.0
+margin_right = 220.0
+margin_bottom = 232.0
+custom_styles/separator = SubResource( 8 )
+
+[node name="Utility Nodes" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 236.0
+margin_right = 220.0
+margin_bottom = 319.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Utility Nodes"
+
+[node name="UtilityNodes" type="ItemList" parent="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 65 )
+custom_styles/bg = SubResource( 7 )
+items = [ "Start Node", ExtResource( 11 ), false, "End Node", ExtResource( 12 ), false ]
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
 visible = false
@@ -644,7 +704,7 @@ text = "var demo = true"
 syntax_highlighting = true
 show_line_numbers = true
 highlight_all_occurrences = true
-script = ExtResource( 11 )
+script = ExtResource( 13 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
 margin_left = 242.0
@@ -664,10 +724,10 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 13 )
+theme = SubResource( 15 )
 right_disconnects = true
 scroll_offset = Vector2( -5, -26 )
-script = ExtResource( 12 )
+script = ExtResource( 17 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
 editor/display_folded = true
@@ -678,8 +738,8 @@ margin_left = 5.0
 margin_top = 31.0
 margin_right = -5.0
 margin_bottom = -5.0
-custom_styles/panel = SubResource( 14 )
-script = ExtResource( 13 )
+custom_styles/panel = SubResource( 16 )
+script = ExtResource( 18 )
 speed = 2
 
 [node name="PlayField" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
@@ -697,19 +757,19 @@ margin_left = -60.892
 margin_top = -140.945
 margin_right = -3.89197
 margin_bottom = -83.9446
-custom_styles/panel = SubResource( 15 )
+custom_styles/panel = SubResource( 17 )
 
 [node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 28.4531, -28.8561 )
 scale = Vector2( 0.201783, 0.201783 )
-texture = ExtResource( 14 )
+texture = ExtResource( 19 )
 
 [node name="Area2D" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 26.4634, 24.2581 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC/Area2D"]
 position = Vector2( 2.09503, 5.64336 )
-shape = SubResource( 16 )
+shape = SubResource( 18 )
 
 [node name="Player" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField"]
 editor/display_folded = true
@@ -721,7 +781,7 @@ margin_left = -144.869
 margin_top = 44.5054
 margin_right = -87.8693
 margin_bottom = 101.505
-custom_styles/panel = SubResource( 17 )
+custom_styles/panel = SubResource( 19 )
 
 [node name="E" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
 visible = false
@@ -733,7 +793,7 @@ margin_left = -46.7106
 margin_top = 8.18164
 margin_right = -12.7106
 margin_bottom = 42.1816
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 20 )
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/E"]
 anchor_right = 1.0
@@ -747,7 +807,7 @@ position = Vector2( 25.9418, 24.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2"]
 position = Vector2( 2.09503, 4.69334 )
-shape = SubResource( 16 )
+shape = SubResource( 18 )
 
 [node name="Keys" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
 editor/display_folded = true
@@ -826,7 +886,6 @@ text = "A"
 align = 1
 valign = 1
 
-[connection signal="confirmed" from="Mount/Modals/Save" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Save_confirmed"]
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File" to="Mount/MainWindow/MenuBar/Menus" method="_on_File_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
@@ -844,6 +903,7 @@ valign = 1
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_About_pressed"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
 [connection signal="tab_selected" from="Mount/MainWindow/Editor/Graph" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Graph_tab_selected"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_connection_request"]
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_disconnection_request"]
