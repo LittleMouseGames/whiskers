@@ -21,6 +21,7 @@ func _initScene(e):
 	lastNodePosition = node.get_offset()
 
 func _load_node(type, location, name, text):
+	print(type)
 	var scene = load("res://Scenes/Nodes/"+type)
 	var node = scene.instance()
 	get_node("./").add_child(node)
@@ -46,8 +47,10 @@ func _on_AdvancedNodes_item_activated(index):
 
 func _on_UtilityNodes_item_activated(index):
 	if(index == 0):
-		_initScene("Start.tscn")
+		_initScene("Comment.tscn")
 	if(index == 1):
+		_initScene("Start.tscn")
+	if(index == 2):
 		_initScene("End.tscn")
 
 #=======> SAVING
@@ -70,7 +73,7 @@ func _processData(connectionList):
 			currentConnectsTo = data[name]['connects_to']
 		
 		# are we a node with a text field?
-		if('Dialogue' in name) or ('Option' in name) or ('Expression' in name) or ('Jump' in name):
+		if('Dialogue' in name) or ('Option' in name) or ('Expression' in name) or ('Jump' in name) or ('Comment' in name):
 			tempData['text'] = self.get_node(name).get_node('Lines').get_child(0).get_text()
 		
 		# are we an Expression Node? We should store the value in our logic field
@@ -140,6 +143,8 @@ func _open_whiskers(path):
 				type = 'End.tscn'
 			if('Start' in nodeDataKeys[i]):
 				type = 'Start.tscn'
+			if('Comment' in nodeDataKeys[i]):
+				type = 'Comment.tscn'
 			_load_node(type, node['location'], nodeDataKeys[i], node['text'])
 		
 		#everything has been loaded and added to the graph, lets connect them all!

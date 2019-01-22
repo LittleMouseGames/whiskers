@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 33.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.14902, 0.14902, 0.180392, 1 )
+border_width_top = 24
+border_color = Color( 0.266667, 0.364706, 0.431373, 1 )
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color( 0, 0, 0, 0.303882 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.243137, 0.243137, 0.286275, 1 )
+
+[node name="Comment" type="GraphNode"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -378.204
+margin_top = -240.228
+margin_right = -177.204
+margin_bottom = -165.228
+mouse_filter = 1
+custom_styles/frame = ExtResource( 1 )
+custom_styles/selectedframe = SubResource( 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_constants/port_offset = 0
+title = "Comment Node"
+show_close = true
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+
+[node name="Lines" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 33.0
+margin_right = 191.0
+margin_bottom = 63.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 30 )
+alignment = 2
+
+[node name="LineEdit" type="TextEdit" parent="Lines"]
+margin_right = 181.0
+margin_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = ExtResource( 3 )
+custom_colors/breakpoint_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.678431, 0.678431, 0.678431, 1 )
+text = "// comment"
+wrap_enabled = true
+caret_blink = true
+
+[connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Dialogue_dragged"]
+[connection signal="resize_request" from="." to="." method="_on_Dialogue_resize_request"]
+[connection signal="resized" from="." to="." method="_on_Dialogue_resized"]
