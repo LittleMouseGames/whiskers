@@ -16,6 +16,9 @@ func _unhandled_input(event):
 		if Input.is_action_pressed("help"):
 			_close_all()
 			get_node("/root/Editor/Mount/Modals/About").show()
+		if Input.is_action_pressed("new"):
+			_close_all()
+			get_node("/root/Editor/Mount/Modals/New").show()
 
 func _close_all():
 	# modals

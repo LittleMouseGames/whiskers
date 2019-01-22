@@ -9,6 +9,7 @@ var saveDialog
 var openDialog
 var quitDialog
 var aboutDialog
+var newDialog
 
 func _ready():
 	fileMenu = get_node("File/Menu")
@@ -17,6 +18,7 @@ func _ready():
 	openDialog = get_node("../../../Modals/Open")
 	quitDialog = get_node("../../../Modals/QuitConf")
 	aboutDialog = get_node("../../../Modals/About")
+	newDialog = get_node("../../../Modals/New")
 
 func _on_File_pressed():
 	if(fileMenu.is_visible()):
@@ -28,7 +30,6 @@ func _on_File_pressed():
 
 func _on_QuitConf_confirmed():
 	get_tree().quit()
-
 
 func _on_Help_pressed():
 	if(helpMenu.is_visible()):
@@ -46,6 +47,10 @@ func _on_About_pressed():
 func _on_Save_pressed():
 	EditorSingleton._close_all()
 	saveDialog.show()
+
+func _on_New_pressed():
+	EditorSingleton._close_all()
+	newDialog.show()
 
 func _on_Open_pressed():
 	EditorSingleton._close_all()

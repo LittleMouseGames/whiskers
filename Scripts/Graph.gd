@@ -85,6 +85,18 @@ func _processData(connectionList):
 		# store our location
 		tempData['location'] = self.get_node(name).get_offset()
 		
+		# are we connecting to an 'End' node?
+		if('End' in connectionList[i].to):
+			print("We're connected to an end node!")
+			# we should store the data!
+			data[connectionList[i].to] = {
+				'text':"",
+				'connects_to':{},
+				'logic':"",
+				'conditions':{},
+				'location':self.get_node(connectionList[i].to).get_offset()
+			}
+		
 		# save this in our processed object
 		data[name] = tempData
 
@@ -105,6 +117,7 @@ func _save_whiskers(path):
 #======> Open file
 func _open_whiskers(path):
 	if(path):
+		_clear_graph()
 		print('opening file: ', path)
 		var file = File.new()
 		file.open(path, File.READ)
@@ -135,3 +148,17 @@ func _open_whiskers(path):
 			# for each key
 			for x in range(1, connectTo.size()+1):
 				connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+
+#=== NEW FILE handling
+func _on_New_confirmed():
+	_clear_graph()
+
+func _clear_graph():
+	for child in self.get_children():
+		if ("Control" in child.get_class()):
+			pass
+		elif("GraphEditFilter" in child.get_class()):
+			pass
+		else:
+			self.clear_connections()
+			child.queue_free()

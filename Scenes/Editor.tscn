@@ -273,6 +273,7 @@ dialog_text = "Are you sure you want to quit? Any unsaved
 dialog_hide_on_ok = false
 
 [node name="About" type="WindowDialog" parent="Mount/Modals"]
+editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -327,6 +328,20 @@ text = "Whiskers is Open Source Software! Proudly created and maintained by Finc
 
 Say hello anytime hello@littlemousegames.com"
 
+[node name="New" type="ConfirmationDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -130.0
+margin_top = -37.0
+margin_right = 130.0
+margin_bottom = 38.0
+theme = ExtResource( 1 )
+window_title = "Are you sure?"
+dialog_text = "Are you sure you want to create a new
+scene? All unsaved data will be lost!"
+
 [node name="MainWindow" type="VSplitContainer" parent="Mount"]
 margin_left = 10.0
 margin_top = 10.0
@@ -354,7 +369,6 @@ margin_bottom = 22.0
 text = "File"
 
 [node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/File"]
-editor/display_folded = true
 visible = false
 margin_left = 10.4972
 margin_top = 34.3308
@@ -377,7 +391,7 @@ margin_top = 7.0
 margin_right = 124.0
 margin_bottom = 65.0002
 
-[node name="Save" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+[node name="New" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
 editor/display_folded = true
 margin_right = 116.0
 margin_bottom = 14.0
@@ -386,27 +400,27 @@ custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save"]
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 dragger_visibility = 2
 
-[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New/HSplitContainer"]
 margin_right = 58.0
 margin_bottom = 14.0
 size_flags_horizontal = 7
 size_flags_vertical = 6
-text = "Save"
+text = "New"
 
-[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New/HSplitContainer"]
 margin_left = 58.0
 margin_right = 116.0
 margin_bottom = 14.0
 size_flags_horizontal = 7
 size_flags_vertical = 6
 custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
-text = "CTRL-S"
+text = "CTRL-N"
 align = 2
 
 [node name="Open" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
@@ -440,6 +454,44 @@ size_flags_horizontal = 7
 size_flags_vertical = 6
 custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
 text = "CTRL-O"
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 116.0
+margin_bottom = 40.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="Save" type="Button" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
+editor/display_folded = true
+margin_right = 116.0
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Save"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save/HSplitContainer"]
+margin_left = 58.0
+margin_right = 116.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-S"
 align = 2
 
 [node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer"]
@@ -887,13 +939,17 @@ align = 1
 valign = 1
 
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
+[connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File" to="Mount/MainWindow/MenuBar/Menus" method="_on_File_pressed"]
-[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
-[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
-[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_Save_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/New" to="Mount/MainWindow/MenuBar/Menus" method="_on_New_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Open" to="Mount/MainWindow/MenuBar/Menus" method="_on_Open_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_Save_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_Quit_pressed"]

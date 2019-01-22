@@ -40,7 +40,7 @@ margin_right = 128.0
 margin_bottom = 24.0
 custom_styles/focus = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )
-placeholder_text = "Option Line"
+placeholder_text = "Player Option"
 caret_blink = true
 
 [connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
