@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+
 
 [sub_resource type="StyleBoxFlat" id=2]
 

@@ -91,12 +91,7 @@ func _processData(connectionList):
 		if('Expression' in name):
 			tempData['logic'] = self.get_node(name).get_node('Lines').get_child(0).get_text()
 		
-		if not ('Condition' in name):
-			if(currentConnectsTo):
-				tempData['connects_to'] = currentConnectsTo
-			if not(connectionList[i].to in tempData['connects_to'].values()):
-				tempData['connects_to'][currentCTSize+1] = connectionList[i].to
-		else:
+		if('Condition' in name):
 			var routes
 			if(name in data):
 				routes = data[name]['conditions']
@@ -108,6 +103,12 @@ func _processData(connectionList):
 				tempData['conditions']['false'] = connectionList[i].to
 				if(routes) and (routes['true']):
 					tempData['conditions']['true'] = routes['true']
+		else:
+			if(currentConnectsTo):
+				tempData['connects_to'] = currentConnectsTo
+			if not(connectionList[i].to in tempData['connects_to'].values()):
+				tempData['connects_to'][currentCTSize+1] = connectionList[i].to
+		
 		# store our location
 		tempData['location'] = self.get_node(name).get_offset()
 		

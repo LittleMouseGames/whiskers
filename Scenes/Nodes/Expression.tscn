@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Themes/Nodes/expressionPlugin.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+
 
 [node name="Expression" type="GraphNode"]
 anchor_left = 0.5

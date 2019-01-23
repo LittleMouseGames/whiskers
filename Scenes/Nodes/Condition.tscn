@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Themes/Nodes/conditionPlugin.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
+
 
 [node name="Condition" type="GraphNode"]
 anchor_left = 0.5

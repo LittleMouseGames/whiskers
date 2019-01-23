@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scripts/Graph.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Images/attn.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/Dialogue.gd" type="Script" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -207,6 +208,10 @@ bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 [sub_resource type="StyleBoxFlat" id=19]
 
 bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
 [node name="Editor" type="Control"]
 anchor_right = 1.0
@@ -795,6 +800,7 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Dialogue Graph" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -809,8 +815,6 @@ scroll_offset = Vector2( -5, -26 )
 script = ExtResource( 18 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
-editor/display_folded = true
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -964,6 +968,42 @@ anchor_bottom = 1.0
 text = "A"
 align = 1
 valign = 1
+
+[node name="Dialogue" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = -111.0
+margin_right = 118.0
+margin_bottom = -13.0
+custom_styles/panel = SubResource( 20 )
+script = ExtResource( 21 )
+
+[node name="Text" type="RichTextLabel" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 9.0
+margin_right = -6.0
+margin_bottom = -9.0
+bbcode_enabled = true
+bbcode_text = "Hello! [b]HI![/b]!"
+text = "Hello! HI!!"
+
+[node name="Template" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
+visible = false
+margin_left = 382.348
+margin_top = 70.5617
+margin_right = 501.348
+margin_bottom = 97.5617
+text = "Template Bttn"
+
+[node name="Buttons" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]
