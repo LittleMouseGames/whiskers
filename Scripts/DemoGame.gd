@@ -65,3 +65,9 @@ func _on_W_button_up():
 
 func _on_A_button_up():
 	buttonAct = ''
+
+func _on_E_button_down():
+	buttonAct = 'left'
+
+func _on_E_button_up():
+	buttonAct = ''

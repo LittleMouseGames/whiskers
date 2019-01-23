@@ -37,3 +37,7 @@ func _input(event):
 				if(!inMenu):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
+
+func _update_demo():
+	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")._processData()
+	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data

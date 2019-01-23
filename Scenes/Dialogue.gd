@@ -17,30 +17,27 @@ func _process(delta):
 		buttonFired = false
 
 func _populate():
-	var data_file = File.new()
-	if data_file.open("res://Test Dialogue/test.json", File.READ) == OK:
-		var data_parse = data_file.get_as_text()
-		data = JSON.parse(data_parse).result
-		var firstNode = data[data['Start']['connects_to']['1']]
+	if(data):
+		var firstNode = data[data['Start']['connects_to'][1]]
 		get_node("Text").parse_bbcode(firstNode['text'])
 		# lets set our buttons
 		var firstButtons = firstNode['connects_to'].size()
 		for i in range(1, firstButtons+1):
-			_addButton(data[firstNode['connects_to'][str(i)]]['text'], firstNode['connects_to'][str(i)])
+			_addButton(data[firstNode['connects_to'][i]]['text'], firstNode['connects_to'][i])
 
 func _next(name): # Its for a church honey!
 	var button = data[name]
 	for i in range(1, button['connects_to'].size()+1):
-		if('Dialogue' in button['connects_to'][str(i)]):
+		if('Dialogue' in button['connects_to'][i]):
 			#lets clear our buttons
 			_clearButtons()
 			# lets load that Dialogue node!
-			get_node("Text").parse_bbcode(data[button['connects_to'][str(i)]]['text'])
+			get_node("Text").parse_bbcode(data[button['connects_to'][i]]['text'])
 			# lets load everything we're connecting to!
-			var connectedTo = data[button['connects_to'][str(i)]]['connects_to']
+			var connectedTo = data[button['connects_to'][i]]['connects_to']
 			for x in range(1, connectedTo.size()+1):
-				if('Option' in connectedTo[str(i)]):
-					_addButton(data[connectedTo[str(i)]]['text'], connectedTo[str(i)])
+				if('Option' in connectedTo[i]):
+					_addButton(data[connectedTo[i]]['text'], connectedTo[i])
 
 func _addButton(text, bttnName):
 	var node = Button.new()
@@ -51,7 +48,6 @@ func _addButton(text, bttnName):
 	self.get_node("Buttons").add_child(node)
 	node.show()
 	node.set_name(bttnName)
-	print(node.get_name())
 	lastBttnPos -= 35#? Yes, yes. I've thought it over quite thoroughly
 
 func _reset():
@@ -59,6 +55,7 @@ func _reset():
 	buttonFired = false
 	lastBttnPos = 0
 	_clearButtons()
+	EditorSingleton._update_demo()
 
 func _clearButtons():
 	lastBttnPos = 0

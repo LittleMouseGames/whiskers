@@ -55,7 +55,8 @@ func _on_UtilityNodes_item_activated(index):
 
 #=======> SAVING
 var data = {} # this is the final data, an array of all nodes that we write to file
-func _processData(connectionList):
+func _processData():
+	var connectionList = get_connection_list()
 	# We should save our 'info' tab data!
 	data['info'] = {
 		'name':get_node("../../Info/Info/Name/Input").get_text(),
@@ -129,15 +130,13 @@ func _processData(connectionList):
 
 func _save_whiskers(path):
 	if(path):
-		var connectionList = get_connection_list()
-		_processData(connectionList)
+		_processData()
 		# write the file
 		print('saving file to: ', path)
 		var saveFile = File.new()
 		saveFile.open(path, File.WRITE)
 		saveFile.store_line(to_json(data))
 		saveFile.close()
-		print(data)
 		# clear our data node
 		data = {}
 

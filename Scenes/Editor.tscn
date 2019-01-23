@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -21,6 +21,10 @@
 [ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Images/attn.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/Dialogue.gd" type="Script" id=21]
+[ext_resource path="res://Assets/Fonts/boldItalics.tres" type="DynamicFont" id=22]
+[ext_resource path="res://Assets/Fonts/italics.tres" type="DynamicFont" id=23]
+[ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=24]
+[ext_resource path="res://Assets/Fonts/regular.tres" type="DynamicFont" id=25]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -205,10 +209,6 @@ extents = Vector2( 51.1839, 49.7567 )
 
 bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 
-[sub_resource type="StyleBoxFlat" id=19]
-
-bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
-
 [sub_resource type="StyleBoxFlat" id=20]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
@@ -223,6 +223,7 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Modals" type="Control" parent="Mount"]
+editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -356,7 +357,6 @@ margin_bottom = 590.0
 dragger_visibility = 2
 
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
-editor/display_folded = true
 margin_right = 1004.0
 margin_bottom = 30.0
 dragger_visibility = 2
@@ -376,6 +376,7 @@ margin_bottom = 22.0
 text = "File"
 
 [node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/File"]
+editor/display_folded = true
 visible = false
 margin_left = 10.4972
 margin_top = 34.3308
@@ -541,6 +542,7 @@ text = "CTRL-Q"
 align = 2
 
 [node name="Help" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+editor/display_folded = true
 margin_left = 39.0
 margin_right = 81.0
 margin_bottom = 22.0
@@ -602,7 +604,6 @@ text = "CTRL-H"
 align = 2
 
 [node name="Actions" type="GridContainer" parent="Mount/MainWindow/MenuBar"]
-editor/display_folded = true
 margin_left = 903.0
 margin_right = 1004.0
 margin_bottom = 30.0
@@ -618,6 +619,7 @@ margin_right = 1004.0
 margin_bottom = 580.0
 
 [node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
+editor/display_folded = true
 margin_right = 230.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 230, 0 )
@@ -866,36 +868,32 @@ margin_right = -87.8693
 margin_bottom = 101.505
 custom_styles/panel = SubResource( 18 )
 
-[node name="E" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
-visible = false
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -46.7106
-margin_top = 8.18164
-margin_right = -12.7106
-margin_bottom = 42.1816
-custom_styles/panel = SubResource( 19 )
-
-[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/E"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "E"
-align = 1
-valign = 1
-
 [node name="Area2D2" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
+editor/display_folded = true
 position = Vector2( 25.9418, 24.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2"]
 position = Vector2( 2.09503, 4.69334 )
 shape = SubResource( 17 )
 
+[node name="E" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -44.2071
+margin_top = 8.45868
+margin_right = -10.2071
+margin_bottom = 42.4586
+text = "E"
+
 [node name="Keys" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
 editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.25171
+margin_right = 1.25171
 
 [node name="D" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
 editor/display_folded = true
@@ -970,6 +968,7 @@ align = 1
 valign = 1
 
 [node name="Dialogue" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -989,6 +988,10 @@ margin_left = 8.0
 margin_top = 9.0
 margin_right = -6.0
 margin_bottom = -9.0
+custom_fonts/bold_italics_font = ExtResource( 22 )
+custom_fonts/italics_font = ExtResource( 23 )
+custom_fonts/bold_font = ExtResource( 24 )
+custom_fonts/normal_font = ExtResource( 25 )
 bbcode_enabled = true
 bbcode_text = "Hello! [b]HI![/b]!"
 text = "Hello! HI!!"
@@ -1024,6 +1027,7 @@ margin_bottom = 40.0
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_About_pressed"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Actions/Update" to="Mount/MainWindow/MenuBar/Menus" method="_on_Update_pressed"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
@@ -1032,6 +1036,8 @@ margin_bottom = 40.0
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_disconnection_request"]
 [connection signal="area_entered" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Area2D2_area_entered"]
 [connection signal="area_exited" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Area2D2_area_exited"]
+[connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/E" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_E_button_down"]
+[connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/E" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_E_button_up"]
 [connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/D" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_D_button_down"]
 [connection signal="button_up" from="Mount/MainWindow/Editor/Graph/Demo/Keys/D" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_D_button_up"]
 [connection signal="button_down" from="Mount/MainWindow/Editor/Graph/Demo/Keys/S" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_S_button_down"]

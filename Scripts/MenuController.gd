@@ -66,3 +66,6 @@ func _on_menAct_mouse_entered():
 func _on_menAct_mouse_exited():
 	if(EditorSingleton.inMenu == true):
 		EditorSingleton.inMenu = false
+
+func _on_Update_pressed():
+	EditorSingleton._update_demo()
