@@ -70,7 +70,10 @@ func _processData(connectionList):
 			'text':"",
 			'connects_to':{},
 			'logic':"",
-			'conditions':{},
+			'conditions':{
+				'true':'',
+				'false':''
+			},
 			'location':""
 		}
 		var currentCTSize = 0
@@ -78,6 +81,7 @@ func _processData(connectionList):
 		if(name in data):
 			currentCTSize = data[name]['connects_to'].size()
 			currentConnectsTo = data[name]['connects_to']
+		
 		
 		# are we a node with a text field?
 		if('Dialogue' in name) or ('Option' in name) or ('Expression' in name) or ('Jump' in name) or ('Comment' in name):
@@ -87,11 +91,23 @@ func _processData(connectionList):
 		if('Expression' in name):
 			tempData['logic'] = self.get_node(name).get_node('Lines').get_child(0).get_text()
 		
-		if(currentConnectsTo):
-			tempData['connects_to'] = currentConnectsTo
-		if not(connectionList[i].to in tempData['connects_to'].values()):
-			tempData['connects_to'][currentCTSize+1] = connectionList[i].to
-		
+		if not ('Condition' in name):
+			if(currentConnectsTo):
+				tempData['connects_to'] = currentConnectsTo
+			if not(connectionList[i].to in tempData['connects_to'].values()):
+				tempData['connects_to'][currentCTSize+1] = connectionList[i].to
+		else:
+			var routes
+			if(name in data):
+				routes = data[name]['conditions']
+			if(connectionList[i]['from_port'] == 0):
+				tempData['conditions']['true'] = connectionList[i].to
+				if(routes) and (routes['false']):
+					tempData['conditions']['false'] = routes['false']
+			if(connectionList[i]['from_port'] == 1):
+				tempData['conditions']['false'] = connectionList[i].to
+				if(routes) and (routes['true']):
+					tempData['conditions']['true'] = routes['true']
 		# store our location
 		tempData['location'] = self.get_node(name).get_offset()
 		

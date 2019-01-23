@@ -9,7 +9,7 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.145098, 0.145098, 0.176471, 1 )
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 
 [node name="End" type="GraphNode"]
 anchor_left = 0.5

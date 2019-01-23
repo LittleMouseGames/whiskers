@@ -1,24 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
-
-[sub_resource type="StyleBoxFlat" id=1]
-
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 33.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.14902, 0.14902, 0.180392, 1 )
-border_width_top = 24
-border_color = Color( 0.266667, 0.364706, 0.431373, 1 )
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-shadow_color = Color( 0, 0, 0, 0.303882 )
-shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id=2]
 
@@ -39,7 +23,7 @@ margin_right = -177.204
 margin_bottom = -165.228
 mouse_filter = 1
 custom_styles/frame = ExtResource( 1 )
-custom_styles/selectedframe = SubResource( 1 )
+custom_styles/selectedframe = ExtResource( 1 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "Comment Node"

@@ -621,7 +621,6 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -703,6 +702,7 @@ custom_styles/bg = SubResource( 7 )
 items = [ "Comment Node", ExtResource( 11 ), false, "Start Node", ExtResource( 12 ), false, "End Node", ExtResource( 13 ), false ]
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0

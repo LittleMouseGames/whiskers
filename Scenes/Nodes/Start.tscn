@@ -3,13 +3,13 @@
 [ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.145098, 0.145098, 0.176471, 1 )
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 
 [node name="Start" type="GraphNode"]
 anchor_left = 0.5
@@ -43,7 +43,7 @@ margin_top = 33.0
 margin_right = 187.0
 margin_bottom = 57.0
 hint_tooltip = "Function calling and one line expressions"
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 text = "Put me at the start!"
 
 [connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
