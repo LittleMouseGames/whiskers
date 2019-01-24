@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -13,14 +13,14 @@
 [ext_resource path="res://Assets/Node Images/comIco.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Node Images/starIco.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Node Images/endIco.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/ItemList.gd" type="Script" id=14]
-[ext_resource path="res://Assets/Themes/Other/ScrollGrabber.tres" type="StyleBox" id=15]
-[ext_resource path="res://Assets/Themes/Other/ScrollGrapperPressed.tres" type="StyleBox" id=16]
-[ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=17]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrabber.tres" type="StyleBox" id=14]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrapperPressed.tres" type="StyleBox" id=15]
+[ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=16]
+[ext_resource path="res://Scenes/DocVars.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Graph.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Images/attn.png" type="Texture" id=20]
-[ext_resource path="res://Scenes/Dialogue.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Dialogue.gd" type="Script" id=21]
 [ext_resource path="res://Assets/Fonts/boldItalics.tres" type="DynamicFont" id=22]
 [ext_resource path="res://Assets/Fonts/italics.tres" type="DynamicFont" id=23]
 [ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=24]
@@ -90,41 +90,36 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="Theme" id=10]
+[sub_resource type="Theme" id=23]
 
-TextEdit/colors/background_color = Color( 0.145098, 0.172549, 0.231373, 1 )
-TextEdit/colors/brace_mismatch_color = Color( 1, 0.2, 0.2, 1 )
-TextEdit/colors/breakpoint_color = Color( 0.8, 0.8, 0.4, 0.2 )
-TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/caret_color = Color( 0.878431, 0.878431, 0.878431, 1 )
-TextEdit/colors/code_folding_color = Color( 0.8, 0.8, 0.8, 1 )
-TextEdit/colors/completion_background_color = Color( 0.172549, 0.164706, 0.196078, 1 )
-TextEdit/colors/completion_existing_color = Color( 0.87451, 0.87451, 0.87451, 0.129412 )
-TextEdit/colors/completion_font_color = Color( 0.666667, 0.666667, 0.666667, 1 )
-TextEdit/colors/completion_scroll_color = Color( 1, 1, 1, 1 )
-TextEdit/colors/completion_selected_color = Color( 0.262745, 0.258824, 0.266667, 1 )
-TextEdit/colors/current_line_color = Color( 0.317647, 0.337255, 0.384314, 0.654902 )
-TextEdit/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
-TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-TextEdit/colors/function_color = Color( 0.4, 0.635294, 0.807843, 1 )
-TextEdit/colors/line_number_color = Color( 0.666667, 0.666667, 0.666667, 0.4 )
-TextEdit/colors/mark_color = Color( 1, 0.4, 0.4, 0.4 )
-TextEdit/colors/member_variable_color = Color( 0.341176, 0.701961, 1, 1 )
-TextEdit/colors/number_color = Color( 0.341176, 0.701961, 1, 1 )
-TextEdit/colors/safe_line_number_color = Color( 0.666667, 0.784314, 0.666667, 0.6 )
-TextEdit/colors/selection_color = Color( 0.317647, 0.337255, 0.384314, 1 )
-TextEdit/colors/symbol_color = Color( 0.341176, 0.701961, 1, 1 )
-TextEdit/colors/word_highlighted_color = Color( 0.509804, 0.52549, 0.552941, 1 )
-TextEdit/constants/completion_lines = 7
-TextEdit/constants/completion_max_width = 50
-TextEdit/constants/completion_scroll_width = 3
-TextEdit/constants/line_spacing = 4
-TextEdit/fonts/font = null
-TextEdit/icons/tab = null
-TextEdit/styles/completion = null
-TextEdit/styles/focus = null
-TextEdit/styles/normal = null
-TextEdit/styles/read_only = null
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = ExtResource( 14 )
+VScrollBar/styles/grabber_highlight = ExtResource( 15 )
+VScrollBar/styles/grabber_pressed = ExtResource( 15 )
+VScrollBar/styles/scroll = ExtResource( 16 )
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="StyleBoxFlat" id=22]
+
+content_margin_bottom = 5.0
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+
+bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 
 [sub_resource type="StyleBoxFlat" id=11]
 
@@ -166,9 +161,9 @@ HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = ExtResource( 15 )
-HScrollBar/styles/grabber_highlight = ExtResource( 16 )
-HScrollBar/styles/grabber_pressed = ExtResource( 16 )
+HScrollBar/styles/grabber = ExtResource( 14 )
+HScrollBar/styles/grabber_highlight = ExtResource( 15 )
+HScrollBar/styles/grabber_pressed = ExtResource( 15 )
 HScrollBar/styles/scroll = SubResource( 12 )
 HScrollBar/styles/scroll_focus = null
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
@@ -187,10 +182,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = ExtResource( 15 )
-VScrollBar/styles/grabber_highlight = ExtResource( 16 )
-VScrollBar/styles/grabber_pressed = ExtResource( 16 )
-VScrollBar/styles/scroll = ExtResource( 17 )
+VScrollBar/styles/grabber = ExtResource( 14 )
+VScrollBar/styles/grabber_highlight = ExtResource( 15 )
+VScrollBar/styles/grabber_pressed = ExtResource( 15 )
+VScrollBar/styles/scroll = ExtResource( 16 )
 VScrollBar/styles/scroll_focus = null
 
 [sub_resource type="StyleBoxFlat" id=15]
@@ -604,6 +599,7 @@ text = "CTRL-H"
 align = 2
 
 [node name="Actions" type="GridContainer" parent="Mount/MainWindow/MenuBar"]
+editor/display_folded = true
 margin_left = 903.0
 margin_right = 1004.0
 margin_bottom = 30.0
@@ -619,7 +615,6 @@ margin_right = 1004.0
 margin_bottom = 580.0
 
 [node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
-editor/display_folded = true
 margin_right = 230.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 230, 0 )
@@ -628,6 +623,8 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+editor/display_folded = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -709,7 +706,6 @@ custom_styles/bg = SubResource( 7 )
 items = [ "Comment Node", ExtResource( 11 ), false, "Start Node", ExtResource( 12 ), false, "End Node", ExtResource( 13 ), false ]
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -743,6 +739,7 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Name" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
 margin_top = 54.0
 margin_right = 220.0
 margin_bottom = 96.0
@@ -771,7 +768,7 @@ custom_styles/separator = SubResource( 8 )
 [node name="DocVars" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
 margin_top = 108.0
 margin_right = 220.0
-margin_bottom = 201.0
+margin_bottom = 231.0
 dragger_visibility = 2
 
 [node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Info/DocVars"]
@@ -780,19 +777,47 @@ margin_bottom = 18.0
 custom_styles/normal = SubResource( 6 )
 text = "Document Variables"
 
-[node name="ItemList" type="TextEdit" parent="Mount/MainWindow/Editor/Info/Info/DocVars"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars"]
 margin_top = 18.0
 margin_right = 220.0
-margin_bottom = 93.0
-rect_min_size = Vector2( 0, 75 )
-theme = SubResource( 10 )
-text = "var demo = true"
-syntax_highlighting = true
-show_line_numbers = true
-highlight_all_occurrences = true
-script = ExtResource( 14 )
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 105 )
+theme = SubResource( 23 )
+custom_styles/bg = SubResource( 22 )
+scroll_horizontal_enabled = false
+
+[node name="Container" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 215.0
+margin_bottom = 5.0
+size_flags_horizontal = 3
+script = ExtResource( 17 )
+
+[node name="item_template" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container"]
+visible = false
+margin_right = 210.0
+margin_bottom = 24.0
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template"]
+margin_right = 105.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "littleMouse"
+valign = 1
+
+[node name="LineEdit" type="LineEdit" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template"]
+margin_left = 105.0
+margin_right = 210.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 21 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
+editor/display_folded = true
 margin_left = 242.0
 margin_right = 1004.0
 margin_bottom = 550.0
@@ -1030,6 +1055,7 @@ margin_bottom = 40.0
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
+[connection signal="text_changed" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_text_changed"]
 [connection signal="tab_selected" from="Mount/MainWindow/Editor/Graph" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Graph_tab_selected"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_connection_request"]
 [connection signal="disconnection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_disconnection_request"]

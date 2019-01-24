@@ -61,7 +61,6 @@ func _processData():
 	data['info'] = {
 		'name':get_node("../../Info/Info/Name/Input").get_text(),
 		'display_name':get_node("../../Info/Info/DName/Input").get_text(),
-		'document_vars':get_node("../../Info/Info/DocVars/ItemList").get_text(),
 	}
 	# lets save our GraphNodes!
 	for i in range(0, connectionList.size()):
@@ -152,7 +151,6 @@ func _open_whiskers(path):
 		# we should restore our `info` tab data!
 		get_node("../../Info/Info/DName/Input").set_text(loadData['info']['display_name'])
 		get_node("../../Info/Info/Name/Input").set_text(loadData['info']['name'])
-		get_node("../../Info/Info/DocVars/ItemList").set_text(loadData['info']['document_vars'])
 		# we should load our GraphNodes!
 		for i in range(0, nodeDataKeys.size()):
 			var type
@@ -191,7 +189,6 @@ func _clear_graph():
 	# we should restore our `info` tab data!
 	get_node("../../Info/Info/DName/Input").set_text('')
 	get_node("../../Info/Info/Name/Input").set_text('')
-	get_node("../../Info/Info/DocVars/ItemList").set_text('var demo = true')
 	# we should clear the GraphEdit of GraphNodes
 	for child in self.get_children():
 		if ("Control" in child.get_class()):

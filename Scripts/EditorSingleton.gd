@@ -1,6 +1,7 @@
 extends Node
 
 var inMenu = false
+var test = true
 
 func _unhandled_input(event):
 	if event is InputEventKey:

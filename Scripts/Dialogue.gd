@@ -23,7 +23,10 @@ func _populate():
 		# lets set our buttons
 		var firstButtons = firstNode['connects_to'].size()
 		for i in range(1, firstButtons+1):
-			_addButton(data[firstNode['connects_to'][i]]['text'], firstNode['connects_to'][i])
+			if('Option' in firstNode['connects_to'][i]):
+				_addButton(data[firstNode['connects_to'][i]]['text'], firstNode['connects_to'][i])
+			if('Condition' in firstNode['connects_to'][i]):
+				_parse_logic(firstNode['connects_to'][i], 'dialogue')
 
 func _next(name, fromLogic): # Its for a church honey!
 	var button = data[name]
@@ -62,7 +65,7 @@ func _parse_logic(currentNode, from):
 			# lets store our logic in the new Expression type!
 			var expression = Expression.new()
 			expression.parse(data[dataKeys[z]]['logic'], [])
-			var result = expression.execute([], null, true)
+			var result = expression.execute([], DemoSingleton, true)
 			var routes = data[currentNode]['conditions']
 			if not expression.has_execute_failed():
 				if(from == 'dialogue'):
@@ -77,8 +80,10 @@ func _parse_logic(currentNode, from):
 						_next(routes['false'], true)
 			else:
 				# something failed, we'll default to false.
-				_addButton(data[routes['false']]['text'], routes['false'])
-
+				if(from == 'dialogue'):
+					_addButton(data[routes['false']]['text'], routes['false'])
+				else:
+					_next(routes['false'], true)
 
 func _addButton(text, bttnName):
 	var node = Button.new()
