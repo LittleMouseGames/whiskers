@@ -5,6 +5,7 @@ func _ready():
 		var node = get_node("item_template").duplicate()
 		node.get_child(0).set_text(DemoSingleton.variables[i])
 		node.set_name(DemoSingleton.variables[i])
+		node.hint_tooltip = DemoSingleton.varTooltips[i]
 		node.get_child(1).set_text(str(DemoSingleton.get(DemoSingleton.variables[i])))
 		node.show()
 		get_node(".").add_child(node)

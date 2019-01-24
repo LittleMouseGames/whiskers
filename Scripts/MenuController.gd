@@ -47,6 +47,7 @@ func _on_About_pressed():
 func _on_Save_pressed():
 	EditorSingleton._close_all()
 	saveDialog.show()
+	saveDialog.current_file = get_node("../../Editor/Info/Info/Name/Input").get_text()+'.json'
 
 func _on_New_pressed():
 	EditorSingleton._close_all()

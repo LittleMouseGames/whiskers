@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -90,7 +90,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="Theme" id=23]
+[sub_resource type="Theme" id=10]
 
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
@@ -102,7 +102,7 @@ VScrollBar/styles/grabber_pressed = ExtResource( 15 )
 VScrollBar/styles/scroll = ExtResource( 16 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=11]
 
 content_margin_bottom = 5.0
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
@@ -112,7 +112,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=12]
 
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 border_width_left = 5
@@ -121,11 +121,11 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=13]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=14]
 
 content_margin_bottom = 7.0
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
@@ -134,7 +134,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=15]
 
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 border_width_left = 1
@@ -143,7 +143,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.186813, 0.224803, 0.300781, 1 )
 
-[sub_resource type="Theme" id=14]
+[sub_resource type="Theme" id=16]
 
 GraphEdit/colors/activity = Color( 1, 1, 1, 1 )
 GraphEdit/colors/grid_major = Color( 1, 1, 1, 0.2 )
@@ -156,7 +156,7 @@ GraphEdit/icons/minus = null
 GraphEdit/icons/more = null
 GraphEdit/icons/reset = null
 GraphEdit/icons/snap = null
-GraphEdit/styles/bg = SubResource( 11 )
+GraphEdit/styles/bg = SubResource( 13 )
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
@@ -164,7 +164,7 @@ HScrollBar/icons/increment_highlight = null
 HScrollBar/styles/grabber = ExtResource( 14 )
 HScrollBar/styles/grabber_highlight = ExtResource( 15 )
 HScrollBar/styles/grabber_pressed = ExtResource( 15 )
-HScrollBar/styles/scroll = SubResource( 12 )
+HScrollBar/styles/scroll = SubResource( 14 )
 HScrollBar/styles/scroll_focus = null
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
@@ -175,8 +175,8 @@ LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 13 )
-LineEdit/styles/normal = SubResource( 13 )
+LineEdit/styles/focus = SubResource( 15 )
+LineEdit/styles/normal = SubResource( 15 )
 LineEdit/styles/read_only = null
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
@@ -188,25 +188,33 @@ VScrollBar/styles/grabber_pressed = ExtResource( 15 )
 VScrollBar/styles/scroll = ExtResource( 16 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=17]
 
 bg_color = Color( 0.0980392, 0.113725, 0.152941, 1 )
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=18]
 
 bg_color = Color( 0.176471, 0.486275, 0.654902, 1 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=19]
 
 extents = Vector2( 51.1839, 49.7567 )
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=20]
 
 bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=21]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+border_width_left = 7
+border_width_top = 1
+border_width_right = 7
+border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
 [node name="Editor" type="Control"]
 anchor_right = 1.0
@@ -352,6 +360,7 @@ margin_bottom = 590.0
 dragger_visibility = 2
 
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
+editor/display_folded = true
 margin_right = 1004.0
 margin_bottom = 30.0
 dragger_visibility = 2
@@ -624,7 +633,6 @@ drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
 editor/display_folded = true
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -706,6 +714,7 @@ custom_styles/bg = SubResource( 7 )
 items = [ "Comment Node", ExtResource( 11 ), false, "Start Node", ExtResource( 12 ), false, "End Node", ExtResource( 13 ), false ]
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -739,7 +748,6 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Name" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
-editor/display_folded = true
 margin_top = 54.0
 margin_right = 220.0
 margin_bottom = 96.0
@@ -782,8 +790,8 @@ margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 123.0
 rect_min_size = Vector2( 0, 105 )
-theme = SubResource( 23 )
-custom_styles/bg = SubResource( 22 )
+theme = SubResource( 10 )
+custom_styles/bg = SubResource( 11 )
 scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer"]
@@ -814,10 +822,9 @@ margin_right = 210.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 21 )
+custom_styles/normal = SubResource( 12 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
-editor/display_folded = true
 margin_left = 242.0
 margin_right = 1004.0
 margin_bottom = 550.0
@@ -827,6 +834,7 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Dialogue Graph" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -835,20 +843,19 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 14 )
+theme = SubResource( 16 )
 right_disconnects = true
 scroll_offset = Vector2( -5, -26 )
 script = ExtResource( 18 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 31.0
 margin_right = -5.0
 margin_bottom = -5.0
-custom_styles/panel = SubResource( 15 )
+custom_styles/panel = SubResource( 17 )
 script = ExtResource( 19 )
 speed = 2
 
@@ -867,7 +874,7 @@ margin_left = -60.892
 margin_top = -140.945
 margin_right = -3.89197
 margin_bottom = -83.9446
-custom_styles/panel = SubResource( 16 )
+custom_styles/panel = SubResource( 18 )
 
 [node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 28.4531, -28.8561 )
@@ -879,7 +886,7 @@ position = Vector2( 26.4634, 24.2581 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC/Area2D"]
 position = Vector2( 2.09503, 5.64336 )
-shape = SubResource( 17 )
+shape = SubResource( 19 )
 
 [node name="Player" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField"]
 editor/display_folded = true
@@ -891,7 +898,7 @@ margin_left = -144.869
 margin_top = 44.5054
 margin_right = -87.8693
 margin_bottom = 101.505
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 20 )
 
 [node name="Area2D2" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
 editor/display_folded = true
@@ -899,7 +906,7 @@ position = Vector2( 25.9418, 24.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2"]
 position = Vector2( 2.09503, 4.69334 )
-shape = SubResource( 17 )
+shape = SubResource( 19 )
 
 [node name="E" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
 visible = false
@@ -915,10 +922,14 @@ text = "E"
 
 [node name="Keys" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
 editor/display_folded = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.25171
-margin_right = 1.25171
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -376.0
+margin_top = -257.0
+margin_right = 376.0
+margin_bottom = 257.0
 
 [node name="D" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
 editor/display_folded = true
@@ -1002,7 +1013,7 @@ margin_left = -256.0
 margin_top = -111.0
 margin_right = 118.0
 margin_bottom = -13.0
-custom_styles/panel = SubResource( 19 )
+custom_styles/panel = SubResource( 21 )
 script = ExtResource( 21 )
 
 [node name="Text" type="RichTextLabel" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
@@ -1031,6 +1042,17 @@ text = "Template Bttn"
 [node name="Buttons" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Name" type="Label" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_right = -326.0
+margin_bottom = -98.0
+custom_styles/normal = SubResource( 22 )
+custom_fonts/font = ExtResource( 24 )
+text = "Dave"
 
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]

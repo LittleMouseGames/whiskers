@@ -18,6 +18,10 @@ func _process(delta):
 
 func _populate():
 	if(data) and (data.size() > 1):
+		# do we have a character name?
+		get_node("Name").set_text(data['info']['display_name'])
+		get_node("Name").show()
+		# load the first bit of Data
 		var firstNode = data[data['Start']['connects_to'][1]]
 		get_node("Text").parse_bbcode(firstNode['text'])
 		# lets set our buttons
@@ -97,11 +101,13 @@ func _addButton(text, bttnName):
 	lastBttnPos -= 35#? Yes, yes. I've thought it over quite thoroughly
 
 func _reset():
-	data = 0
 	buttonFired = false
 	lastBttnPos = 0
 	_clearButtons()
 	EditorSingleton._update_demo()
+	get_node("Name").hide()
+	data = 0
+	get_node("Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 
 func _clearButtons():
 	lastBttnPos = 0

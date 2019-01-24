@@ -8,6 +8,7 @@ func _unhandled_input(event):
 		if Input.is_action_pressed("save"):
 			_close_all()
 			get_node("/root/Editor/Mount/Modals/Save").show()
+			get_node("/root/Editor/Mount/Modals/Save").current_file = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Info/Name/Input").get_text()+'.json'
 		if Input.is_action_pressed("open"):
 			_close_all()
 			get_node("/root/Editor/Mount/Modals/Open").show()
