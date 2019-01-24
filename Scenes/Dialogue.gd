@@ -17,7 +17,7 @@ func _process(delta):
 		buttonFired = false
 
 func _populate():
-	if(data):
+	if(data) and (data.size() > 1):
 		var firstNode = data[data['Start']['connects_to'][1]]
 		get_node("Text").parse_bbcode(firstNode['text'])
 		# lets set our buttons
@@ -27,17 +27,37 @@ func _populate():
 
 func _next(name): # Its for a church honey!
 	var button = data[name]
+	#lets clear our buttons
+	_clearButtons()
 	for i in range(1, button['connects_to'].size()+1):
 		if('Dialogue' in button['connects_to'][i]):
-			#lets clear our buttons
-			_clearButtons()
 			# lets load that Dialogue node!
 			get_node("Text").parse_bbcode(data[button['connects_to'][i]]['text'])
 			# lets load everything we're connecting to!
 			var connectedTo = data[button['connects_to'][i]]['connects_to']
+			print(connectedTo)
 			for x in range(1, connectedTo.size()+1):
-				if('Option' in connectedTo[i]):
-					_addButton(data[connectedTo[i]]['text'], connectedTo[i])
+				if('Option' in connectedTo[x]):
+					_addButton(data[connectedTo[x]]['text'], connectedTo[x])
+				if('Condition' in connectedTo[x]):
+					print('connecting to a condition!')
+					# we should find our expression node!
+					var dataKeys = data.keys()
+					for z in range(0, data.size()):
+						if('Expression' in dataKeys[z]) and (data[dataKeys[z]]['connects_to'][1] == connectedTo[i]):
+							# lets store our logic in the new Expression type!
+							var expression = Expression.new()
+							expression.parse(data[dataKeys[z]]['logic'], [])
+							var result = expression.execute([], null, true)
+							var routes = data[connectedTo[i]]['conditions']
+							if not expression.has_execute_failed():
+								if(result):
+									_addButton(data[routes['true']]['text'], routes['true'])
+								else:
+									_addButton(data[routes['false']]['text'], routes['false'])
+							else:
+								# something failed, we'll default to false.
+								_addButton(data[routes['false']]['text'], routes['false'])
 
 func _addButton(text, bttnName):
 	var node = Button.new()

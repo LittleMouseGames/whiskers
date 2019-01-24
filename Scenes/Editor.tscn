@@ -209,7 +209,7 @@ extents = Vector2( 51.1839, 49.7567 )
 
 bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=19]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
@@ -802,7 +802,6 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Dialogue Graph" type="GraphEdit" parent="Mount/MainWindow/Editor/Graph"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -817,6 +816,7 @@ scroll_offset = Vector2( -5, -26 )
 script = ExtResource( 18 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -968,7 +968,6 @@ align = 1
 valign = 1
 
 [node name="Dialogue" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo"]
-editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -978,7 +977,7 @@ margin_left = -256.0
 margin_top = -111.0
 margin_right = 118.0
 margin_bottom = -13.0
-custom_styles/panel = SubResource( 20 )
+custom_styles/panel = SubResource( 19 )
 script = ExtResource( 21 )
 
 [node name="Text" type="RichTextLabel" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
@@ -993,8 +992,8 @@ custom_fonts/italics_font = ExtResource( 23 )
 custom_fonts/bold_font = ExtResource( 24 )
 custom_fonts/normal_font = ExtResource( 25 )
 bbcode_enabled = true
-bbcode_text = "Hello! [b]HI![/b]!"
-text = "Hello! HI!!"
+bbcode_text = "You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!"
+text = "You haven't loaded anything yet! Press Update Demo to load your current graph!"
 
 [node name="Template" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Dialogue"]
 visible = false

@@ -157,32 +157,31 @@ func _open_whiskers(path):
 		for i in range(0, nodeDataKeys.size()):
 			var type
 			var node = loadData[nodeDataKeys[i]]
-			if('Dialogue' in nodeDataKeys[i]):
-				type = 'Dialogue.tscn'
-			if('Option' in nodeDataKeys[i]):
-				type = 'Option.tscn'
-			if('Expression' in nodeDataKeys[i]):
-				type = 'Expression.tscn'
-			if('Condition' in nodeDataKeys[i]):
-				type = 'Condition.tscn'
-			if('Jump' in nodeDataKeys[i]):
-				type = 'Jump.tscn'
-			if('End' in nodeDataKeys[i]):
-				type = 'End.tscn'
-			if('Start' in nodeDataKeys[i]):
-				type = 'Start.tscn'
-			if('Comment' in nodeDataKeys[i]):
-				type = 'Comment.tscn'
+			var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+			for x in range(0, nodeNames.size()):
+				if(nodeNames[x] in nodeDataKeys[i]):
+					type = str(nodeNames[x])+'.tscn'
 			if(type):
 				_load_node(type, node['location'], nodeDataKeys[i], node['text'])
 		
 		#everything has been loaded and added to the graph, lets connect them all!
 		for i in range(0, nodeDataKeys.size()):
 			if not('info' in nodeDataKeys[i]):
-				var connectTo = loadData[nodeDataKeys[i]]['connects_to']
-				# for each key
-				for x in range(1, connectTo.size()+1):
-					connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+				var connectTo
+				if('Condition' in nodeDataKeys[i]):
+					connectTo = loadData[nodeDataKeys[i]]['conditions']
+					# this is bad because it assumes `true` and `false` can *only* connect to one node
+					# this is a dumb assumption to make, and should be corrected soon:tm:
+					connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
+					connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
+				else:
+					connectTo = loadData[nodeDataKeys[i]]['connects_to']
+					# for each key
+					for x in range(1, connectTo.size()+1):
+						if('Expression' in nodeDataKeys[i]):
+							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
+						else:
+							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
 
 #=== NEW FILE handling
 func _on_New_confirmed():
