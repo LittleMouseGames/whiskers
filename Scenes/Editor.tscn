@@ -1150,6 +1150,8 @@ text = "Dave"
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
 [connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
+[connection signal="focus_entered" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_entered"]
+[connection signal="focus_exited" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_exited"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_text_changed"]
 [connection signal="tab_selected" from="Mount/MainWindow/Editor/Graph" to="Mount/MainWindow/Editor/Graph/Demo" method="_on_Graph_tab_selected"]
 [connection signal="connection_request" from="Mount/MainWindow/Editor/Graph/Dialogue Graph" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_Dialogue_Graph_connection_request"]
