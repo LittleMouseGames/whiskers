@@ -184,6 +184,11 @@ func _open_whiskers(path):
 #=== NEW FILE handling
 func _on_New_confirmed():
 	_clear_graph()
+	get_node("../Demo/Dialogue")._reset()
+	get_node("../Demo/Dialogue").data = 0
+	data = {}
+	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
+	
 
 func _clear_graph():
 	# we should restore our `info` tab data!

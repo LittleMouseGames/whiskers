@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 
 content_margin_left = 5.0
@@ -36,6 +35,12 @@ slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = false
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/1/left_enabled = true
+slot/1/left_type = 1
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 
 [node name="LineEdit" type="Label" parent="."]
@@ -46,6 +51,14 @@ margin_bottom = 57.0
 hint_tooltip = "Function calling and one line expressions"
 custom_styles/normal = SubResource( 1 )
 text = "Put me on dead-end Nodes!"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 57.0
+margin_right = 199.0
+margin_bottom = 81.0
+custom_styles/normal = SubResource( 1 )
+text = "expression end-cap"
 
 [connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Option_dragged"]

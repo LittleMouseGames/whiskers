@@ -22,11 +22,12 @@ custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "Expression Node"
 show_close = true
+resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
 slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = true
-slot/0/right_type = 0
+slot/0/right_type = 1
 slot/0/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 

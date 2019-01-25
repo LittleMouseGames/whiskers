@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/Themes/Nodes/conditionPlugin.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
 
-
 [node name="Condition" type="GraphNode"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -35,7 +34,7 @@ slot/1/right_enabled = false
 slot/1/right_type = 0
 slot/1/right_color = Color( 1, 1, 1, 1 )
 slot/2/left_enabled = true
-slot/2/left_type = 0
+slot/2/left_type = 1
 slot/2/left_color = Color( 1, 1, 1, 1 )
 slot/2/right_enabled = true
 slot/2/right_type = 0

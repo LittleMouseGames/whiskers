@@ -31,6 +31,8 @@ func _populate():
 				_addButton(data[firstNode['connects_to'][i]]['text'], firstNode['connects_to'][i])
 			if('Condition' in firstNode['connects_to'][i]):
 				_parse_logic(firstNode['connects_to'][i], 'dialogue')
+			if('Expression' in firstNode['connects_to'][i]):
+				_fire_expression(firstNode['connects_to'][i])
 
 func _next(name, fromLogic): # Its for a church honey!
 	var button = data[name]
@@ -42,16 +44,20 @@ func _next(name, fromLogic): # Its for a church honey!
 			get_node("Text").parse_bbcode(data[button['connects_to'][i]]['text'])
 			# lets load everything we're connecting to!
 			var connectedTo = data[button['connects_to'][i]]['connects_to']
-			print(connectedTo)
 			for x in range(1, connectedTo.size()+1):
 				if('Option' in connectedTo[x]):
 					_addButton(data[connectedTo[x]]['text'], connectedTo[x])
 				if('Condition' in connectedTo[x]):
 					_parse_logic(connectedTo[x], 'dialogue')
+				if('Expression' in connectedTo[x]):
+					_fire_expression(connectedTo[x])
 		
 		if('Condition' in button['connects_to'][i]):
 			#print(data[button['connects_to'][i]])
 			_parse_logic(button['connects_to'][i], 'option')
+		if('Expression' in button['connects_to'][i]):
+				_fire_expression(button['connects_to'][i])
+	
 	if(fromLogic):
 		get_node("Text").parse_bbcode(button['text'])
 		for i in range(1, button['connects_to'].size()+1):
@@ -59,9 +65,10 @@ func _next(name, fromLogic): # Its for a church honey!
 				_addButton(data[button['connects_to'][i]]['text'], button['connects_to'][i])
 			if('Condition' in button['connects_to'][i]):
 				_parse_logic(button['connects_to'][i], 'dialogue')
+			if('Expression' in button['connects_to'][i]):
+				_fire_expression(button['connects_to'][i])
 
 func _parse_logic(currentNode, from):
-	print('connecting to a condition!')
 	# we should find our expression node!
 	var dataKeys = data.keys()
 	for z in range(0, data.size()):
@@ -89,6 +96,18 @@ func _parse_logic(currentNode, from):
 				else:
 					_next(routes['false'], true)
 
+func _fire_expression(name):
+	print('firing expression!')
+	var logic = data[name]['logic']
+	var expression = Expression.new()
+	expression.parse(logic, [])
+	var result = expression.execute([], DemoSingleton, true)
+	if not expression.has_execute_failed():
+		if(result):
+			print('expression executed!')
+	else:
+		print('expression failed!')
+
 func _addButton(text, bttnName):
 	var node = Button.new()
 	var template = get_node("Template")
@@ -101,13 +120,12 @@ func _addButton(text, bttnName):
 	lastBttnPos -= 35#? Yes, yes. I've thought it over quite thoroughly
 
 func _reset():
+	data = 0
 	buttonFired = false
 	lastBttnPos = 0
 	_clearButtons()
 	EditorSingleton._update_demo()
 	get_node("Name").hide()
-	data = 0
-	get_node("Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 
 func _clearButtons():
 	lastBttnPos = 0
