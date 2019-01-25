@@ -39,7 +39,6 @@ func _on_Help_pressed():
 		helpMenu.show()
 		helpMenu.set_as_toplevel(true)
 
-
 func _on_About_pressed():
 	EditorSingleton._close_all()
 	aboutDialog.show()

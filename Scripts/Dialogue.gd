@@ -10,8 +10,13 @@ func _process(delta):
 	timer += delta
 	for i in range(0, get_node("Buttons").get_child_count()):
 		if get_node('Buttons').get_child(i).pressed and !buttonFired and timer >= 0.5:
-				_next(get_node('Buttons').get_child(i).name, false)
-				buttonFired = true
+			var name = get_node('Buttons').get_child(i).name
+			if('@' in name):
+				name = name.split('@')[1]
+				if('@' in name):
+					name = name.split('@')[0]
+			_next(name, false)
+			buttonFired = true
 	if(buttonFired):
 		timer = 0
 		buttonFired = false
@@ -27,12 +32,7 @@ func _populate():
 		# lets set our buttons
 		var firstButtons = firstNode['connects_to'].size()
 		for i in range(1, firstButtons+1):
-			if('Option' in firstNode['connects_to'][i]):
-				_addButton(data[firstNode['connects_to'][i]]['text'], firstNode['connects_to'][i])
-			if('Condition' in firstNode['connects_to'][i]):
-				_parse_logic(firstNode['connects_to'][i], 'dialogue')
-			if('Expression' in firstNode['connects_to'][i]):
-				_fire_expression(firstNode['connects_to'][i])
+			_handle_action(firstNode['connects_to'][i], 'dialogue')
 
 func _next(name, fromLogic): # Its for a church honey!
 	var button = data[name]
@@ -45,28 +45,24 @@ func _next(name, fromLogic): # Its for a church honey!
 			# lets load everything we're connecting to!
 			var connectedTo = data[button['connects_to'][i]]['connects_to']
 			for x in range(1, connectedTo.size()+1):
-				if('Option' in connectedTo[x]):
-					_addButton(data[connectedTo[x]]['text'], connectedTo[x])
-				if('Condition' in connectedTo[x]):
-					_parse_logic(connectedTo[x], 'dialogue')
-				if('Expression' in connectedTo[x]):
-					_fire_expression(connectedTo[x])
+				_handle_action(connectedTo[x], 'dialogue')
 		
-		if('Condition' in button['connects_to'][i]):
-			#print(data[button['connects_to'][i]])
-			_parse_logic(button['connects_to'][i], 'option')
-		if('Expression' in button['connects_to'][i]):
-				_fire_expression(button['connects_to'][i])
+		_handle_action(button['connects_to'][i], 'option')
 	
 	if(fromLogic):
 		get_node("Text").parse_bbcode(button['text'])
 		for i in range(1, button['connects_to'].size()+1):
-			if('Option' in button['connects_to'][i]):
-				_addButton(data[button['connects_to'][i]]['text'], button['connects_to'][i])
-			if('Condition' in button['connects_to'][i]):
-				_parse_logic(button['connects_to'][i], 'dialogue')
-			if('Expression' in button['connects_to'][i]):
-				_fire_expression(button['connects_to'][i])
+			_handle_action(button['connects_to'][i], 'dialogue')
+
+func _handle_action(name, from):
+	if('Option' in name):
+		_addButton(data[name]['text'], name)
+	if('Condition' in name):
+		_parse_logic(name, from)
+	if('Expression' in name):
+		_fire_expression(name)
+	if('Jump' in name):
+		_jump_to(name)
 
 func _parse_logic(currentNode, from):
 	# we should find our expression node!
@@ -107,6 +103,19 @@ func _fire_expression(name):
 			print('expression executed!')
 	else:
 		print('expression failed!')
+
+func _jump_to(name):
+	var jumpKey = data[name]['text']
+	var dataKeys = data.keys()
+	for z in range(0, data.size()):
+		if('Jump' in dataKeys[z]) and (dataKeys[z] != name) and (data[dataKeys[z]]['text'] == jumpKey):
+			if ('Dialogue' in data[dataKeys[z]]['connects_to'][1]):
+				var node = data[data[dataKeys[z]]['connects_to'][1]]
+				get_node("Text").parse_bbcode(node['text'])
+				for i in range(1, node['connects_to'].size()+1):
+					_handle_action(node['connects_to'][i], 'dialogue')
+			else:
+				_handle_action(data[dataKeys[z]]['connects_to'][1], 'dialogue')
 
 func _addButton(text, bttnName):
 	var node = Button.new()

@@ -4,7 +4,6 @@
 [ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
 
-
 [node name="Jump" type="GraphNode"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -31,11 +30,15 @@ slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="Lines" type="VBoxContainer" parent="."]
 margin_left = 10.0
 margin_top = 33.0
 margin_right = 118.0
 margin_bottom = 57.0
+
+[node name="LineEdit" type="LineEdit" parent="Lines"]
+margin_right = 108.0
+margin_bottom = 24.0
 hint_tooltip = "Function calling and one line expressions"
 custom_styles/focus = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )

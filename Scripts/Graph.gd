@@ -21,7 +21,6 @@ func _initScene(e):
 	lastNodePosition = node.get_offset()
 
 func _load_node(type, location, name, text):
-	print(type)
 	var scene = load("res://Scenes/Nodes/"+type)
 	var node = scene.instance()
 	get_node("./").add_child(node)
@@ -114,7 +113,6 @@ func _processData():
 		
 		# are we connecting to an 'End' node?
 		if('End' in connectionList[i].to):
-			print("We're connected to an end node!")
 			# we should store the data!
 			data[connectionList[i].to] = {
 				'text':"",
