@@ -254,6 +254,24 @@ filters = PoolStringArray( "*.json; Whiskers JSON File" )
 current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
 current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
 
+[node name="Import" type="FileDialog" parent="Mount/Modals"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -303.5
+margin_top = -179.5
+margin_right = 303.5
+margin_bottom = 179.5
+theme = ExtResource( 1 )
+window_title = "Import PlayerSingleton"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.gd; GDScript File" )
+current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
+current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+
 [node name="Open" type="FileDialog" parent="Mount/Modals"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -264,7 +282,7 @@ margin_top = -179.5
 margin_right = 303.5
 margin_bottom = 179.5
 theme = ExtResource( 1 )
-window_title = "Open a File"
+window_title = "Open Whiskers Project"
 resizable = true
 mode = 0
 access = 2
@@ -662,7 +680,6 @@ margin_bottom = 22.0
 text = "Update Demo"
 
 [node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
-editor/display_folded = true
 margin_top = 30.0
 margin_right = 1004.0
 margin_bottom = 580.0
@@ -767,6 +784,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="DName" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
 margin_right = 220.0
 margin_bottom = 42.0
 dragger_visibility = 2
@@ -792,6 +810,7 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Name" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
 margin_top = 54.0
 margin_right = 220.0
 margin_bottom = 96.0
@@ -847,6 +866,7 @@ size_flags_horizontal = 3
 script = ExtResource( 17 )
 
 [node name="item_template" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container"]
+editor/display_folded = true
 visible = false
 margin_right = 210.0
 margin_bottom = 24.0
@@ -1034,14 +1054,8 @@ text = "E"
 
 [node name="Keys" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
 editor/display_folded = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -376.0
-margin_top = -257.0
-margin_right = 376.0
-margin_bottom = 257.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="D" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/Keys"]
 editor/display_folded = true
@@ -1180,6 +1194,7 @@ text = "Dave"
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Save" to="Mount/MainWindow/MenuBar/Menus" method="_on_Save_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Import" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Import" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Import" to="Mount/MainWindow/MenuBar/Menus" method="_on_Import_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_Quit_pressed"]

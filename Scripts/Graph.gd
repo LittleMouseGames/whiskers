@@ -5,6 +5,7 @@ var lastNodePosition = Vector2(0,0)
 func _ready():
 	get_node("../../../../Modals/Save").connect("file_selected", self, "_save_whiskers")
 	get_node("../../../../Modals/Open").connect("file_selected", self, "_open_whiskers")
+	get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
 
 func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
@@ -186,7 +187,6 @@ func _on_New_confirmed():
 	get_node("../Demo/Dialogue").data = 0
 	data = {}
 	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
-	
 
 func _clear_graph():
 	# we should restore our `info` tab data!
@@ -194,10 +194,22 @@ func _clear_graph():
 	get_node("../../Info/Info/Name/Input").set_text('')
 	# we should clear the GraphEdit of GraphNodes
 	for child in self.get_children():
-		if ("Control" in child.get_class()):
-			pass
-		elif("GraphEditFilter" in child.get_class()):
-			pass
-		else:
+		if not("GraphEditFilter" in child.get_class()) and not ("Control" in child.get_class()):
 			self.clear_connections()
 			child.queue_free()
+
+#==== IMPORT PLAYER SINGLETON
+func _import_singleton(path):
+	var file = File.new()
+	var script = GDScript.new()
+	var PlayerSingleton = Control.new()
+	PlayerSingleton.set_name('PlayerSingleton')
+	
+	file.open(path, File.READ)
+	var loadData = file.get_as_text()
+	
+	script.set_source_code(loadData)
+	script.reload()
+	PlayerSingleton.set_script(script)
+	get_tree().root.add_child(PlayerSingleton)
+	print(get_node('/root/PlayerSingleton').superMega)

@@ -6,6 +6,8 @@ var lastBttnPos = 0
 var buttonFired = false
 var timer = 0
 
+var singleton
+
 func _process(delta):
 	timer += delta
 	for i in range(0, get_node("Buttons").get_child_count()):
@@ -20,6 +22,11 @@ func _process(delta):
 	if(buttonFired):
 		timer = 0
 		buttonFired = false
+	
+	if(get_node('/root/PlayerSingleton')):
+		singleton = get_node('/root/PlayerSingleton')
+	else:
+		singleton = DemoSingleton
 
 func _populate():
 	if(data) and (data.size() > 1):
@@ -72,7 +79,7 @@ func _parse_logic(currentNode, from):
 			# lets store our logic in the new Expression type!
 			var expression = Expression.new()
 			expression.parse(data[dataKeys[z]]['logic'], [])
-			var result = expression.execute([], DemoSingleton, true)
+			var result = expression.execute([], singleton, true)
 			var routes = data[currentNode]['conditions']
 			if not expression.has_execute_failed():
 				if(from == 'dialogue'):
@@ -97,7 +104,7 @@ func _fire_expression(name):
 	var logic = data[name]['logic']
 	var expression = Expression.new()
 	expression.parse(logic, [])
-	var result = expression.execute([], DemoSingleton, true)
+	var result = expression.execute([], singleton, true)
 	if not expression.has_execute_failed():
 		if(result):
 			print('expression executed!')

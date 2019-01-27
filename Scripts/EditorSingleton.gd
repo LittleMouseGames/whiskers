@@ -3,6 +3,9 @@ extends Node
 var inMenu = false
 var test = true
 
+var loadedPlayerVars = false
+var loadedPlayerFuncs = false
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if Input.is_action_pressed("save"):
@@ -28,6 +31,7 @@ func _close_all():
 	get_node("/root/Editor/Mount/Modals/Open").hide()
 	get_node("/root/Editor/Mount/Modals/QuitConf").hide()
 	get_node("/root/Editor/Mount/Modals/About").hide()
+	get_node("/root/Editor/Mount/Modals/Import").hide()
 	# menus
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
