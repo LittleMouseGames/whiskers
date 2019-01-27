@@ -23,7 +23,7 @@ func _process(delta):
 		timer = 0
 		buttonFired = false
 	
-	if(get_node('/root/PlayerSingleton')):
+	if(EditorSingleton.hasPlayerSingleton):
 		singleton = get_node('/root/PlayerSingleton')
 	else:
 		singleton = DemoSingleton

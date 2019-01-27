@@ -264,7 +264,7 @@ margin_top = -179.5
 margin_right = 303.5
 margin_bottom = 179.5
 theme = ExtResource( 1 )
-window_title = "Import PlayerSingleton"
+window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
@@ -282,7 +282,7 @@ margin_top = -179.5
 margin_right = 303.5
 margin_bottom = 179.5
 theme = ExtResource( 1 )
-window_title = "Open Whiskers Project"
+window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
@@ -306,7 +306,6 @@ dialog_text = "Are you sure you want to quit? Any unsaved
 dialog_hide_on_ok = false
 
 [node name="About" type="WindowDialog" parent="Mount/Modals"]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -345,7 +344,7 @@ split_offset = 25
 margin_top = 8.0
 margin_right = 200.0
 margin_bottom = 56.0
-text = "Whiskers v0.0.1 ALPHA
+text = "Whiskers v1.0.0 BETA
 © 2019 Chris Bolton
 © 2019 LittleMouseGames"
 

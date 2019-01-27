@@ -213,3 +213,4 @@ func _import_singleton(path):
 	PlayerSingleton.set_script(script)
 	get_tree().root.add_child(PlayerSingleton)
 	print(get_node('/root/PlayerSingleton').superMega)
+	EditorSingleton.hasPlayerSingleton = true

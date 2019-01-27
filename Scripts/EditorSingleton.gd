@@ -5,6 +5,7 @@ var test = true
 
 var loadedPlayerVars = false
 var loadedPlayerFuncs = false
+var hasPlayerSingleton = false
 
 func _unhandled_input(event):
 	if event is InputEventKey:

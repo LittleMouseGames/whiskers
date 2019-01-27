@@ -32,11 +32,11 @@ func _physics_process(delta):
 	if(!isFocused) and (!loadingData):
 		var items = get_node(".").get_child_count()
 		for i in range(1, items):
-			if(get_node('/root/PlayerSingleton')):
+			if(EditorSingleton.hasPlayerSingleton):
 				var nodeText = get_node(".").get_child(i).get_child(1).set_text(str(get_node('/root/PlayerSingleton').get(get_node(".").get_child(i).name)))
 			else:
 				var nodeText = get_node(".").get_child(i).get_child(1).set_text(str(DemoSingleton.get(get_node(".").get_child(i).name)))
-	if(get_node('/root/PlayerSingleton')) and (!EditorSingleton.loadedPlayerVars):
+	if(EditorSingleton.hasPlayerSingleton) and (!EditorSingleton.loadedPlayerVars):
 		loadingData = true
 		_clear_vars()
 		_populate_vars()

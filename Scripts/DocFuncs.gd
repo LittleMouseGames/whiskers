@@ -10,7 +10,7 @@ func _ready():
 		get_node(".").add_child(node)
 
 func _physics_process(delta):
-	if(get_node('/root/PlayerSingleton')) and (!EditorSingleton.loadedPlayerFuncs):
+	if(EditorSingleton.hasPlayerSingleton) and (!EditorSingleton.loadedPlayerFuncs):
 		print('we loaded our Player Singleton!')
 		_clear_funcs()
 		_populate_funcs()
