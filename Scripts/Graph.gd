@@ -13,12 +13,40 @@ func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
 func _on_Dialogue_Graph_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 
-func init_scene(e):
+func _on_BasicNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Dialogue.tscn", false)
+	if(index == 1):
+		init_scene("Option.tscn", false)
+	if(index == 2):
+		init_scene("Jump.tscn", false)
+
+func _on_AdvancedNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Condition.tscn", false)
+	if(index == 1):
+		init_scene("Expression.tscn", false)
+
+func _on_UtilityNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Comment.tscn", false)
+	if(index == 1):
+		init_scene("Start.tscn", false)
+	if(index == 2):
+		init_scene("End.tscn", false)
+
+func init_scene(e, location):
 	var scene = load("res://Scenes/Nodes/"+e)
 	var node = scene.instance()
+	var offset
+	
+	if !location:
+		offset = Vector2(lastNodePosition.x + 20, lastNodePosition.y + 20)
+	else:
+		offset = Vector2(location.x, location.y)
 	
 	get_node("./").add_child(node)
-	node.set_offset(Vector2(lastNodePosition.x + 20, lastNodePosition.y + 20))
+	node.set_offset(offset)
 	node.set_name(node.get_name().replace('@', ''))
 	lastNodePosition = node.get_offset()
 
@@ -32,28 +60,6 @@ func load_node(type, location, name, text):
 	node.set_name(name)
 	if text:
 		node.get_node('Lines').get_child(0).set_text(text)
-
-func _on_BasicNodes_item_activated(index):
-	if(index == 0):
-		init_scene("Dialogue.tscn")
-	if(index == 1):
-		init_scene("Option.tscn")
-	if(index == 2):
-		init_scene("Jump.tscn")
-
-func _on_AdvancedNodes_item_activated(index):
-	if(index == 0):
-		init_scene("Condition.tscn")
-	if(index == 1):
-		init_scene("Expression.tscn")
-
-func _on_UtilityNodes_item_activated(index):
-	if(index == 0):
-		init_scene("Comment.tscn")
-	if(index == 1):
-		init_scene("Start.tscn")
-	if(index == 2):
-		init_scene("End.tscn")
 
 #=======> SAVING
 var data = {} # this is the final data, an array of all nodes that we write to file
@@ -180,6 +186,9 @@ func _open_whiskers(path):
 							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
 						else:
 							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+		
+		var startOffset = self.get_node('Start').get_offset()
+		self.set_scroll_ofs(Vector2(startOffset.x, startOffset.y))
 
 #=== NEW FILE handling
 func _on_New_confirmed():
@@ -214,3 +223,16 @@ func _import_singleton(path):
 	PlayerSingleton.set_script(script)
 	get_tree().root.add_child(PlayerSingleton)
 	EditorSingleton.hasPlayerSingleton = true
+
+#====== DRAG HANDLING
+# checks if we can recive the dropped data
+func can_drop_data(pos, data):
+	return true
+
+# triggers on target drop
+func drop_data(pos, data):
+	var nodes = ['Dialogue', 'Option', 'Jump', 'Condition', 'Expression', 'Comment', 'Start', 'End']
+	for i in range(0, nodes.size()):
+		if nodes[i] in data:
+			var localMousePos = self.get_child(0).get_local_mouse_position()
+			init_scene(nodes[i]+".tscn", localMousePos)

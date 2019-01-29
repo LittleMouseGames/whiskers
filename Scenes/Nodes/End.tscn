@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/Utility.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/Nodes/Selected/UtilitySelected.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -24,7 +25,7 @@ mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/frame = ExtResource( 1 )
-custom_styles/selectedframe = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 2 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "End Node"
@@ -41,7 +42,7 @@ slot/1/left_color = Color( 1, 1, 1, 1 )
 slot/1/right_enabled = false
 slot/1/right_type = 0
 slot/1/right_color = Color( 1, 1, 1, 1 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="LineEdit" type="Label" parent="."]
 margin_left = 10.0

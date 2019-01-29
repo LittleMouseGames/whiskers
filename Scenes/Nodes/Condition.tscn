@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Themes/Nodes/conditionPlugin.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/Condition.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/Nodes/Selected/ConditionSelected.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=3]
 
 [node name="Condition" type="GraphNode"]
 anchor_left = 0.5
@@ -16,7 +17,7 @@ mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/frame = ExtResource( 1 )
-custom_styles/selectedframe = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 2 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "Conditional Node"
@@ -39,7 +40,7 @@ slot/2/left_color = Color( 1, 1, 1, 1 )
 slot/2/right_enabled = true
 slot/2/right_type = 0
 slot/2/right_color = Color( 1, 1, 1, 1 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 editor/display_folded = true
