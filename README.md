@@ -25,5 +25,7 @@ We've also created a Parser for the `demo` portion of the tool, so adding that t
 # How can I help?
 The best way to help is to use Whiskers and give me your suggestions and feedback! Of course, pull-requests are always welcome!
 
+Please follow the [GDScript Style Guide](https://docs.godotengine.org/en/3.0/getting_started/scripting/gdscript/gdscript_styleguide.html) when submitting pull-requests! Thank you!
+
 # Why did you make Whiskers?
 There are lots of awesome Dialogue creation tools out there, but I like a good challenge! Creating this tool taught me a *lot* about Godot. Having created my own solution also means that I can add new Features much quicker than if I was using a third-party one!

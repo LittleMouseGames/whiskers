@@ -69,21 +69,20 @@ func process_data():
 		var name = connectionList[i].from
 		# Our schema
 		var tempData = {
-			'text':"",
-			'connects_to':{},
-			'logic':"",
-			'conditions':{
-				'true':'',
-				'false':''
-			},
-			'location':""
+				'text':"",
+				'connects_to':{},
+				'logic':"",
+				'conditions':{
+					'true':'',
+					'false':''
+				},
+				'location':""
 		}
 		var currentCTSize = 0
 		var currentConnectsTo 
 		if name in data:
 			currentCTSize = data[name]['connects_to'].size()
 			currentConnectsTo = data[name]['connects_to']
-		
 		
 		# are we a node with a text field?
 		if ('Dialogue' in name) or ('Option' in name) or ('Expression' in name) or ('Jump' in name) or ('Comment' in name):
@@ -118,11 +117,11 @@ func process_data():
 		if 'End' in connectionList[i].to:
 			# we should store the data!
 			data[connectionList[i].to] = {
-				'text':"",
-				'connects_to':{},
-				'logic':"",
-				'conditions':{},
-				'location':self.get_node(connectionList[i].to).get_offset()
+					'text':"",
+					'connects_to':{},
+					'logic':"",
+					'conditions':{},
+					'location':self.get_node(connectionList[i].to).get_offset()
 			}
 		
 		# save this in our processed object
