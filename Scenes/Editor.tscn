@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -8,22 +8,23 @@
 [ext_resource path="res://Assets/Node Images/diaIco.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Node Images/optIco.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Node Images/jumIco.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Node Images/conIco.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Node Images/expIco.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Node Images/comIco.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Node Images/starIco.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Node Images/endIco.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Themes/Other/ScrollGrabber.tres" type="StyleBox" id=14]
-[ext_resource path="res://Assets/Themes/Other/ScrollGrapperPressed.tres" type="StyleBox" id=15]
-[ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=16]
-[ext_resource path="res://Scripts/DocVars.gd" type="Script" id=17]
-[ext_resource path="res://Scripts/DocFuncs.gd" type="Script" id=18]
-[ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=19]
-[ext_resource path="res://Assets/Fonts/regular.tres" type="DynamicFont" id=20]
-[ext_resource path="res://Scripts/Graph.gd" type="Script" id=21]
-[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=22]
-[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=23]
-[ext_resource path="res://Scenes/Dialogue.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scripts/DragHandle.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Node Images/conIco.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Node Images/expIco.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Node Images/comIco.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Node Images/starIco.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Node Images/endIco.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrabber.tres" type="StyleBox" id=15]
+[ext_resource path="res://Assets/Themes/Other/ScrollGrapperPressed.tres" type="StyleBox" id=16]
+[ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=17]
+[ext_resource path="res://Scripts/DocVars.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/DocFuncs.gd" type="Script" id=19]
+[ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=20]
+[ext_resource path="res://Assets/Fonts/regular.tres" type="DynamicFont" id=21]
+[ext_resource path="res://Scripts/Graph.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=23]
+[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/Dialogue.tscn" type="PackedScene" id=25]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -95,10 +96,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = ExtResource( 14 )
-VScrollBar/styles/grabber_highlight = ExtResource( 15 )
-VScrollBar/styles/grabber_pressed = ExtResource( 15 )
-VScrollBar/styles/scroll = ExtResource( 16 )
+VScrollBar/styles/grabber = ExtResource( 15 )
+VScrollBar/styles/grabber_highlight = ExtResource( 16 )
+VScrollBar/styles/grabber_pressed = ExtResource( 16 )
+VScrollBar/styles/scroll = ExtResource( 17 )
 VScrollBar/styles/scroll_focus = null
 
 [sub_resource type="StyleBoxFlat" id=11]
@@ -165,9 +166,9 @@ HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = ExtResource( 14 )
-HScrollBar/styles/grabber_highlight = ExtResource( 15 )
-HScrollBar/styles/grabber_pressed = ExtResource( 15 )
+HScrollBar/styles/grabber = ExtResource( 15 )
+HScrollBar/styles/grabber_highlight = ExtResource( 16 )
+HScrollBar/styles/grabber_pressed = ExtResource( 16 )
 HScrollBar/styles/scroll = SubResource( 15 )
 HScrollBar/styles/scroll_focus = null
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
@@ -186,10 +187,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = ExtResource( 14 )
-VScrollBar/styles/grabber_highlight = ExtResource( 15 )
-VScrollBar/styles/grabber_pressed = ExtResource( 15 )
-VScrollBar/styles/scroll = ExtResource( 16 )
+VScrollBar/styles/grabber = ExtResource( 15 )
+VScrollBar/styles/grabber_highlight = ExtResource( 16 )
+VScrollBar/styles/grabber_pressed = ExtResource( 16 )
+VScrollBar/styles/scroll = ExtResource( 17 )
 VScrollBar/styles/scroll_focus = null
 
 [sub_resource type="StyleBoxFlat" id=18]
@@ -680,7 +681,6 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -689,7 +689,6 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Basic" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
-editor/display_folded = true
 margin_right = 220.0
 margin_bottom = 129.0
 dragger_visibility = 2
@@ -707,6 +706,7 @@ margin_bottom = 129.0
 rect_min_size = Vector2( 0, 111 )
 custom_styles/bg = SubResource( 7 )
 items = [ "Dialogue Node", ExtResource( 6 ), false, "Option Node", ExtResource( 7 ), false, "Jump Node", ExtResource( 8 ), false ]
+script = ExtResource( 9 )
 
 [node name="HSeparator" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Nodes"]
 margin_top = 133.0
@@ -715,7 +715,6 @@ margin_bottom = 137.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Advanced" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
-editor/display_folded = true
 margin_top = 141.0
 margin_right = 220.0
 margin_bottom = 224.0
@@ -733,7 +732,8 @@ margin_right = 220.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 0, 65 )
 custom_styles/bg = SubResource( 7 )
-items = [ "Conditional Node", ExtResource( 9 ), false, "Expression Node", ExtResource( 10 ), false ]
+items = [ "Conditional Node", ExtResource( 10 ), false, "Expression Node", ExtResource( 11 ), false ]
+script = ExtResource( 9 )
 
 [node name="HSeparator2" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Nodes"]
 margin_top = 228.0
@@ -759,9 +759,11 @@ margin_right = 220.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 0, 87 )
 custom_styles/bg = SubResource( 7 )
-items = [ "Comment Node", ExtResource( 11 ), false, "Start Node", ExtResource( 12 ), false, "End Node", ExtResource( 13 ), false ]
+items = [ "Comment Node", ExtResource( 12 ), false, "Start Node", ExtResource( 13 ), false, "End Node", ExtResource( 14 ), false ]
+script = ExtResource( 9 )
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -824,6 +826,7 @@ margin_bottom = 104.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="DocVars" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
 margin_top = 108.0
 margin_right = 220.0
 margin_bottom = 231.0
@@ -850,7 +853,7 @@ margin_top = 5.0
 margin_right = 215.0
 margin_bottom = 5.0
 size_flags_horizontal = 3
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 
 [node name="item_template" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container"]
 editor/display_folded = true
@@ -882,6 +885,7 @@ margin_bottom = 239.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="DocFunc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
+editor/display_folded = true
 margin_top = 243.0
 margin_right = 220.0
 margin_bottom = 431.0
@@ -908,7 +912,7 @@ margin_top = 5.0
 margin_right = 215.0
 margin_bottom = 5.0
 size_flags_horizontal = 3
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 
 [node name="item_template" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocFunc/ScrollContainer/Container"]
 editor/display_folded = true
@@ -921,7 +925,7 @@ margin_right = 210.0
 margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 19 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.368627, 0.607843, 0.964706, 1 )
 text = "_littleMouse()"
 valign = 1
@@ -933,7 +937,7 @@ margin_bottom = 42.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 21 )
 text = "A demo function."
 autowrap = true
 
@@ -963,8 +967,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 17 )
 right_disconnects = true
-scroll_offset = Vector2( -5, -26 )
-script = ExtResource( 21 )
+scroll_offset = Vector2( -5, -117 )
+script = ExtResource( 22 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
 visible = false
@@ -975,7 +979,7 @@ margin_top = 31.0
 margin_right = -5.0
 margin_bottom = -5.0
 custom_styles/panel = SubResource( 18 )
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 speed = 2
 
 [node name="PlayField" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
@@ -998,7 +1002,7 @@ custom_styles/panel = SubResource( 19 )
 [node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 28.4531, -28.8561 )
 scale = Vector2( 0.201783, 0.201783 )
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 
 [node name="Area2D" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 26.4634, 24.2581 )
@@ -1116,7 +1120,7 @@ text = "A"
 align = 1
 valign = 1
 
-[node name="Dialogue" parent="Mount/MainWindow/Editor/Graph/Demo" instance=ExtResource( 24 )]
+[node name="Dialogue" parent="Mount/MainWindow/Editor/Graph/Demo" instance=ExtResource( 25 )]
 
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]
@@ -1141,9 +1145,6 @@ valign = 1
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_About_pressed"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Actions/Update" to="Mount/MainWindow/MenuBar/Menus" method="_on_Update_pressed"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
-[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
 [connection signal="focus_entered" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_entered"]
 [connection signal="focus_exited" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_exited"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_text_changed"]
