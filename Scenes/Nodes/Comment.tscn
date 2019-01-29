@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/Themes/Nodes/Utility.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/Utility.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/Nodes/Selected/UtilitySelected.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/line.tres" type="StyleBox" id=4]
 
-
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -24,7 +24,7 @@ margin_right = -177.204
 margin_bottom = -165.228
 mouse_filter = 1
 custom_styles/frame = ExtResource( 1 )
-custom_styles/selectedframe = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 2 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "Comment Node"
@@ -36,7 +36,7 @@ slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = true
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Lines" type="VBoxContainer" parent="."]
 margin_left = 10.0
@@ -56,8 +56,8 @@ grow_vertical = 0
 mouse_default_cursor_shape = 0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-custom_styles/focus = SubResource( 2 )
-custom_styles/normal = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = ExtResource( 4 )
 custom_colors/breakpoint_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.678431, 0.678431, 0.678431, 1 )
 text = "// comment"

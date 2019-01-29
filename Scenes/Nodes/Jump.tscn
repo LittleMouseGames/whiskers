@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Themes/Nodes/JumpNode.tres" type="StyleBox" id=1]
-[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Themes/Nodes/linePlugin.tres" type="StyleBox" id=3]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/Jump.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Themes/Nodes/Selected/JumpSelected.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Themes/Nodes/Normal/line.tres" type="StyleBox" id=4]
 
 [node name="Jump" type="GraphNode"]
 anchor_left = 0.5
@@ -17,7 +18,7 @@ mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/frame = ExtResource( 1 )
-custom_styles/selectedframe = ExtResource( 1 )
+custom_styles/selectedframe = ExtResource( 2 )
 custom_colors/title_color = Color( 1, 1, 1, 1 )
 custom_constants/port_offset = 0
 title = "Jump Node"
@@ -28,7 +29,7 @@ slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = true
 slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Lines" type="VBoxContainer" parent="."]
 margin_left = 10.0
@@ -40,8 +41,8 @@ margin_bottom = 57.0
 margin_right = 108.0
 margin_bottom = 24.0
 hint_tooltip = "Function calling and one line expressions"
-custom_styles/focus = ExtResource( 3 )
-custom_styles/normal = ExtResource( 3 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
 placeholder_text = "Jump Key"
 
 [connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
