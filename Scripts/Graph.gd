@@ -13,6 +13,28 @@ func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
 func _on_Dialogue_Graph_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 
+func _on_BasicNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Dialogue.tscn", false)
+	if(index == 1):
+		init_scene("Option.tscn", false)
+	if(index == 2):
+		init_scene("Jump.tscn", false)
+
+func _on_AdvancedNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Condition.tscn", false)
+	if(index == 1):
+		init_scene("Expression.tscn", false)
+
+func _on_UtilityNodes_item_activated(index):
+	if(index == 0):
+		init_scene("Comment.tscn", false)
+	if(index == 1):
+		init_scene("Start.tscn", false)
+	if(index == 2):
+		init_scene("End.tscn", false)
+
 func init_scene(e, location):
 	var scene = load("res://Scenes/Nodes/"+e)
 	var node = scene.instance()
@@ -164,6 +186,9 @@ func _open_whiskers(path):
 							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
 						else:
 							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+		
+		var startOffset = self.get_node('Start').get_offset()
+		self.set_scroll_ofs(Vector2(startOffset.x, startOffset.y))
 
 #=== NEW FILE handling
 func _on_New_confirmed():
@@ -209,4 +234,5 @@ func drop_data(pos, data):
 	var nodes = ['Dialogue', 'Option', 'Jump', 'Condition', 'Expression', 'Comment', 'Start', 'End']
 	for i in range(0, nodes.size()):
 		if nodes[i] in data:
-			init_scene(nodes[i]+".tscn", self.get_child(0).get_local_mouse_position())
+			var localMousePos = self.get_child(0).get_local_mouse_position()
+			init_scene(nodes[i]+".tscn", localMousePos)

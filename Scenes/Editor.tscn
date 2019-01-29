@@ -8,7 +8,7 @@
 [ext_resource path="res://Assets/Node Images/diaIco.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Node Images/optIco.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Node Images/jumIco.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/DragHandle.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/DragHandler.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Node Images/conIco.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Node Images/expIco.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Node Images/comIco.png" type="Texture" id=12]
@@ -967,7 +967,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 17 )
 right_disconnects = true
-scroll_offset = Vector2( -5, -117 )
+scroll_offset = Vector2( -5, -26 )
 script = ExtResource( 22 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
@@ -1145,6 +1145,9 @@ valign = 1
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_About_pressed"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Actions/Update" to="Mount/MainWindow/MenuBar/Menus" method="_on_Update_pressed"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Basic/BasicNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_BasicNodes_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Advanced/AdvancedNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_AdvancedNodes_item_activated"]
+[connection signal="item_activated" from="Mount/MainWindow/Editor/Info/Nodes/Utility Nodes/UtilityNodes" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_UtilityNodes_item_activated"]
 [connection signal="focus_entered" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_entered"]
 [connection signal="focus_exited" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_focus_exited"]
 [connection signal="text_changed" from="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container/item_template/LineEdit" to="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container" method="_on_LineEdit_text_changed"]
