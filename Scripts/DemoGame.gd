@@ -25,7 +25,7 @@ func _physics_process(delta):
 				get_node("PlayField/Player/E").hide()
 				# we should show our Dialogue Window!
 				get_node("Dialogue").show()
-				get_node("Dialogue")._populate()
+				get_node("Dialogue").populate()
 				
 
 func _on_Area2D2_area_entered(area):
@@ -36,7 +36,7 @@ func _on_Area2D2_area_exited(area):
 	get_node("PlayField/Player/E").hide()
 	get_node("Keys").show()
 	get_node("Dialogue").hide()
-	get_node("Dialogue")._reset()
+	get_node("Dialogue").reset()
 
 
 func _on_Graph_tab_selected(tab):

@@ -10,23 +10,23 @@ var hasPlayerSingleton = false
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if Input.is_action_pressed("save"):
-			_close_all()
+			close_all()
 			get_node("/root/Editor/Mount/Modals/Save").show()
 			get_node("/root/Editor/Mount/Modals/Save").current_file = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Info/Name/Input").get_text()+'.json'
 		if Input.is_action_pressed("open"):
-			_close_all()
+			close_all()
 			get_node("/root/Editor/Mount/Modals/Open").show()
 		if Input.is_action_pressed("quit"):
-			_close_all()
+			close_all()
 			get_node("/root/Editor/Mount/Modals/QuitConf").show()
 		if Input.is_action_pressed("help"):
-			_close_all()
+			close_all()
 			get_node("/root/Editor/Mount/Modals/About").show()
 		if Input.is_action_pressed("new"):
-			_close_all()
+			close_all()
 			get_node("/root/Editor/Mount/Modals/New").show()
 
-func _close_all():
+func close_all():
 	# modals
 	get_node("/root/Editor/Mount/Modals/Save").hide()
 	get_node("/root/Editor/Mount/Modals/Open").hide()
@@ -45,6 +45,6 @@ func _input(event):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
 
-func _update_demo():
-	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")._processData()
+func update_demo():
+	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
 	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data

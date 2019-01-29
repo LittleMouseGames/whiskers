@@ -17,10 +17,10 @@ var varTooltips = [
 ]
 
 #====> FUNCTIONS
-func _giveItem():
+func give_item():
 	hasItem = true
 
-func _changeVar(name, value):
+func change_var(name, value):
 	var val = value
 	if(val == "True") or (val == "true"):
 		val = true
@@ -30,8 +30,8 @@ func _changeVar(name, value):
 
 # `export` our functions and documentation about them! 
 var functions = [
-	'_giveItem()',
-	'_changeVar(var, value)'
+	'give_item()',
+	'change_var(var, value)'
 ]
 
 var functionDocs = [

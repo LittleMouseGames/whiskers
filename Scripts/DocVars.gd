@@ -29,17 +29,18 @@ func _on_LineEdit_text_changed(new_text):
 				DemoSingleton.set(get_node(".").get_child(i).name, val)
 
 func _physics_process(delta):
-	if(!isFocused) and (!loadingData):
+	if (!isFocused) and (!loadingData):
 		var items = get_node(".").get_child_count()
 		for i in range(1, items):
-			if(EditorSingleton.hasPlayerSingleton):
+			if EditorSingleton.hasPlayerSingleton:
 				var nodeText = get_node(".").get_child(i).get_child(1).set_text(str(get_node('/root/PlayerSingleton').get(get_node(".").get_child(i).name)))
 			else:
 				var nodeText = get_node(".").get_child(i).get_child(1).set_text(str(DemoSingleton.get(get_node(".").get_child(i).name)))
-	if(EditorSingleton.hasPlayerSingleton) and (!EditorSingleton.loadedPlayerVars):
+	
+	if EditorSingleton.hasPlayerSingleton and !EditorSingleton.loadedPlayerVars:
 		loadingData = true
-		_clear_vars()
-		_populate_vars()
+		clear_vars()
+		populate_vars()
 		EditorSingleton.loadedPlayerVars = true
 
 func _on_LineEdit_focus_entered():
@@ -48,7 +49,7 @@ func _on_LineEdit_focus_entered():
 func _on_LineEdit_focus_exited():
 	isFocused = false
 
-func _populate_vars():
+func populate_vars():
 	var PlayerSingleton = get_node('/root/PlayerSingleton')
 	for i in range(0, PlayerSingleton.variables.size()):
 		var node = get_node("item_template").duplicate()
@@ -60,6 +61,6 @@ func _populate_vars():
 		get_node(".").add_child(node)
 	loadingData = false
 
-func _clear_vars():
+func clear_vars():
 	for i in range(1, get_child_count()):
 		self.get_child(i).queue_free()

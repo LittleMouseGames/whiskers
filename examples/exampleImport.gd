@@ -17,10 +17,10 @@ var varTooltips = [
 ]
 
 #====> FUNCTIONS
-func _takeThings():
+func take_things():
 	lotsOfStuff = false
 
-func _changeVar(name, value):
+func change_var(name, value):
 	var val = value
 	if(val == "True") or (val == "true"):
 		val = true
@@ -30,11 +30,11 @@ func _changeVar(name, value):
 
 # `export` our functions and documentation about them! 
 var functions = [
-	'_takeThings()',
-	'_changeVar(var, value)'
+	'take_things()',
+	'change_var("var", "value")'
 ]
 
 var functionDocs = [
 	'Take the players stuff!',
-	'Change the variable to a specified value'
+	'Change the variable to a specified value. `var` and `value` must be in quotes!'
 ]

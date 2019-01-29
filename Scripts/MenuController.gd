@@ -26,7 +26,7 @@ func _on_File_pressed():
 	if(fileMenu.is_visible()):
 		fileMenu.hide()
 	else:
-		EditorSingleton._close_all()
+		EditorSingleton.close_all()
 		fileMenu.show()
 		fileMenu.set_as_toplevel(true)
 
@@ -37,33 +37,33 @@ func _on_Help_pressed():
 	if(helpMenu.is_visible()):
 		helpMenu.hide()
 	else:
-		EditorSingleton._close_all()
+		EditorSingleton.close_all()
 		helpMenu.show()
 		helpMenu.set_as_toplevel(true)
 
 func _on_About_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	aboutDialog.show()
 
 func _on_Save_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	saveDialog.show()
 	saveDialog.current_file = get_node("../../Editor/Info/Info/Name/Input").get_text()+'.json'
 
 func _on_New_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	newDialog.show()
 
 func _on_Open_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	openDialog.show()
 
 func _on_Quit_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	quitDialog.show()
 
 func _on_Import_pressed():
-	EditorSingleton._close_all()
+	EditorSingleton.close_all()
 	importDialog.show()
 
 func _on_menAct_mouse_entered():
@@ -74,5 +74,5 @@ func _on_menAct_mouse_exited():
 		EditorSingleton.inMenu = false
 
 func _on_Update_pressed():
-	EditorSingleton._update_demo()
+	EditorSingleton.update_demo()
 

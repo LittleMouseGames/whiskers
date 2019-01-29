@@ -10,13 +10,13 @@ func _ready():
 		get_node(".").add_child(node)
 
 func _physics_process(delta):
-	if(EditorSingleton.hasPlayerSingleton) and (!EditorSingleton.loadedPlayerFuncs):
+	if EditorSingleton.hasPlayerSingleton and !EditorSingleton.loadedPlayerFuncs:
 		print('we loaded our Player Singleton!')
-		_clear_funcs()
-		_populate_funcs()
+		clear_funcs()
+		populate_funcs()
 		EditorSingleton.loadedPlayerFuncs = true
 
-func _populate_funcs():
+func populate_funcs():
 	var PlayerSingleton = get_node('/root/PlayerSingleton')
 	for i in range(0, PlayerSingleton.functions.size()):
 		var node = get_node("item_template").duplicate()
@@ -26,6 +26,6 @@ func _populate_funcs():
 		node.show()
 		get_node(".").add_child(node)
 
-func _clear_funcs():
+func clear_funcs():
 	for i in range(1, get_child_count()):
 		self.get_child(i).queue_free()
