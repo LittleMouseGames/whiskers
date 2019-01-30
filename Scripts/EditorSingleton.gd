@@ -92,41 +92,44 @@ func add_history(node, name, offset, text, connects_from, action):
 	print(historyObj, '\n\n')
 
 func undo_history():
-	print(currentHistory, ":", historyObj.size())
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
-	if currentHistory > 1:
-		var node = historyObj[currentHistory - 1]
-		var hasNode = graph.has_node(node['name'])
-		# are we undoing a remove?
-		if !hasNode:
-			graph.load_node(node['node']+'.tscn', node['offset'], node['name'], node['text'])
-		if hasNode:
-			var prevNode = historyObj[currentHistory - 2]
-			var graphNode = graph.get_node(prevNode['name'])
-			if graphNode:
-				graphNode.set_offset(prevNode['offset'])
-				if graphNode.has_node('Lines'):
-					graphNode.get_node('Lines').get_child(0).set_text(prevNode['text'])
-				
-				for i in range(0, node['connects_from'].size()):
-					graph.connect_node(node['connects_from'][i+1], 0, node['name'], 0)
-				
-				connection_in_timeline(node['name'])
-				
-	if currentHistory > 0:
-		for i in range(0, graph.get_child_count()):
-			if get_node_type(graph.get_child(i).name) in EditorSingleton.nodeNames:
-				if !node_in_timeline(graph.get_child(i).get_name()):
-					graph.get_child(i).queue_free()
+	if historyObj.size() > 0 and currentHistory >= 2:
+		# we're in the past
+		var action = historyObj[currentHistory - 1]['action']
+		var obj = historyObj[currentHistory - 1]
 		
+		print(action)
+		if action == 'remove':
+			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'])
+		if action == 'move':
+			var lastInstance = historyObj[last_instance_of(obj['name'])]
+			graph.get_node(obj['name']).set_offset(lastInstance['offset'])
+		if action == 'text':
+			var lastInstance = historyObj[last_instance_of(obj['name'])]
+			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(lastInstance['text'])
+		if action == 'add':
+			graph.get_node(obj['name']).queue_free()
+		
+		if 'connect' in action:
+			if action == 'connect':
+				print('disconnect node')
+				var connections = graph.get_connection_list()
+				for i in range(0, connections.size()):
+					if connections[i].to == obj['name'] and not connections[i].from in obj['connects_from']:
+						graph.disconnect_node(connections[i].from, 0, obj['name'], 0) 
+			else:
+				var lastInstance = historyObj[last_instance_of(obj['name'])]
+				for i in range(0, lastInstance['connects_from'].size()):
+					graph.connect_node(lastInstance['connects_from'][i+1], 0, obj['name'], 0)
+				
 		currentHistory -= 1
 
-func node_in_timeline(name):
-	if get_node_type(name) in EditorSingleton.nodeNames:
-		var existsInTimeline = false
-		for z in range(0, currentHistory - 1):
-			if name in historyObj[z]['name']:
-				return true
+func last_instance_of(name):
+	var lastPos
+	for i in range(0, currentHistory - 1):
+		if historyObj[i]['name'] == name:
+			lastPos = i
+	return lastPos
 
 func connection_in_timeline(name):
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
