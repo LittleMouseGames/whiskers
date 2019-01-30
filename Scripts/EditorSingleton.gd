@@ -13,6 +13,13 @@ var historyObj = {}
 
 var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
 
+func get_node_type(name):
+	var regex = RegEx.new()
+	regex.compile("[a-zA-Z]+")
+	var result = regex.search(name)
+	if result:
+		return result.get_string()
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if Input.is_action_pressed("save"):
@@ -68,7 +75,6 @@ func overwrite_history():
 			tempHistory[i] = historyObj[i]
 		# overwrite history with our temp / new one
 		historyObj = tempHistory
-		print(tempHistory)
 
 func add_history(node, name, offset, text, connects_to, connects_from):
 	overwrite_history()
@@ -83,13 +89,13 @@ func add_history(node, name, offset, text, connects_to, connects_from):
 	currentHistory += 1
 
 func undo_history():
+	print(currentHistory, ":", historyObj.size())
+	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
 	if currentHistory > 1:
-		var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
 		var node = historyObj[currentHistory - 1]
 		var hasNode = graph.has_node(node['name'])
-		print(currentHistory, ":", historyObj.size())
 		# are we undoing a remove?
-	
+		print(node)
 		if !hasNode:
 			graph.load_node(node['node']+'.tscn', node['offset'], node['name'], node['text'])
 		if hasNode:
@@ -99,4 +105,14 @@ func undo_history():
 			if graphNode.has_node('Lines'):
 				graphNode.get_node('Lines').get_child(0).set_text(prevNode['text'])
 	
+	if currentHistory > 0:
+		for i in range(0, graph.get_child_count()):
+			if get_node_type(graph.get_child(i).name) in EditorSingleton.nodeNames:
+				var name = graph.get_child(i).get_name()
+				var existsInTimeline = false
+				for z in range(0, currentHistory - 1):
+					if name in historyObj[z]['name']:
+						existsInTimeline = true
+				if !existsInTimeline:
+					graph.get_node(name).queue_free()
 		currentHistory -= 1
