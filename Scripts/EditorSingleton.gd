@@ -43,6 +43,8 @@ func _unhandled_input(event):
 			get_node("/root/Editor/Mount/Modals/Import").show()
 		if Input.is_action_pressed("undo"):
 			undo_history()
+		if Input.is_action_pressed("redo"):
+			redo_history()
 
 func close_all():
 	# modals
@@ -76,15 +78,15 @@ func overwrite_history():
 		# overwrite history with our temp / new one
 		historyObj = tempHistory
 
-func add_history(node, name, offset, text, connects_to, connects_from):
+func add_history(node, name, offset, text, connects_from, action):
 	overwrite_history()
 	historyObj[currentHistory] = {
 			'node': node,
 			'name': name,
 			'offset': offset,
 			'text': text,
-			'connects_to': connects_to,
-			'connects_from': connects_from
+			'connects_from': connects_from,
+			'action': action
 	}
 	currentHistory += 1
 	print(historyObj, '\n\n')
@@ -147,4 +149,29 @@ func connection_in_timeline(name):
 	for i in range(0, currentHistory - 1):
 		if historyObj[i]['connects_from']:
 			for j in range(0, historyObj[i]['connects_from'].size()):
-				graph.connect_node(historyObj[i]['connects_from'][j+1], 0, name, 0)
+				if historyObj[i]['connects_from'][j+1] != name and historyObj[i]['name'] == name:
+					graph.connect_node(historyObj[i]['connects_from'][j+1], 0, name, 0)
+
+func redo_history():
+	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
+	if currentHistory < historyObj.size():
+		# we're in the past
+		var action = historyObj[currentHistory]['action']
+		var obj = historyObj[currentHistory]
+		
+		if action == 'remove':
+			graph.get_node(obj['name']).queue_free()
+		if action == 'move':
+			graph.get_node(obj['name']).set_offset(obj['offset'])
+		if 'connect' in action:
+			if action == 'connect':
+				for i in range(0, obj['connects_from'].size()):
+					graph.connect_node(obj['connects_from'][i+1], 0, obj['name'], 0)
+			else:
+				print('disconnect node')
+				var connections = graph.get_connection_list()
+				for i in range(0, connections.size()):
+					if connections[i].to == obj['name'] and not connections[i].from in obj['connects_from']:
+						graph.disconnect_node(connections[i].from, 0, obj['name'], 0) 
+		
+		currentHistory += 1

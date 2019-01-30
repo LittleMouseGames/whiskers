@@ -26,12 +26,12 @@ func get_text(from):
 func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
 	var type = EditorSingleton.get_node_type(to)
-	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), [], get_connections(to))
+	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), get_connections(to), 'connect')
 
 func _on_Dialogue_Graph_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 	var type = EditorSingleton.get_node_type(to)
-	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), [], get_connections(to))
+	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), get_connections(to), 'disconnect')
 
 func _on_BasicNodes_item_activated(index):
 	if(index == 0):
@@ -72,7 +72,7 @@ func init_scene(e, location):
 	
 	#history management
 	EditorSingleton.overwrite_history()
-	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], [])
+	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], 'add')
 	return node.name
 
 func load_node(type, location, name, text):
