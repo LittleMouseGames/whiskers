@@ -7,11 +7,31 @@ func _ready():
 	get_node("../../../../Modals/Open").connect("file_selected", self, "_open_whiskers")
 	get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
 
+func get_connections(name):
+	var list = get_connection_list()
+	var connections = {}
+	
+	for i in range(0, list.size()):
+		if name in list[i]['to']:
+			connections[connections.size()+1] = list[i]['from']
+	
+	return connections
+
+func get_text(from):
+	if self.get_node(from).has_node('Lines'):
+		return self.get_node(from).get_node('Lines').get_child(0).get_text()
+	else:
+		return ''
+
 func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
 	connect_node(from, from_slot, to, to_slot)
+	var type = EditorSingleton.get_node_type(to)
+	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), [], get_connections(to))
 
 func _on_Dialogue_Graph_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
+	var type = EditorSingleton.get_node_type(to)
+	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), [], get_connections(to))
 
 func _on_BasicNodes_item_activated(index):
 	if(index == 0):

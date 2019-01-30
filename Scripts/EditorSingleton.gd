@@ -87,6 +87,7 @@ func add_history(node, name, offset, text, connects_to, connects_from):
 			'connects_from': connects_from
 	}
 	currentHistory += 1
+	print(historyObj, '\n\n')
 
 func undo_history():
 	print(currentHistory, ":", historyObj.size())
@@ -95,24 +96,55 @@ func undo_history():
 		var node = historyObj[currentHistory - 1]
 		var hasNode = graph.has_node(node['name'])
 		# are we undoing a remove?
-		print(node)
 		if !hasNode:
 			graph.load_node(node['node']+'.tscn', node['offset'], node['name'], node['text'])
 		if hasNode:
 			var prevNode = historyObj[currentHistory - 2]
 			var graphNode = graph.get_node(prevNode['name'])
-			graphNode.set_offset(prevNode['offset'])
-			if graphNode.has_node('Lines'):
-				graphNode.get_node('Lines').get_child(0).set_text(prevNode['text'])
-	
+			if graphNode:
+				graphNode.set_offset(prevNode['offset'])
+				if graphNode.has_node('Lines'):
+					graphNode.get_node('Lines').get_child(0).set_text(prevNode['text'])
+				
+				for i in range(0, node['connects_from'].size()):
+					graph.connect_node(node['connects_from'][i+1], 0, node['name'], 0)
+				
+				connection_in_timeline(node['name'])
+				
 	if currentHistory > 0:
 		for i in range(0, graph.get_child_count()):
 			if get_node_type(graph.get_child(i).name) in EditorSingleton.nodeNames:
-				var name = graph.get_child(i).get_name()
-				var existsInTimeline = false
-				for z in range(0, currentHistory - 1):
-					if name in historyObj[z]['name']:
-						existsInTimeline = true
-				if !existsInTimeline:
-					graph.get_node(name).queue_free()
+				if !node_in_timeline(graph.get_child(i).get_name()):
+					graph.get_child(i).queue_free()
+		
 		currentHistory -= 1
+
+func node_in_timeline(name):
+	if get_node_type(name) in EditorSingleton.nodeNames:
+		var existsInTimeline = false
+		for z in range(0, currentHistory - 1):
+			if name in historyObj[z]['name']:
+				return true
+
+func connection_in_timeline(name):
+	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
+	var list = graph.get_connection_list()
+	var connections = {}
+	var conFrom = []
+	
+	for i in range(0, currentHistory - 1):
+		if name == historyObj[i]['name']:
+			connections = historyObj[i]['connects_from']
+
+	for i in range(0, connections.size()):
+		if connections.size() > 0:
+			conFrom.append(connections[i+1])
+
+	for i in range(0, list.size()):
+		if graph.has_node(list[i]['to']) and not list[i]['from'] in conFrom:
+			graph.disconnect_node(list[i]['from'], 0, name, 0)
+	
+	for i in range(0, currentHistory - 1):
+		if historyObj[i]['connects_from']:
+			for j in range(0, historyObj[i]['connects_from'].size()):
+				graph.connect_node(historyObj[i]['connects_from'][j+1], 0, name, 0)
