@@ -163,6 +163,11 @@ func redo_history():
 			graph.get_node(obj['name']).queue_free()
 		if action == 'move':
 			graph.get_node(obj['name']).set_offset(obj['offset'])
+		if action == 'text':
+			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(obj['text'])
+		if action == 'add':
+			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'])
+		
 		if 'connect' in action:
 			if action == 'connect':
 				for i in range(0, obj['connects_from'].size()):
