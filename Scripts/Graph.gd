@@ -49,6 +49,10 @@ func init_scene(e, location):
 	node.set_offset(offset)
 	node.set_name(node.get_name().replace('@', ''))
 	lastNodePosition = node.get_offset()
+	
+	#history management
+	EditorSingleton.overwrite_history()
+	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], [])
 	return node.name
 
 func load_node(type, location, name, text):
@@ -160,7 +164,7 @@ func _open_whiskers(path):
 	for i in range(0, nodeDataKeys.size()):
 		var type
 		var node = loadData[nodeDataKeys[i]]
-		var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+		var nodeNames = EditorSingleton.nodeNames
 		for x in range(0, nodeNames.size()):
 			if nodeNames[x] in nodeDataKeys[i]:
 				type = str(nodeNames[x])+'.tscn'
@@ -230,7 +234,7 @@ func can_drop_data(pos, data):
 
 # triggers on target drop
 func drop_data(pos, data):
-	var nodes = ['Dialogue', 'Option', 'Jump', 'Condition', 'Expression', 'Comment', 'Start', 'End']
+	var nodes = EditorSingleton.nodeNames
 	var inNode = false
 	var localMousePos = self.get_child(0).get_local_mouse_position()
 	for i in range(0, nodes.size()):

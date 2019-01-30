@@ -57,3 +57,4 @@ caret_blink = true
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
 [connection signal="resize_request" from="." to="." method="_on_Node_resize_request"]
 [connection signal="resized" from="." to="." method="_on_Node_resized"]
+[connection signal="text_changed" from="Lines/LineEdit" to="." method="_on_Node_text_changed"]

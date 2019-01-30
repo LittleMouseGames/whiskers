@@ -856,6 +856,7 @@ size_flags_horizontal = 3
 script = ExtResource( 18 )
 
 [node name="item_template" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container"]
+editor/display_folded = true
 visible = false
 margin_right = 210.0
 margin_bottom = 24.0
