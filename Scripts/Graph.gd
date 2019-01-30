@@ -49,6 +49,7 @@ func init_scene(e, location):
 	node.set_offset(offset)
 	node.set_name(node.get_name().replace('@', ''))
 	lastNodePosition = node.get_offset()
+	return node.name
 
 func load_node(type, location, name, text):
 	var scene = load("res://Scenes/Nodes/"+type)
@@ -134,61 +135,59 @@ func process_data():
 		data[name] = tempData
 
 func _save_whiskers(path):
-	if(path):
-		process_data()
-		# write the file
-		print('saving file to: ', path)
-		var saveFile = File.new()
-		saveFile.open(path, File.WRITE)
-		saveFile.store_line(to_json(data))
-		saveFile.close()
-		# clear our data node
-		data = {}
+	process_data()
+	# write the file
+	print('saving file to: ', path)
+	var saveFile = File.new()
+	saveFile.open(path, File.WRITE)
+	saveFile.store_line(to_json(data))
+	saveFile.close()
+	# clear our data node
+	data = {}
 
 #======> Open file
 func _open_whiskers(path):
-	if path:
-		clear_graph()
-		print('opening file: ', path)
-		var file = File.new()
-		file.open(path, File.READ)
-		var loadData = parse_json(file.get_as_text())
-		var nodeDataKeys = loadData.keys()
-		# we should restore our `info` tab data!
-		get_node("../../Info/Info/DName/Input").set_text(loadData['info']['display_name'])
-		get_node("../../Info/Info/Name/Input").set_text(loadData['info']['name'])
-		# we should load our GraphNodes!
-		for i in range(0, nodeDataKeys.size()):
-			var type
-			var node = loadData[nodeDataKeys[i]]
-			var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
-			for x in range(0, nodeNames.size()):
-				if nodeNames[x] in nodeDataKeys[i]:
-					type = str(nodeNames[x])+'.tscn'
-			if type:
-				load_node(type, node['location'], nodeDataKeys[i], node['text'])
-		
-		#everything has been loaded and added to the graph, lets connect them all!
-		for i in range(0, nodeDataKeys.size()):
-			if not 'info' in nodeDataKeys[i]:
-				var connectTo
-				if 'Condition' in nodeDataKeys[i]:
-					connectTo = loadData[nodeDataKeys[i]]['conditions']
-					# this is bad because it assumes `true` and `false` can *only* connect to one node
-					# this is a dumb assumption to make, and should be corrected soon:tm:
-					connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
-					connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
-				else:
-					connectTo = loadData[nodeDataKeys[i]]['connects_to']
-					# for each key
-					for x in range(1, connectTo.size()+1):
-						if 'Expression' in nodeDataKeys[i]:
-							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
-						else:
-							connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
-		
-		var startOffset = self.get_node('Start').get_offset()
-		self.set_scroll_ofs(Vector2(startOffset.x, startOffset.y))
+	clear_graph()
+	print('opening file: ', path)
+	var file = File.new()
+	file.open(path, File.READ)
+	var loadData = parse_json(file.get_as_text())
+	var nodeDataKeys = loadData.keys()
+	# we should restore our `info` tab data!
+	get_node("../../Info/Info/DName/Input").set_text(loadData['info']['display_name'])
+	get_node("../../Info/Info/Name/Input").set_text(loadData['info']['name'])
+	# we should load our GraphNodes!
+	for i in range(0, nodeDataKeys.size()):
+		var type
+		var node = loadData[nodeDataKeys[i]]
+		var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+		for x in range(0, nodeNames.size()):
+			if nodeNames[x] in nodeDataKeys[i]:
+				type = str(nodeNames[x])+'.tscn'
+		if type:
+			load_node(type, node['location'], nodeDataKeys[i], node['text'])
+	
+	#everything has been loaded and added to the graph, lets connect them all!
+	for i in range(0, nodeDataKeys.size()):
+		if not 'info' in nodeDataKeys[i]:
+			var connectTo
+			if 'Condition' in nodeDataKeys[i]:
+				connectTo = loadData[nodeDataKeys[i]]['conditions']
+				# this is bad because it assumes `true` and `false` can *only* connect to one node
+				# this is a dumb assumption to make, and should be corrected soon:tm:
+				connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
+				connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
+			else:
+				connectTo = loadData[nodeDataKeys[i]]['connects_to']
+				# for each key
+				for x in range(1, connectTo.size()+1):
+					if 'Expression' in nodeDataKeys[i]:
+						connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
+					else:
+						connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+	
+	var startOffset = self.get_node('Start').get_offset()
+	self.set_scroll_ofs(Vector2(startOffset.x, startOffset.y))
 
 #=== NEW FILE handling
 func _on_New_confirmed():
@@ -232,7 +231,12 @@ func can_drop_data(pos, data):
 # triggers on target drop
 func drop_data(pos, data):
 	var nodes = ['Dialogue', 'Option', 'Jump', 'Condition', 'Expression', 'Comment', 'Start', 'End']
+	var inNode = false
+	var localMousePos = self.get_child(0).get_local_mouse_position()
 	for i in range(0, nodes.size()):
 		if nodes[i] in data:
-			var localMousePos = self.get_child(0).get_local_mouse_position()
 			init_scene(nodes[i]+".tscn", localMousePos)
+			inNode = true
+		elif !inNode and i+1 == nodes.size():
+			var name = init_scene('Expression.tscn', localMousePos)
+			get_node(name).get_node("Lines").get_child(0).set_text(data)

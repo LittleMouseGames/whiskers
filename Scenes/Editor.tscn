@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -19,12 +19,13 @@
 [ext_resource path="res://Assets/Themes/Other/ScrollTrack.tres" type="StyleBox" id=17]
 [ext_resource path="res://Scripts/DocVars.gd" type="Script" id=18]
 [ext_resource path="res://Scripts/DocFuncs.gd" type="Script" id=19]
-[ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=20]
-[ext_resource path="res://Assets/Fonts/regular.tres" type="DynamicFont" id=21]
-[ext_resource path="res://Scripts/Graph.gd" type="Script" id=22]
-[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=23]
-[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=24]
-[ext_resource path="res://Scenes/Dialogue.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scripts/DragFunction.gd" type="Script" id=20]
+[ext_resource path="res://Assets/Fonts/bold.tres" type="DynamicFont" id=21]
+[ext_resource path="res://Assets/Fonts/regular.tres" type="DynamicFont" id=22]
+[ext_resource path="res://Scripts/Graph.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/DemoGame.gd" type="Script" id=24]
+[ext_resource path="res://Assets/Images/attn.png" type="Texture" id=25]
+[ext_resource path="res://Scenes/Dialogue.tscn" type="PackedScene" id=26]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -370,6 +371,7 @@ margin_bottom = 590.0
 dragger_visibility = 2
 
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
+editor/display_folded = true
 margin_right = 1004.0
 margin_bottom = 30.0
 dragger_visibility = 2
@@ -680,6 +682,7 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -762,7 +765,6 @@ items = [ "Comment Node", ExtResource( 12 ), false, "Start Node", ExtResource( 1
 script = ExtResource( 9 )
 
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -825,7 +827,6 @@ margin_bottom = 104.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="DocVars" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
-editor/display_folded = true
 margin_top = 108.0
 margin_right = 220.0
 margin_bottom = 231.0
@@ -855,7 +856,6 @@ size_flags_horizontal = 3
 script = ExtResource( 18 )
 
 [node name="item_template" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer/Container"]
-editor/display_folded = true
 visible = false
 margin_right = 210.0
 margin_bottom = 24.0
@@ -884,7 +884,6 @@ margin_bottom = 239.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="DocFunc" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Info"]
-editor/display_folded = true
 margin_top = 243.0
 margin_right = 220.0
 margin_bottom = 431.0
@@ -914,17 +913,17 @@ size_flags_horizontal = 3
 script = ExtResource( 19 )
 
 [node name="item_template" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocFunc/ScrollContainer/Container"]
-editor/display_folded = true
 visible = false
 margin_right = 210.0
 margin_bottom = 50.0
+script = ExtResource( 20 )
 
 [node name="Func" type="Label" parent="Mount/MainWindow/Editor/Info/Info/DocFunc/ScrollContainer/Container/item_template"]
 margin_right = 210.0
 margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 0.368627, 0.607843, 0.964706, 1 )
 text = "_littleMouse()"
 valign = 1
@@ -936,7 +935,7 @@ margin_bottom = 42.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 21 )
+custom_fonts/font = ExtResource( 22 )
 text = "A demo function."
 autowrap = true
 
@@ -947,6 +946,7 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 13 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
+editor/display_folded = true
 margin_left = 242.0
 margin_right = 1004.0
 margin_bottom = 550.0
@@ -967,7 +967,7 @@ size_flags_vertical = 3
 theme = SubResource( 17 )
 right_disconnects = true
 scroll_offset = Vector2( -5, -26 )
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 
 [node name="Demo" type="Panel" parent="Mount/MainWindow/Editor/Graph"]
 visible = false
@@ -978,7 +978,7 @@ margin_top = 31.0
 margin_right = -5.0
 margin_bottom = -5.0
 custom_styles/panel = SubResource( 18 )
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 speed = 2
 
 [node name="PlayField" type="Control" parent="Mount/MainWindow/Editor/Graph/Demo"]
@@ -1001,7 +1001,7 @@ custom_styles/panel = SubResource( 19 )
 [node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 28.4531, -28.8561 )
 scale = Vector2( 0.201783, 0.201783 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 
 [node name="Area2D" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 26.4634, 24.2581 )
@@ -1119,7 +1119,7 @@ text = "A"
 align = 1
 valign = 1
 
-[node name="Dialogue" parent="Mount/MainWindow/Editor/Graph/Demo" instance=ExtResource( 25 )]
+[node name="Dialogue" parent="Mount/MainWindow/Editor/Graph/Demo" instance=ExtResource( 26 )]
 
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]
