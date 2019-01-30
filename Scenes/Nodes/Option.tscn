@@ -44,6 +44,6 @@ custom_styles/normal = ExtResource( 4 )
 placeholder_text = "Player Option"
 caret_blink = true
 
-[connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
-[connection signal="dragged" from="." to="." method="_on_Option_dragged"]
-[connection signal="resize_request" from="." to="." method="_on_Dialogue_resize_request"]
+[connection signal="close_request" from="." to="." method="_on_Node_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Node_dragged"]
+[connection signal="resize_request" from="." to="." method="_on_Node_resize_request"]

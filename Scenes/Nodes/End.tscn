@@ -61,6 +61,6 @@ margin_bottom = 81.0
 custom_styles/normal = SubResource( 1 )
 text = "expression end-cap"
 
-[connection signal="close_request" from="." to="." method="_on_Dialogue_close_request"]
-[connection signal="dragged" from="." to="." method="_on_Option_dragged"]
-[connection signal="resize_request" from="." to="." method="_on_Dialogue_resize_request"]
+[connection signal="close_request" from="." to="." method="_on_Node_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Node_dragged"]
+[connection signal="resize_request" from="." to="." method="_on_Node_resize_request"]

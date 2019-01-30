@@ -375,7 +375,6 @@ margin_bottom = 30.0
 dragger_visibility = 2
 
 [node name="Menus" type="GridContainer" parent="Mount/MainWindow/MenuBar"]
-editor/display_folded = true
 margin_right = 903.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
