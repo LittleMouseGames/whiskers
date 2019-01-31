@@ -122,4 +122,5 @@ align = 2
 
 [connection signal="close_request" from="." to="." method="_on_Node_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
+[connection signal="raise_request" from="." to="." method="_on_Node_raise_request"]
 [connection signal="resize_request" from="." to="." method="_on_Node_resize_request"]

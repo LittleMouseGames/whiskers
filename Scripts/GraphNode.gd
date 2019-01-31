@@ -34,3 +34,6 @@ func get_text(name):
 		return self.get_node('Lines').get_child(0).get_text()
 	else:
 		return ''
+
+func _on_Node_raise_request():
+	self.raise()
