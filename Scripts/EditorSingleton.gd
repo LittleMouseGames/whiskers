@@ -56,6 +56,7 @@ func close_all():
 	# menus
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
+	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -64,6 +65,7 @@ func _input(event):
 				if(!inMenu):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
+					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
 func update_demo():
 	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
@@ -89,7 +91,6 @@ func add_history(node, name, offset, text, connects_from, action):
 			'action': action
 	}
 	currentHistory += 1
-	print(historyObj, '\n\n')
 
 func undo_history():
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")

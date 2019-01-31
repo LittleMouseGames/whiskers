@@ -371,7 +371,6 @@ margin_bottom = 590.0
 dragger_visibility = 2
 
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
-editor/display_folded = true
 margin_right = 1004.0
 margin_bottom = 30.0
 dragger_visibility = 2
@@ -386,11 +385,13 @@ columns = 3
 script = ExtResource( 3 )
 
 [node name="File" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+editor/display_folded = true
 margin_right = 35.0
 margin_bottom = 22.0
 text = "File"
 
 [node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/File"]
+editor/display_folded = true
 visible = false
 margin_left = 10.4972
 margin_top = 34.3308
@@ -408,6 +409,7 @@ margin_bottom = 125.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer"]
+editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 124.0
@@ -595,19 +597,110 @@ custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
 text = "CTRL-Q"
 align = 2
 
-[node name="Help" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
-editor/display_folded = true
+[node name="Edit" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
 margin_left = 39.0
-margin_right = 81.0
+margin_right = 75.0
+margin_bottom = 22.0
+text = "Edit"
+
+[node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/Edit"]
+visible = false
+margin_left = 49.0
+margin_top = 34.0
+margin_right = 182.0
+margin_bottom = 82.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 4 )
+
+[node name="PanelContainer" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 132.0
+margin_bottom = 47.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 124.0
+margin_bottom = 39.0
+
+[node name="Undo" type="Button" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer"]
+margin_right = 117.0
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Undo"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo/HSplitContainer"]
+margin_left = 58.0
+margin_right = 117.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-Z"
+align = 2
+
+[node name="Redo" type="Button" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 117.0
+margin_bottom = 32.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+dragger_visibility = 2
+
+[node name="Action" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo/HSplitContainer"]
+margin_right = 58.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+text = "Redo"
+
+[node name="Hotkey" type="Label" parent="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo/HSplitContainer"]
+margin_left = 58.0
+margin_right = 117.0
+margin_bottom = 14.0
+size_flags_horizontal = 7
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.611765, 0.611765, 0.611765, 1 )
+text = "CTRL-Y"
+align = 2
+
+[node name="Help" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+margin_left = 79.0
+margin_right = 121.0
 margin_bottom = 22.0
 text = "Help"
 
 [node name="Menu" type="PanelContainer" parent="Mount/MainWindow/MenuBar/Menus/Help"]
 visible = false
-margin_left = 47.8414
-margin_top = 34.425
-margin_right = 180.841
-margin_bottom = 64.425
+margin_left = 88.7246
+margin_top = 33.7109
+margin_right = 221.724
+margin_bottom = 63.7109
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = ExtResource( 4 )
@@ -1140,6 +1233,13 @@ valign = 1
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/File/Menu/PanelContainer/VBoxContainer/Quit" to="Mount/MainWindow/MenuBar/Menus" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Edit" to="Mount/MainWindow/MenuBar/Menus" method="_on_Edit_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Undo" to="Mount/MainWindow/MenuBar/Menus" method="_on_Undo_pressed"]
+[connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
+[connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
+[connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Edit/Menu/PanelContainer/VBoxContainer/Redo" to="Mount/MainWindow/MenuBar/Menus" method="_on_Redo_pressed"]
 [connection signal="pressed" from="Mount/MainWindow/MenuBar/Menus/Help" to="Mount/MainWindow/MenuBar/Menus" method="_on_Help_pressed"]
 [connection signal="mouse_entered" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_entered"]
 [connection signal="mouse_exited" from="Mount/MainWindow/MenuBar/Menus/Help/Menu/PanelContainer/VBoxContainer/About" to="Mount/MainWindow/MenuBar/Menus" method="_on_menAct_mouse_exited"]
