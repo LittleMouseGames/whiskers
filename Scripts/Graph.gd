@@ -35,7 +35,7 @@ func _physics_process(delta):
 	if open:
 		timer += delta
 	if timer > 0.05:
-		_open_whiskers()
+		_open_whiskers(path)
 		open = false
 		timer = 0
 
@@ -197,8 +197,7 @@ func _save_whiskers(path):
 	data = {}
 
 #======> Open file
-func _open_whiskers():
-	clear_graph()
+func _open_whiskers(path):
 	print('opening file: ', path)
 	var file = File.new()
 	file.open(path, File.READ)
@@ -244,16 +243,19 @@ func _open_whiskers():
 	
 	self.set_scroll_ofs(scrollTo)
 	self.set_scroll_ofs(scrollTo)
+	EditorSingleton.hasGraph = true
 
 #=== NEW FILE handling
 func _on_New_confirmed():
 	clear_graph()
-	get_node("../Demo/Dialogue").reset()
-	get_node("../Demo/Dialogue").data = 0
-	data = {}
-	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 
 func clear_graph():
+	get_node("../Demo/Dialogue").reset()
+	get_node("../Demo/Dialogue").data = {}
+	print(get_node("../Demo/Dialogue").data)
+	EditorSingleton.hasGraph = false
+	data = {}
+	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 	# we should restore our `info` tab data!
 	get_node("../../Info/Info/DName/Input").set_text('')
 	get_node("../../Info/Info/Name/Input").set_text('')

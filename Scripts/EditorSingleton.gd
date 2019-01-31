@@ -12,6 +12,8 @@ var currentHistory = 0
 var historyObj = {}
 
 var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+var hasGraph = false
+
 
 func get_node_type(name):
 	var regex = RegEx.new()
@@ -68,8 +70,9 @@ func _input(event):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
 func update_demo():
-	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
-	get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data
+	if hasGraph:
+		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
+		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data
 
 #===== History Management
 func overwrite_history():
