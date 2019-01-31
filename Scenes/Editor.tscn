@@ -220,7 +220,6 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Modals" type="Control" parent="Mount"]
-editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -333,7 +332,7 @@ split_offset = 25
 margin_top = 8.0
 margin_right = 200.0
 margin_bottom = 56.0
-text = "Whiskers v1.0.0 BETA
+text = "Whiskers v1.1.0 BETA
 © 2019 Chris Bolton
 © 2019 LittleMouseGames"
 

@@ -3,7 +3,7 @@ extends GridContainer
 # Menus
 onready var fileMenu = $File/Menu
 onready var helpMenu = $Help/Menu
-onready var helpMenu = $Edit/Menu
+onready var editMenu = $Edit/Menu
 
 
 #Dialog Windows
