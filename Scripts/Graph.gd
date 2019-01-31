@@ -1,10 +1,14 @@
 extends GraphEdit
 
 var lastNodePosition = Vector2(0,0)
+var open = false
+var preFire = false
+var timer = 0
+var path = ''
 
 func _ready():
 	get_node("../../../../Modals/Save").connect("file_selected", self, "_save_whiskers")
-	get_node("../../../../Modals/Open").connect("file_selected", self, "_open_whiskers")
+	get_node("../../../../Modals/Open").connect("file_selected", self, "pre_open")
 	get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
 
 func get_connections(name):
@@ -16,6 +20,29 @@ func get_connections(name):
 			connections[connections.size()+1] = list[i]['from']
 	
 	return connections
+
+# this is really ugly
+# but I can't figure out a way to get our GraphEdit to redraw on command
+# so until I can, this very ugly hack will have to do.
+# it has next to zero impact on performance,
+# but it's just so ugly!
+func _physics_process(delta):
+	self.get_child(0).update()
+	if preFire:
+		clear_graph()
+		clear_connections()
+		preFire = false
+	if open:
+		timer += delta
+	if timer > 0.05:
+		_open_whiskers()
+		open = false
+		timer = 0
+
+func pre_open(openPath):
+	path = openPath
+	open = true
+	preFire = true
 
 func get_text(from):
 	if self.get_node(from).has_node('Lines'):
@@ -170,7 +197,7 @@ func _save_whiskers(path):
 	data = {}
 
 #======> Open file
-func _open_whiskers(path):
+func _open_whiskers():
 	clear_graph()
 	print('opening file: ', path)
 	var file = File.new()
@@ -228,8 +255,8 @@ func clear_graph():
 	# we should clear the GraphEdit of GraphNodes
 	for child in self.get_children():
 		if not("GraphEditFilter" in child.get_class()) and not ("Control" in child.get_class()):
-			self.clear_connections()
 			child.queue_free()
+			
 
 #==== IMPORT PLAYER SINGLETON
 func _import_singleton(path):

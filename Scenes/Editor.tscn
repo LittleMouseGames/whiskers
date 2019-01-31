@@ -1039,7 +1039,6 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 13 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
-editor/display_folded = true
 margin_left = 242.0
 margin_right = 1004.0
 margin_bottom = 550.0
