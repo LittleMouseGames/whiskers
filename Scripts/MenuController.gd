@@ -1,28 +1,18 @@
 extends GridContainer
 
 # Menus
-var fileMenu
-var helpMenu
-var editMenu
+onready var fileMenu = $File/Menu
+onready var helpMenu = $Help/Menu
+onready var helpMenu = $Edit/Menu
+
 
 #Dialog Windows
-var saveDialog
-var openDialog
-var quitDialog
-var aboutDialog
-var newDialog
-var importDialog
-
-func _ready():
-	fileMenu = get_node("File/Menu")
-	helpMenu = get_node("Help/Menu")
-	editMenu = get_node("Edit/Menu")
-	saveDialog = get_node("../../../Modals/Save")
-	openDialog = get_node("../../../Modals/Open")
-	quitDialog = get_node("../../../Modals/QuitConf")
-	aboutDialog = get_node("../../../Modals/About")
-	newDialog = get_node("../../../Modals/New")
-	importDialog = get_node("../../../Modals/Import")
+onready var saveDialog = get_node("../../../Modals/Save")
+onready var openDialog = get_node("../../../Modals/Open")
+onready var quitDialog = get_node("../../../Modals/QuitConf")
+onready var aboutDialog = get_node("../../../Modals/About")
+onready var newDialog = get_node("../../../Modals/New")
+onready var importDialog = get_node("../../../Modals/Import")
 
 func _on_File_pressed():
 	if(fileMenu.is_visible()):
