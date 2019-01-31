@@ -34,13 +34,17 @@ func populate():
 		# do we have a character name?
 		get_node("Name").set_text(data['info']['display_name'])
 		get_node("Name").show()
-		# load the first bit of Data
+		
 		var firstNode = data[data['Start']['connects_to'][1]]
-		get_node("Text").parse_bbcode(firstNode['text'])
+		# load the first bit of Data
+		if 'Condition' in data['Start']['connects_to'][1]:
+			handle_action(data['Start']['connects_to'][1], 'option')
+		else:
+			get_node("Text").parse_bbcode(firstNode['text'])
 		# lets set our buttons
-		var firstButtons = firstNode['connects_to'].size()
-		for i in range(1, firstButtons+1):
-			handle_action(firstNode['connects_to'][i], 'dialogue')
+			var firstButtons = firstNode['connects_to'].size()
+			for i in range(1, firstButtons+1):
+				handle_action(firstNode['connects_to'][i], 'dialogue')
 
 func next(name, fromLogic): # Its for a church honey!
 	var button = data[name]
@@ -59,8 +63,6 @@ func next(name, fromLogic): # Its for a church honey!
 	
 	if fromLogic:
 		get_node("Text").parse_bbcode(button['text'])
-		for i in range(1, button['connects_to'].size()+1):
-			handle_action(button['connects_to'][i], 'dialogue')
 
 func handle_action(name, from):
 	if 'Option' in name:
