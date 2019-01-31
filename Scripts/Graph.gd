@@ -237,8 +237,13 @@ func _open_whiskers():
 					else:
 						connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
 	
-	var startOffset = self.get_node('Start').get_offset()
-	self.set_scroll_ofs(Vector2(startOffset.x, startOffset.y))
+	var startOffset = self.get_node('Start').offset
+	var graphRect = self.rect_size
+	var startRect = self.get_node('Start').rect_size
+	var scrollTo = Vector2(startOffset.x - (graphRect.x / 2) + (startRect.x / 2), startOffset.y - (graphRect.y / 2) + (startRect.y / 2))
+	
+	self.set_scroll_ofs(scrollTo)
+	self.set_scroll_ofs(scrollTo)
 
 #=== NEW FILE handling
 func _on_New_confirmed():
