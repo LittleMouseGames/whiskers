@@ -253,6 +253,12 @@ func _on_New_confirmed():
 	clear_graph()
 
 func clear_graph():
+	if EditorSingleton.hasPlayerSingleton:
+		get_tree().root.get_node('PlayerSingleton').queue_free()
+		EditorSingleton.hasPlayerSingleton = false
+		get_node("../../Info/Info/DocFunc/ScrollContainer/Container").reset()
+		get_node("../../Info/Info/DocVars/ScrollContainer/Container").reset()
+	
 	get_node("../Demo/Dialogue").reset()
 	get_node("../Demo/Dialogue").data = {}
 	print(get_node("../Demo/Dialogue").data)

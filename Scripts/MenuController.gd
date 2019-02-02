@@ -83,3 +83,7 @@ func _on_Undo_pressed():
 func _on_Redo_pressed():
 	EditorSingleton.close_all()
 	EditorSingleton.redo_history()
+
+func _on_source_pressed():
+	OS.shell_open("https://github.com/littleMouseGames/whiskers")
+
