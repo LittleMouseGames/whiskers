@@ -67,7 +67,6 @@ func next(name, fromLogic): # Its for a church honey!
 			handle_action(name, 'option')
 
 func handle_action(name, from):
-	print('firing action, getting from ==: ', from, ', name: ', name)
 	if 'Option' in name:
 		add_button(data[name]['text'], name)
 	if 'Condition' in name:

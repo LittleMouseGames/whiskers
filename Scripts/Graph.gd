@@ -10,6 +10,8 @@ func _ready():
 	get_node("../../../../Modals/Save").connect("file_selected", self, "_save_whiskers")
 	get_node("../../../../Modals/Open").connect("file_selected", self, "pre_open")
 	get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
+	
+	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 
 func get_connections(name):
 	var list = get_connection_list()
@@ -28,6 +30,7 @@ func get_connections(name):
 # but it's just so ugly!
 func _physics_process(delta):
 	self.get_child(0).update()
+	self.get_child(1).update()
 	if preFire:
 		clear_graph()
 		clear_connections()
