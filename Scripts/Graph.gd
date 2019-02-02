@@ -105,7 +105,7 @@ func init_scene(e, location):
 	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], 'add')
 	return node.name
 
-func load_node(type, location, name, text):
+func load_node(type, location, name, text, size):
 	var scene = load("res://Scenes/Nodes/"+type)
 	var node = scene.instance()
 	
@@ -115,6 +115,10 @@ func load_node(type, location, name, text):
 	node.set_name(name)
 	if text:
 		node.get_node('Lines').get_child(0).set_text(text)
+	if size:
+		print(size)
+		size = size.split(',')
+		node.rect_size = Vector2(size[2], size[3])
 
 #=======> SAVING
 var data = {} # this is the final data, an array of all nodes that we write to file
@@ -137,7 +141,8 @@ func process_data():
 					'true':'',
 					'false':''
 				},
-				'location':""
+				'location':"",
+				'size':""
 		}
 		var currentCTSize = 0
 		var currentConnectsTo 
@@ -173,6 +178,9 @@ func process_data():
 		
 		# store our location
 		tempData['location'] = self.get_node(name).get_offset()
+		
+		# store our size
+		tempData['size'] = self.get_node(name).get_rect() 
 		
 		# are we connecting to an 'End' node?
 		if 'End' in connectionList[i].to:
@@ -220,7 +228,10 @@ func _open_whiskers(path):
 			if nodeNames[x] in nodeDataKeys[i]:
 				type = str(nodeNames[x])+'.tscn'
 		if type:
-			load_node(type, node['location'], nodeDataKeys[i], node['text'])
+			var size = false
+			if 'size' in node:
+				size = node['size']
+			load_node(type, node['location'], nodeDataKeys[i], node['text'], size)
 	
 	#everything has been loaded and added to the graph, lets connect them all!
 	for i in range(0, nodeDataKeys.size()):

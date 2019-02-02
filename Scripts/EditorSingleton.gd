@@ -105,7 +105,7 @@ func undo_history():
 		
 		print(action)
 		if action == 'remove':
-			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'])
+			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'], false)
 		if action == 'move':
 			var lastInstance = historyObj[last_instance_of(obj['name'])]
 			graph.get_node(obj['name']).set_offset(lastInstance['offset'])
@@ -181,7 +181,7 @@ func redo_history():
 		if action == 'text':
 			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(obj['text'])
 		if action == 'add':
-			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'])
+			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'], false)
 		
 		if 'connect' in action:
 			if action == 'connect':
