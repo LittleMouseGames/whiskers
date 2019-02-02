@@ -198,6 +198,8 @@ func _save_whiskers(path):
 	saveFile.close()
 	# clear our data node
 	data = {}
+	EditorSingleton.lastSave = EditorSingleton.currentHistory
+	EditorSingleton.update_tab_title(false)
 
 #======> Open file
 func _open_whiskers(path):
@@ -259,6 +261,8 @@ func clear_graph():
 		get_node("../../Info/Info/DocFunc/ScrollContainer/Container").reset()
 		get_node("../../Info/Info/DocVars/ScrollContainer/Container").reset()
 	
+	EditorSingleton.lastSave = 0
+	EditorSingleton.update_tab_title(false)
 	get_node("../Demo/Dialogue").reset()
 	get_node("../Demo/Dialogue").data = {}
 	print(get_node("../Demo/Dialogue").data)

@@ -10,10 +10,10 @@ var hasPlayerSingleton = false
 # for history
 var currentHistory = 0
 var historyObj = {}
+var lastSave = 0
 
 var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
 var hasGraph = false
-
 
 func get_node_type(name):
 	var regex = RegEx.new()
@@ -93,6 +93,7 @@ func add_history(node, name, offset, text, connects_from, action):
 			'connects_from': connects_from,
 			'action': action
 	}
+	EditorSingleton.update_tab_title(true)
 	currentHistory += 1
 
 func undo_history():
@@ -125,8 +126,15 @@ func undo_history():
 				var lastInstance = historyObj[last_instance_of(obj['name'])]
 				for i in range(0, lastInstance['connects_from'].size()):
 					graph.connect_node(lastInstance['connects_from'][i+1], 0, obj['name'], 0)
-				
+		
 		currentHistory -= 1
+		
+		if lastSave == currentHistory:
+			update_tab_title(false)
+			print('we are on last save')
+		else:
+			update_tab_title(true)
+			print('we are unsaved!')
 
 func last_instance_of(name):
 	var lastPos
@@ -187,3 +195,20 @@ func redo_history():
 						graph.disconnect_node(connections[i].from, 0, obj['name'], 0) 
 		
 		currentHistory += 1
+	
+		if lastSave == currentHistory:
+			update_tab_title(false)
+			print('we are on last save')
+		else:
+			update_tab_title(true)
+			print('we are unsaved!')
+
+func update_tab_title(unsaved):
+	var graph = get_node('/root/Editor/Mount/MainWindow/Editor/Graph')
+	
+	if unsaved:
+		graph.set_tab_title(0, 'Dialogue Graph*')
+	else:
+		graph.set_tab_title(0, 'Dialogue Graph')
+	
+	graph.update()

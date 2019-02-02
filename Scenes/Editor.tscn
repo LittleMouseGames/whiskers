@@ -220,6 +220,7 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Modals" type="Control" parent="Mount"]
+editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -380,6 +381,7 @@ margin_bottom = 590.0
 dragger_visibility = 2
 
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
+editor/display_folded = true
 margin_right = 1004.0
 margin_bottom = 30.0
 dragger_visibility = 2
@@ -776,6 +778,7 @@ margin_right = 1004.0
 margin_bottom = 580.0
 
 [node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
+editor/display_folded = true
 margin_right = 230.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 230, 0 )
@@ -784,7 +787,6 @@ tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="Nodes" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
