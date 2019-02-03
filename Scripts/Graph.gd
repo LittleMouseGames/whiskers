@@ -279,6 +279,9 @@ func clear_graph():
 		get_node("../../Info/Info/DocFunc/ScrollContainer/Container").reset()
 		get_node("../../Info/Info/DocVars/ScrollContainer/Container").reset()
 	
+	
+	get_node("../../Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount").set_text('0')
+	get_node("../../Info/Nodes/Stats/PanelContainer/StatsCon/DNodes/Amount").set_text('0')
 	EditorSingleton.lastSave = 0
 	EditorSingleton.update_tab_title(false)
 	get_node("../Demo/Dialogue").reset()
