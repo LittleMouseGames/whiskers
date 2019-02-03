@@ -103,6 +103,9 @@ func init_scene(e, location):
 	#history management
 	EditorSingleton.overwrite_history()
 	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], 'add')
+	
+	EditorSingleton.update_stats(node.name, '1')
+		
 	return node.name
 
 func load_node(type, location, name, text, size):
@@ -119,6 +122,8 @@ func load_node(type, location, name, text, size):
 		print(size)
 		size = size.split(',')
 		node.rect_size = Vector2(size[2], size[3])
+	
+	EditorSingleton.update_stats(name, '1')
 
 #=======> SAVING
 var data = {} # this is the final data, an array of all nodes that we write to file

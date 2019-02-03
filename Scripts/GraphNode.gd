@@ -3,6 +3,7 @@ extends GraphNode
 func _on_Node_close_request():
 	self.queue_free()
 	print('removing node')
+	EditorSingleton.update_stats(self.name, '-1')
 	EditorSingleton.add_history(get_type(self.name), self.name, self.get_offset(), get_text(self.name), get_node('../').get_connections(self.name), 'remove')
 
 func _on_Node_resize_request(new_minsize):

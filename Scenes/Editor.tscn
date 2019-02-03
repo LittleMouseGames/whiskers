@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Assets/Themes/Dialogs/Dialog.tres" type="Theme" id=1]
 [ext_resource path="res://Assets/Images/logo_transparent.png" type="Texture" id=2]
@@ -81,6 +81,15 @@ border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 [sub_resource type="StyleBoxFlat" id=8]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+
+bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 
@@ -778,7 +787,6 @@ margin_right = 1004.0
 margin_bottom = 580.0
 
 [node name="Info" type="TabContainer" parent="Mount/MainWindow/Editor"]
-editor/display_folded = true
 margin_right = 230.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 230, 0 )
@@ -795,6 +803,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Basic" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+editor/display_folded = true
 margin_right = 220.0
 margin_bottom = 129.0
 dragger_visibility = 2
@@ -821,6 +830,7 @@ margin_bottom = 137.0
 custom_styles/separator = SubResource( 8 )
 
 [node name="Advanced" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+editor/display_folded = true
 margin_top = 141.0
 margin_right = 220.0
 margin_bottom = 224.0
@@ -868,7 +878,79 @@ custom_styles/bg = SubResource( 7 )
 items = [ "Comment Node", ExtResource( 12 ), false, "Start Node", ExtResource( 13 ), false, "End Node", ExtResource( 14 ), false ]
 script = ExtResource( 9 )
 
+[node name="HSeparator3" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 345.0
+margin_right = 220.0
+margin_bottom = 349.0
+custom_styles/separator = SubResource( 8 )
+
+[node name="Stats" type="VSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes"]
+margin_top = 450.0
+margin_right = 220.0
+margin_bottom = 514.0
+size_flags_vertical = 10
+dragger_visibility = 2
+
+[node name="Label" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Stats"]
+margin_right = 220.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 6 )
+text = "Graph Stats"
+
+[node name="PanelContainer" type="PanelContainer" parent="Mount/MainWindow/Editor/Info/Nodes/Stats"]
+margin_top = 18.0
+margin_right = 220.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 22 )
+
+[node name="StatsCon" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 213.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 32 )
+
+[node name="DNodes" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon"]
+margin_right = 206.0
+margin_bottom = 14.0
+dragger_visibility = 2
+
+[node name="What" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/DNodes"]
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Dialogue Nodes"
+
+[node name="Amount" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/DNodes"]
+margin_left = 198.0
+margin_right = 206.0
+margin_bottom = 14.0
+text = "0"
+align = 1
+
+[node name="ONodes" type="HSplitContainer" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon"]
+margin_top = 18.0
+margin_right = 206.0
+margin_bottom = 32.0
+dragger_visibility = 2
+
+[node name="What" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes"]
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Player Options "
+
+[node name="Amount" type="Label" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes"]
+margin_left = 198.0
+margin_right = 206.0
+margin_bottom = 14.0
+text = "0"
+align = 1
+
 [node name="Info" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info"]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1051,6 +1133,7 @@ margin_bottom = 50.0
 custom_styles/separator = SubResource( 13 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
+editor/display_folded = true
 margin_left = 242.0
 margin_right = 1004.0
 margin_bottom = 550.0

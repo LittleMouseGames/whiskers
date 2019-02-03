@@ -107,13 +107,15 @@ func undo_history():
 		if action == 'remove':
 			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'], false)
 		if action == 'move':
-			var lastInstance = historyObj[last_instance_of(obj['name'])]
-			graph.get_node(obj['name']).set_offset(lastInstance['offset'])
+			if last_instance_of(obj['name']):
+				var lastInstance = historyObj[last_instance_of(obj['name'])]
+				graph.get_node(obj['name']).set_offset(lastInstance['offset'])
 		if action == 'text':
 			var lastInstance = historyObj[last_instance_of(obj['name'])]
 			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(lastInstance['text'])
 		if action == 'add':
 			graph.get_node(obj['name']).queue_free()
+			update_stats(obj['name'], '-1')
 		
 		if 'connect' in action:
 			if action == 'connect':
@@ -176,6 +178,7 @@ func redo_history():
 		
 		if action == 'remove':
 			graph.get_node(obj['name']).queue_free()
+			update_stats(obj['name'], '-1')
 		if action == 'move':
 			graph.get_node(obj['name']).set_offset(obj['offset'])
 		if action == 'text':
@@ -212,3 +215,11 @@ func update_tab_title(unsaved):
 		graph.set_tab_title(0, 'Dialogue Graph')
 	
 	graph.update()
+
+func update_stats(what, amount):
+	if 'Option' in what:
+		var amt = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount")
+		amt.set_text(str(int(amt.get_text()) + int(amount)))
+	if 'Dialogue' in what:
+		var amt = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/DNodes/Amount")
+		amt.set_text(str(int(amt.get_text()) + int(amount)))
