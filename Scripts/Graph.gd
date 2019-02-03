@@ -105,7 +105,9 @@ func init_scene(e, location):
 	EditorSingleton.add_history(e.split('.tscn')[0], node.name, offset, '', [], 'add')
 	
 	EditorSingleton.update_stats(node.name, '1')
-		
+	
+	EditorSingleton.hasGraph = true
+	
 	return node.name
 
 func load_node(type, location, name, text, size):
