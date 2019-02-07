@@ -19,7 +19,7 @@ func get_connections(name):
 	
 	for i in range(0, list.size()):
 		if name in list[i]['to']:
-			connections[connections.size()+1] = list[i]['from']
+			connections[connections.size() + 1] = list[i]['from']
 	
 	return connections
 
@@ -142,7 +142,7 @@ func process_data():
 		# Our schema
 		var tempData = {
 				'text':"",
-				'connects_to':{},
+				'connects_to':[],
 				'logic':"",
 				'conditions':{
 					'true':'',
@@ -180,8 +180,8 @@ func process_data():
 		else:
 			if currentConnectsTo:
 				tempData['connects_to'] = currentConnectsTo
-			if not connectionList[i].to in tempData['connects_to'].values():
-				tempData['connects_to'][currentCTSize+1] = connectionList[i].to
+			if not connectionList[i].to in tempData['connects_to']:
+				tempData['connects_to'].append(connectionList[i].to)
 		
 		# store our location
 		tempData['location'] = self.get_node(name).get_offset()
@@ -253,11 +253,11 @@ func _open_whiskers(path):
 			else:
 				connectTo = loadData[nodeDataKeys[i]]['connects_to']
 				# for each key
-				for x in range(1, connectTo.size()+1):
+				for x in range(0, connectTo.size()):
 					if 'Expression' in nodeDataKeys[i]:
-						connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 1)
+						connect_node(nodeDataKeys[i], 0, connectTo[x], 1)
 					else:
-						connect_node(nodeDataKeys[i], 0, connectTo[str(x)], 0)
+						connect_node(nodeDataKeys[i], 0, connectTo[x], 0)
 	
 	var startOffset = self.get_node('Start').offset
 	var graphRect = self.rect_size
@@ -329,6 +329,6 @@ func drop_data(pos, data):
 		if nodes[i] in data:
 			init_scene(nodes[i]+".tscn", localMousePos)
 			inNode = true
-		elif !inNode and i+1 == nodes.size():
+		elif !inNode and i + 1 == nodes.size():
 			var name = init_scene('Expression.tscn', localMousePos)
 			get_node(name).get_node("Lines").get_child(0).set_text(data)

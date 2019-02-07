@@ -14,7 +14,7 @@ func _process(delta):
 		if get_node('Buttons').get_child(i).pressed and !buttonFired and timer >= 0.5:
 			var name = get_node('Buttons').get_child(i).name
 			if('@' in name):
-				name = name.split('@')[1]
+				name = name.split('@')[0]
 				if('@' in name):
 					name = name.split('@')[0]
 			next(name, false)
@@ -35,28 +35,28 @@ func populate():
 		get_node("Name").set_text(data['info']['display_name'])
 		get_node("Name").show()
 		
-		var firstNode = data[data['Start']['connects_to'][1]]
+		var firstNode = data[data['Start']['connects_to'][0]]
 		# load the first bit of Data
-		if 'Condition' in data['Start']['connects_to'][1]:
-			handle_action(data['Start']['connects_to'][1], 'option')
+		if 'Condition' in data['Start']['connects_to'][0]:
+			handle_action(data['Start']['connects_to'][0], 'option')
 		else:
 			get_node("Text").parse_bbcode(firstNode['text'])
 		# lets set our buttons
 			var firstButtons = firstNode['connects_to'].size()
-			for i in range(1, firstButtons+1):
+			for i in range(0, firstButtons):
 				handle_action(firstNode['connects_to'][i], 'dialogue')
 
 func next(name, fromLogic): # Its for a church honey!
 	var button = data[name]
 	#lets clear our buttons
 	clear_buttons()
-	for i in range(1, button['connects_to'].size()+1):
+	for i in range(0, button['connects_to'].size()):
 		if 'Dialogue' in button['connects_to'][i]:
 			# lets load that Dialogue node!
 			get_node("Text").parse_bbcode(data[button['connects_to'][i]]['text'])
 			# lets load everything we're connecting to!
 			var connectedTo = data[button['connects_to'][i]]['connects_to']
-			for x in range(1, connectedTo.size()+1):
+			for x in range(0, connectedTo.size()):
 				handle_action(connectedTo[x], 'dialogue')
 		
 		handle_action(button['connects_to'][i], 'option')
@@ -80,7 +80,7 @@ func parse_logic(currentNode, from):
 	# we should find our expression node!
 	var dataKeys = data.keys()
 	for z in range(0, data.size()):
-		if 'Expression' in dataKeys[z] and data[dataKeys[z]]['connects_to'][1] == currentNode:
+		if 'Expression' in dataKeys[z] and data[dataKeys[z]]['connects_to'][0] == currentNode:
 			# lets store our logic in the new Expression type!
 			var expression = Expression.new()
 			expression.parse(data[dataKeys[z]]['logic'], [])
@@ -122,13 +122,13 @@ func jump_to(name):
 	var dataKeys = data.keys()
 	for z in range(0, data.size()):
 		if ('Jump' in dataKeys[z]) and (dataKeys[z] != name) and (data[dataKeys[z]]['text'] == jumpKey):
-			if 'Dialogue' in data[dataKeys[z]]['connects_to'][1]:
-				var node = data[data[dataKeys[z]]['connects_to'][1]]
+			if 'Dialogue' in data[dataKeys[z]]['connects_to'][0]:
+				var node = data[data[dataKeys[z]]['connects_to'][0]]
 				get_node("Text").parse_bbcode(node['text'])
-				for i in range(1, node['connects_to'].size()+1):
+				for i in range(0, node['connects_to'].size()):
 					handle_action(node['connects_to'][i], 'dialogue')
 			else:
-				handle_action(data[dataKeys[z]]['connects_to'][1], 'dialogue')
+				handle_action(data[dataKeys[z]]['connects_to'][0], 'dialogue')
 
 func add_button(text, bttnName):
 	var node = Button.new()
