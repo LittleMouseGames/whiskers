@@ -1,19 +1,19 @@
 extends Node
 
-var inMenu = false
+var in_menu = false
 var test = true
 
-var loadedPlayerVars = false
-var loadedPlayerFuncs = false
-var hasPlayerSingleton = false
+var loaded_player_vars = false
+var loaded_player_funcs = false
+var has_player_singleton = false
 
 # for history
-var currentHistory = 0
-var historyObj = {}
-var lastSave = 0
+var current_history = 0
+var history_objects = {}
+var last_save = 0
 
-var nodeNames = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
-var hasGraph = false
+var node_names = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+var has_graph = false
 
 func get_node_type(name):
 	var regex = RegEx.new()
@@ -64,28 +64,28 @@ func _input(event):
 	if event is InputEventMouseButton:
 		match event.button_index:
 			BUTTON_LEFT:
-				if(!inMenu):
+				if(!in_menu):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
 func update_demo():
-	if hasGraph:
+	if has_graph:
 		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
 		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data
 
 #===== History Management
 func overwrite_history():
-	if currentHistory > 0:
-		var tempHistory = {}
-		for i in range(0, currentHistory):
-			tempHistory[i] = historyObj[i]
+	if current_history > 0:
+		var new_history = {}
+		for i in range(0, current_history):
+			new_history[i] = history_objects[i]
 		# overwrite history with our temp / new one
-		historyObj = tempHistory
+		history_objects = new_history
 
 func add_history(node, name, offset, text, connects_from, action):
 	overwrite_history()
-	historyObj[currentHistory] = {
+	history_objects[current_history] = {
 			'node': node,
 			'name': name,
 			'offset': offset,
@@ -94,44 +94,44 @@ func add_history(node, name, offset, text, connects_from, action):
 			'action': action
 	}
 	EditorSingleton.update_tab_title(true)
-	currentHistory += 1
+	current_history += 1
 
 func undo_history():
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
-	if historyObj.size() > 0 and currentHistory >= 2:
+	if history_objects.size() > 0 and current_history >= 2:
 		# we're in the past
-		var action = historyObj[currentHistory - 1]['action']
-		var obj = historyObj[currentHistory - 1]
+		var action = history_objects[current_history - 1]['action']
+		var object = history_objects[current_history - 1]
 		
 		print(action)
 		if action == 'remove':
-			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'], false)
+			graph.load_node(object['node']+'.tscn', object['offset'], object['name'], object['text'], false)
 		if action == 'move':
-			if last_instance_of(obj['name']):
-				var lastInstance = historyObj[last_instance_of(obj['name'])]
-				graph.get_node(obj['name']).set_offset(lastInstance['offset'])
+			if last_instance_of(object['name']):
+				var last_instance = history_objects[last_instance_of(object['name'])]
+				graph.get_node(object['name']).set_offset(last_instance['offset'])
 		if action == 'text':
-			var lastInstance = historyObj[last_instance_of(obj['name'])]
-			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(lastInstance['text'])
+			var last_instance = history_objects[last_instance_of(object['name'])]
+			graph.get_node(object['name']).get_node("Lines").get_child(0).set_text(last_instance['text'])
 		if action == 'add':
-			graph.get_node(obj['name']).queue_free()
-			update_stats(obj['name'], '-1')
+			graph.get_node(object['name']).queue_free()
+			update_stats(object['name'], '-1')
 		
 		if 'connect' in action:
 			if action == 'connect':
 				print('disconnect node')
 				var connections = graph.get_connection_list()
 				for i in range(0, connections.size()):
-					if connections[i].to == obj['name'] and not connections[i].from in obj['connects_from']:
-						graph.disconnect_node(connections[i].from, 0, obj['name'], 0) 
+					if connections[i].to == object['name'] and not connections[i].from in object['connects_from']:
+						graph.disconnect_node(connections[i].from, 0, object['name'], 0) 
 			else:
-				var lastInstance = historyObj[last_instance_of(obj['name'])]
-				for i in range(0, lastInstance['connects_from'].size()):
-					graph.connect_node(lastInstance['connects_from'][i+1], 0, obj['name'], 0)
+				var last_instance = history_objects[last_instance_of(object['name'])]
+				for i in range(0, last_instance['connects_from'].size()):
+					graph.connect_node(last_instance['connects_from'][i+1], 0, object['name'], 0)
 		
-		currentHistory -= 1
+		current_history -= 1
 		
-		if lastSave == currentHistory:
+		if last_save == current_history:
 			update_tab_title(false)
 			print('we are on last save')
 		else:
@@ -139,67 +139,67 @@ func undo_history():
 			print('we are unsaved!')
 
 func last_instance_of(name):
-	var lastPos
-	for i in range(0, currentHistory - 1):
-		if historyObj[i]['name'] == name:
-			lastPos = i
-	return lastPos
+	var last_instance_position
+	for i in range(0, current_history - 1):
+		if history_objects[i]['name'] == name:
+			last_instance_position = i
+	return last_instance_position
 
 func connection_in_timeline(name):
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
 	var list = graph.get_connection_list()
 	var connections = {}
-	var conFrom = []
+	var connects_from = []
 	
-	for i in range(0, currentHistory - 1):
-		if name == historyObj[i]['name']:
-			connections = historyObj[i]['connects_from']
+	for i in range(0, current_history - 1):
+		if name == history_objects[i]['name']:
+			connections = history_objects[i]['connects_from']
 
 	for i in range(0, connections.size()):
 		if connections.size() > 0:
-			conFrom.append(connections[i+1])
+			connects_from.append(connections[i+1])
 
 	for i in range(0, list.size()):
-		if graph.has_node(list[i]['to']) and not list[i]['from'] in conFrom:
+		if graph.has_node(list[i]['to']) and not list[i]['from'] in connects_from:
 			graph.disconnect_node(list[i]['from'], 0, name, 0)
 	
-	for i in range(0, currentHistory - 1):
-		if historyObj[i]['connects_from']:
-			for j in range(0, historyObj[i]['connects_from'].size()):
-				if historyObj[i]['connects_from'][j+1] != name and historyObj[i]['name'] == name:
-					graph.connect_node(historyObj[i]['connects_from'][j+1], 0, name, 0)
+	for i in range(0, current_history - 1):
+		if history_objects[i]['connects_from']:
+			for j in range(0, history_objects[i]['connects_from'].size()):
+				if history_objects[i]['connects_from'][j+1] != name and history_objects[i]['name'] == name:
+					graph.connect_node(history_objects[i]['connects_from'][j+1], 0, name, 0)
 
 func redo_history():
 	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
-	if currentHistory < historyObj.size():
+	if current_history < history_objects.size():
 		# we're in the past
-		var action = historyObj[currentHistory]['action']
-		var obj = historyObj[currentHistory]
+		var action = history_objects[current_history]['action']
+		var object = history_objects[current_history]
 		
 		if action == 'remove':
-			graph.get_node(obj['name']).queue_free()
-			update_stats(obj['name'], '-1')
+			graph.get_node(object['name']).queue_free()
+			update_stats(object['name'], '-1')
 		if action == 'move':
-			graph.get_node(obj['name']).set_offset(obj['offset'])
+			graph.get_node(object['name']).set_offset(object['offset'])
 		if action == 'text':
-			graph.get_node(obj['name']).get_node("Lines").get_child(0).set_text(obj['text'])
+			graph.get_node(object['name']).get_node("Lines").get_child(0).set_text(object['text'])
 		if action == 'add':
-			graph.load_node(obj['node']+'.tscn', obj['offset'], obj['name'], obj['text'], false)
+			graph.load_node(object['node']+'.tscn', object['offset'], object['name'], object['text'], false)
 		
 		if 'connect' in action:
 			if action == 'connect':
-				for i in range(0, obj['connects_from'].size()):
-					graph.connect_node(obj['connects_from'][i+1], 0, obj['name'], 0)
+				for i in range(0, object['connects_from'].size()):
+					graph.connect_node(object['connects_from'][i+1], 0, object['name'], 0)
 			else:
 				print('disconnect node')
 				var connections = graph.get_connection_list()
 				for i in range(0, connections.size()):
-					if connections[i].to == obj['name'] and not connections[i].from in obj['connects_from']:
-						graph.disconnect_node(connections[i].from, 0, obj['name'], 0) 
+					if connections[i].to == object['name'] and not connections[i].from in object['connects_from']:
+						graph.disconnect_node(connections[i].from, 0, object['name'], 0) 
 		
-		currentHistory += 1
+		current_history += 1
 	
-		if lastSave == currentHistory:
+		if last_save == current_history:
 			update_tab_title(false)
 			print('we are on last save')
 		else:
@@ -218,8 +218,8 @@ func update_tab_title(unsaved):
 
 func update_stats(what, amount):
 	if 'Option' in what:
-		var amt = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount")
-		amt.set_text(str(int(amt.get_text()) + int(amount)))
+		var amount_node = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount")
+		amount_node.set_text(str(int(amount_node.get_text()) + int(amount)))
 	if 'Dialogue' in what:
-		var amt = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/DNodes/Amount")
-		amt.set_text(str(int(amt.get_text()) + int(amount)))
+		var amount_node = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/DNodes/Amount")
+		amount_node.set_text(str(int(amount_node.get_text()) + int(amount)))
