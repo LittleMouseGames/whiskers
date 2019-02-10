@@ -1,5 +1,15 @@
 extends Node
 
+onready var modal_save = get_node("/root/Editor/Mount/Modals/Save")
+onready var modal_open = get_node("/root/Editor/Mount/Modals/Open")
+onready var modal_quit_conf = get_node("/root/Editor/Mount/Modals/QuitConf")
+onready var modal_about = get_node("/root/Editor/Mount/Modals/About")
+onready var modal_import = get_node("/root/Editor/Mount/Modals/Import")
+
+onready var menu_file = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu")
+onready var menu_edit = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu")
+onready var menu_help = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu")
+
 var in_menu : = false
 var test : = true
 
@@ -26,23 +36,23 @@ func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_pressed("save"):
 			close_all()
-			get_node("/root/Editor/Mount/Modals/Save").show()
-			get_node("/root/Editor/Mount/Modals/Save").current_file = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Info/Name/Input").get_text()+'.json'
+			modal_save.show()
+			modal_save.current_file = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Info/Name/Input").get_text()+'.json'
 		if Input.is_action_pressed("open"):
 			close_all()
-			get_node("/root/Editor/Mount/Modals/Open").show()
+			modal_open.show()
 		if Input.is_action_pressed("quit"):
 			close_all()
-			get_node("/root/Editor/Mount/Modals/QuitConf").show()
+			modal_quit_conf.show()
 		if Input.is_action_pressed("help"):
 			close_all()
-			get_node("/root/Editor/Mount/Modals/About").show()
+			modal_about.show()
 		if Input.is_action_pressed("new"):
 			close_all()
 			get_node("/root/Editor/Mount/Modals/New").show()
 		if Input.is_action_pressed("import"):
 			close_all()
-			get_node("/root/Editor/Mount/Modals/Import").show()
+			modal_import.show()
 		if Input.is_action_pressed("undo"):
 			undo_history()
 		if Input.is_action_pressed("redo"):
@@ -50,24 +60,24 @@ func _unhandled_input(event : InputEvent) -> void:
 
 func close_all() -> void:
 	# Modals
-	get_node("/root/Editor/Mount/Modals/Save").hide()
-	get_node("/root/Editor/Mount/Modals/Open").hide()
-	get_node("/root/Editor/Mount/Modals/QuitConf").hide()
-	get_node("/root/Editor/Mount/Modals/About").hide()
-	get_node("/root/Editor/Mount/Modals/Import").hide()
+	modal_save.hide()
+	modal_open.hide()
+	modal_quit_conf.hide()
+	modal_about.hide()
+	modal_import.hide()
 	# Menus
-	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
-	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
-	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
+	menu_file.hide()
+	menu_help.hide()
+	menu_edit.hide()
 
 func _input(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match event.button_index:
 			BUTTON_LEFT:
 				if(!in_menu):
-					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
-					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
-					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
+					menu_file.hide()
+					menu_help.hide()
+					menu_edit.hide()
 
 func update_demo() -> void:
 	if has_graph:
