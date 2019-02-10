@@ -67,11 +67,11 @@ func _on_Import_pressed():
 	importDialog.show()
 
 func _on_menAct_mouse_entered():
-	EditorSingleton.inMenu = true
+	EditorSingleton.in_menu = true
 
 func _on_menAct_mouse_exited():
-	if(EditorSingleton.inMenu == true):
-		EditorSingleton.inMenu = false
+	if(EditorSingleton.in_menu == true):
+		EditorSingleton.in_menu = false
 
 func _on_Update_pressed():
 	EditorSingleton.update_demo()

@@ -106,7 +106,7 @@ func init_scene(e, location):
 	
 	EditorSingleton.update_stats(node.name, '1')
 	
-	EditorSingleton.hasGraph = true
+	EditorSingleton.has_graph = true
 	
 	return node.name
 
@@ -213,7 +213,7 @@ func _save_whiskers(path):
 	saveFile.close()
 	# clear our data node
 	data = {}
-	EditorSingleton.lastSave = EditorSingleton.currentHistory
+	EditorSingleton.last_save = EditorSingleton.current_history
 	EditorSingleton.update_tab_title(false)
 
 #======> Open file
@@ -230,10 +230,10 @@ func _open_whiskers(path):
 	for i in range(0, nodeDataKeys.size()):
 		var type
 		var node = loadData[nodeDataKeys[i]]
-		var nodeNames = EditorSingleton.nodeNames
-		for x in range(0, nodeNames.size()):
-			if nodeNames[x] in nodeDataKeys[i]:
-				type = str(nodeNames[x])+'.tscn'
+		var node_names = EditorSingleton.node_names
+		for x in range(0, node_names.size()):
+			if node_names[x] in nodeDataKeys[i]:
+				type = str(node_names[x])+'.tscn'
 		if type:
 			var size = false
 			if 'size' in node:
@@ -266,28 +266,28 @@ func _open_whiskers(path):
 	
 	self.set_scroll_ofs(scrollTo)
 	self.set_scroll_ofs(scrollTo)
-	EditorSingleton.hasGraph = true
+	EditorSingleton.has_graph = true
 
 #=== NEW FILE handling
 func _on_New_confirmed():
 	clear_graph()
 
 func clear_graph():
-	if EditorSingleton.hasPlayerSingleton:
+	if EditorSingleton.has_player_singleton:
 		get_tree().root.get_node('PlayerSingleton').queue_free()
-		EditorSingleton.hasPlayerSingleton = false
+		EditorSingleton.has_player_singleton = false
 		get_node("../../Info/Info/DocFunc/ScrollContainer/Container").reset()
 		get_node("../../Info/Info/DocVars/ScrollContainer/Container").reset()
 	
 	
 	get_node("../../Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount").set_text('0')
 	get_node("../../Info/Nodes/Stats/PanelContainer/StatsCon/DNodes/Amount").set_text('0')
-	EditorSingleton.lastSave = 0
+	EditorSingleton.last_save = 0
 	EditorSingleton.update_tab_title(false)
 	get_node("../Demo/Dialogue").reset()
 	get_node("../Demo/Dialogue").data = {}
 	print(get_node("../Demo/Dialogue").data)
-	EditorSingleton.hasGraph = false
+	EditorSingleton.has_graph = false
 	data = {}
 	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 	# we should restore our `info` tab data!
@@ -313,7 +313,7 @@ func _import_singleton(path):
 	script.reload()
 	PlayerSingleton.set_script(script)
 	get_tree().root.add_child(PlayerSingleton)
-	EditorSingleton.hasPlayerSingleton = true
+	EditorSingleton.has_player_singleton = true
 
 #====== DRAG HANDLING
 # checks if we can recive the dropped data
@@ -322,7 +322,7 @@ func can_drop_data(pos, data):
 
 # triggers on target drop
 func drop_data(pos, data):
-	var nodes = EditorSingleton.nodeNames
+	var nodes = EditorSingleton.node_names
 	var inNode = false
 	var localMousePos = self.get_child(0).get_local_mouse_position()
 	for i in range(0, nodes.size()):

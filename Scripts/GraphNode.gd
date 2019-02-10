@@ -25,7 +25,7 @@ func _on_Node_line_changed(text):
 		EditorSingleton.add_history(get_type(self.name), self.name, self.get_offset(), text, get_node('../').get_connections(self.name), 'text')
 
 func get_type(name):
-	var nodes = EditorSingleton.nodeNames
+	var nodes = EditorSingleton.node_names
 	for i in range(0, nodes.size()):
 		if name in nodes[i]:
 			return nodes[i]
