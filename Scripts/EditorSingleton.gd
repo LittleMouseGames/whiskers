@@ -1,28 +1,28 @@
 extends Node
 
-var in_menu = false
-var test = true
+var in_menu : = false
+var test : = true
 
-var loaded_player_vars = false
-var loaded_player_funcs = false
-var has_player_singleton = false
+var loaded_player_vars : = false
+var loaded_player_funcs : = false
+var has_player_singleton : = false
 
-# for history
-var current_history = 0
-var history_objects = {}
-var last_save = 0
+# For history
+var current_history : = 0
+var history_objects = Dictionary()
+var last_save : = 0
 
-var node_names = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
-var has_graph = false
+var node_names : = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
+var has_graph : = false
 
-func get_node_type(name):
-	var regex = RegEx.new()
+func get_node_type(name : String):
+	var regex : = RegEx.new()
 	regex.compile("[a-zA-Z]+")
-	var result = regex.search(name)
+	var result : RegExMatch = regex.search(name)
 	if result:
 		return result.get_string()
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_pressed("save"):
 			close_all()
@@ -48,19 +48,19 @@ func _unhandled_input(event):
 		if Input.is_action_pressed("redo"):
 			redo_history()
 
-func close_all():
-	# modals
+func close_all() -> void:
+	# Modals
 	get_node("/root/Editor/Mount/Modals/Save").hide()
 	get_node("/root/Editor/Mount/Modals/Open").hide()
 	get_node("/root/Editor/Mount/Modals/QuitConf").hide()
 	get_node("/root/Editor/Mount/Modals/About").hide()
 	get_node("/root/Editor/Mount/Modals/Import").hide()
-	# menus
+	# Menus
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/File/Menu").hide()
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
 	get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
-func _input(event):
+func _input(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match event.button_index:
 			BUTTON_LEFT:
@@ -69,21 +69,21 @@ func _input(event):
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu").hide()
 					get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Edit/Menu").hide()
 
-func update_demo():
+func update_demo() -> void:
 	if has_graph:
 		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").process_data()
 		get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Demo/Dialogue").data = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph").data
 
 #===== History Management
-func overwrite_history():
+func overwrite_history() -> void:
 	if current_history > 0:
-		var new_history = {}
+		var new_history : = Dictionary()
 		for i in range(0, current_history):
 			new_history[i] = history_objects[i]
-		# overwrite history with our temp / new one
+		# Overwrite history with our new one
 		history_objects = new_history
 
-func add_history(node, name, offset, text, connects_from, action):
+func add_history(node, name, offset, text, connects_from, action) -> void:
 	overwrite_history()
 	history_objects[current_history] = {
 			'node': node,
@@ -96,12 +96,12 @@ func add_history(node, name, offset, text, connects_from, action):
 	EditorSingleton.update_tab_title(true)
 	current_history += 1
 
-func undo_history():
-	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
+func undo_history() -> void:
+	var graph : GraphEdit = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
 	if history_objects.size() > 0 and current_history >= 2:
-		# we're in the past
-		var action = history_objects[current_history - 1]['action']
-		var object = history_objects[current_history - 1]
+		# We're in the past
+		var action : String = history_objects[current_history - 1]['action']
+		var object : Dictionary = history_objects[current_history - 1]
 		
 		print(action)
 		if action == 'remove':
@@ -138,25 +138,26 @@ func undo_history():
 			update_tab_title(true)
 			print('we are unsaved!')
 
-func last_instance_of(name):
-	var last_instance_position
+func last_instance_of(name : String) -> int:
+	var last_instance_position : int
 	for i in range(0, current_history - 1):
 		if history_objects[i]['name'] == name:
 			last_instance_position = i
 	return last_instance_position
 
-func connection_in_timeline(name):
-	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
-	var list = graph.get_connection_list()
-	var connections = {}
-	var connects_from = []
+func connection_in_timeline(name : String) -> void:
+	var graph : GraphEdit = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
+	var list : Array = graph.get_connection_list()
+	var connections : = Dictionary()
+	var connects_from : = Array()
 	
 	for i in range(0, current_history - 1):
 		if name == history_objects[i]['name']:
 			connections = history_objects[i]['connects_from']
 
-	for i in range(0, connections.size()):
-		if connections.size() > 0:
+	var connection_count : int = connections.size()
+	for i in range(0, connection_count):
+		if connection_count > 0:
 			connects_from.append(connections[i+1])
 
 	for i in range(0, list.size()):
@@ -169,12 +170,12 @@ func connection_in_timeline(name):
 				if history_objects[i]['connects_from'][j+1] != name and history_objects[i]['name'] == name:
 					graph.connect_node(history_objects[i]['connects_from'][j+1], 0, name, 0)
 
-func redo_history():
-	var graph = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
+func redo_history() -> void:
+	var graph : GraphEdit = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
 	if current_history < history_objects.size():
-		# we're in the past
-		var action = history_objects[current_history]['action']
-		var object = history_objects[current_history]
+		# We're in the past
+		var action : String = history_objects[current_history]['action']
+		var object : Dictionary = history_objects[current_history]
 		
 		if action == 'remove':
 			graph.get_node(object['name']).queue_free()
@@ -206,7 +207,7 @@ func redo_history():
 			update_tab_title(true)
 			print('we are unsaved!')
 
-func update_tab_title(unsaved):
+func update_tab_title(unsaved : bool) -> void:
 	var graph = get_node('/root/Editor/Mount/MainWindow/Editor/Graph')
 	
 	if unsaved:
@@ -216,7 +217,7 @@ func update_tab_title(unsaved):
 	
 	graph.update()
 
-func update_stats(what, amount):
+func update_stats(what : String, amount : String) -> void:
 	if 'Option' in what:
 		var amount_node = get_node("/root/Editor/Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer/StatsCon/ONodes/Amount")
 		amount_node.set_text(str(int(amount_node.get_text()) + int(amount)))
