@@ -82,7 +82,7 @@ border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=9]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 border_width_left = 7
@@ -91,7 +91,7 @@ border_width_right = 7
 border_width_bottom = 7
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=10]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 border_width_left = 5
@@ -100,7 +100,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="Theme" id=10]
+[sub_resource type="Theme" id=11]
 
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
@@ -112,7 +112,7 @@ VScrollBar/styles/grabber_pressed = ExtResource( 16 )
 VScrollBar/styles/scroll = ExtResource( 17 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=12]
 
 content_margin_bottom = 5.0
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
@@ -122,7 +122,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=13]
 
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 border_width_left = 5
@@ -131,16 +131,16 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=14]
 
 content_margin_top = 1.0
 bg_color = Color( 0.196078, 0.231373, 0.309804, 1 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=15]
 
 bg_color = Color( 0.145098, 0.172549, 0.231373, 1 )
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=16]
 
 content_margin_bottom = 7.0
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
@@ -149,7 +149,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id=16]
+[sub_resource type="StyleBoxFlat" id=17]
 
 bg_color = Color( 0.121569, 0.145098, 0.192157, 1 )
 border_width_left = 1
@@ -158,7 +158,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.186813, 0.224803, 0.300781, 1 )
 
-[sub_resource type="Theme" id=17]
+[sub_resource type="Theme" id=18]
 
 GraphEdit/colors/activity = Color( 1, 1, 1, 1 )
 GraphEdit/colors/grid_major = Color( 1, 1, 1, 0.2 )
@@ -171,7 +171,7 @@ GraphEdit/icons/minus = null
 GraphEdit/icons/more = null
 GraphEdit/icons/reset = null
 GraphEdit/icons/snap = null
-GraphEdit/styles/bg = SubResource( 14 )
+GraphEdit/styles/bg = SubResource( 15 )
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
@@ -179,7 +179,7 @@ HScrollBar/icons/increment_highlight = null
 HScrollBar/styles/grabber = ExtResource( 15 )
 HScrollBar/styles/grabber_highlight = ExtResource( 16 )
 HScrollBar/styles/grabber_pressed = ExtResource( 16 )
-HScrollBar/styles/scroll = SubResource( 15 )
+HScrollBar/styles/scroll = SubResource( 16 )
 HScrollBar/styles/scroll_focus = null
 LineEdit/colors/clear_button_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
@@ -190,8 +190,8 @@ LineEdit/colors/selection_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 16 )
-LineEdit/styles/normal = SubResource( 16 )
+LineEdit/styles/focus = SubResource( 17 )
+LineEdit/styles/normal = SubResource( 17 )
 LineEdit/styles/read_only = null
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
@@ -203,19 +203,19 @@ VScrollBar/styles/grabber_pressed = ExtResource( 16 )
 VScrollBar/styles/scroll = ExtResource( 17 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=19]
 
 bg_color = Color( 0.0980392, 0.113725, 0.152941, 1 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=20]
 
 bg_color = Color( 0.176471, 0.486275, 0.654902, 1 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=21]
 
 extents = Vector2( 51.1839, 49.7567 )
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=22]
 
 bg_color = Color( 0.176471, 0.654902, 0.317647, 1 )
 
@@ -229,7 +229,6 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Modals" type="Control" parent="Mount"]
-editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -304,15 +303,16 @@ dialog_text = "Are you sure you want to quit? Any unsaved
 dialog_hide_on_ok = false
 
 [node name="About" type="WindowDialog" parent="Mount/Modals"]
+editor/display_folded = true
 visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -212.0
-margin_top = -87.0
-margin_right = 188.0
-margin_bottom = 54.0
+margin_left = -203.0
+margin_top = -70.5
+margin_right = 203.0
+margin_bottom = 70.5
 theme = ExtResource( 1 )
 window_title = "About Whiskers"
 
@@ -323,7 +323,7 @@ margin_bottom = 71.0
 dragger_visibility = 2
 
 [node name="TextureRect" type="TextureRect" parent="Mount/Modals/About/HSplitContainer"]
-margin_right = 200.0
+margin_right = 203.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -332,8 +332,8 @@ expand = true
 stretch_mode = 6
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Mount/Modals/About/HSplitContainer"]
-margin_left = 200.0
-margin_right = 400.0
+margin_left = 203.0
+margin_right = 406.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -341,11 +341,11 @@ split_offset = 25
 
 [node name="Label" type="Label" parent="Mount/Modals/About/HSplitContainer/VSplitContainer"]
 margin_top = 8.0
-margin_right = 200.0
+margin_right = 203.0
 margin_bottom = 56.0
 text = "Whiskers v1.1.0 BETA
 © 2019 Chris Bolton
-© 2019 LittleMouseGames"
+© 2019 Whiskers Contributors"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Mount/Modals/About"]
 anchor_left = 0.5
@@ -782,6 +782,7 @@ margin_bottom = 22.0
 text = "Update Demo"
 
 [node name="Editor" type="HSplitContainer" parent="Mount/MainWindow"]
+editor/display_folded = true
 margin_top = 30.0
 margin_right = 1004.0
 margin_bottom = 580.0
@@ -901,7 +902,7 @@ text = "Graph Stats"
 margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 64.0
-custom_styles/panel = SubResource( 22 )
+custom_styles/panel = SubResource( 9 )
 
 [node name="StatsCon" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Nodes/Stats/PanelContainer"]
 margin_left = 7.0
@@ -976,7 +977,7 @@ margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 0, 10 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
 placeholder_text = "ex. 'Dave'"
 
 [node name="HSeparator2" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Info"]
@@ -1003,7 +1004,7 @@ margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 0, 10 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
 placeholder_text = "ex. 'npc_dave_happy'"
 
 [node name="HSeparator3" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Info"]
@@ -1029,8 +1030,8 @@ margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 123.0
 rect_min_size = Vector2( 0, 105 )
-theme = SubResource( 10 )
-custom_styles/bg = SubResource( 11 )
+theme = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
 scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocVars/ScrollContainer"]
@@ -1062,7 +1063,7 @@ margin_right = 210.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/normal = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 
 [node name="HSeparator4" type="HSeparator" parent="Mount/MainWindow/Editor/Info/Info"]
 margin_top = 235.0
@@ -1087,8 +1088,8 @@ margin_top = 18.0
 margin_right = 220.0
 margin_bottom = 188.0
 rect_min_size = Vector2( 0, 170 )
-theme = SubResource( 10 )
-custom_styles/bg = SubResource( 11 )
+theme = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
 scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="Mount/MainWindow/Editor/Info/Info/DocFunc/ScrollContainer"]
@@ -1130,7 +1131,7 @@ autowrap = true
 margin_top = 46.0
 margin_right = 210.0
 margin_bottom = 50.0
-custom_styles/separator = SubResource( 13 )
+custom_styles/separator = SubResource( 14 )
 
 [node name="Graph" type="TabContainer" parent="Mount/MainWindow/Editor"]
 editor/display_folded = true
@@ -1151,7 +1152,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 17 )
+theme = SubResource( 18 )
 right_disconnects = true
 scroll_offset = Vector2( -5, -26 )
 script = ExtResource( 23 )
@@ -1164,7 +1165,7 @@ margin_left = 5.0
 margin_top = 31.0
 margin_right = -5.0
 margin_bottom = -5.0
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 19 )
 script = ExtResource( 24 )
 speed = 2
 
@@ -1183,7 +1184,7 @@ margin_left = -60.892
 margin_top = -140.945
 margin_right = -3.89197
 margin_bottom = -83.9446
-custom_styles/panel = SubResource( 19 )
+custom_styles/panel = SubResource( 20 )
 
 [node name="attn" type="Sprite" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC"]
 position = Vector2( 28.4531, -28.8561 )
@@ -1195,7 +1196,7 @@ position = Vector2( 26.4634, 24.2581 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/NPC/Area2D"]
 position = Vector2( 2.09503, 5.64336 )
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="Player" type="Panel" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField"]
 editor/display_folded = true
@@ -1207,7 +1208,7 @@ margin_left = -144.869
 margin_top = 44.5054
 margin_right = -87.8693
 margin_bottom = 101.505
-custom_styles/panel = SubResource( 21 )
+custom_styles/panel = SubResource( 22 )
 
 [node name="Area2D2" type="Area2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
 editor/display_folded = true
@@ -1215,7 +1216,7 @@ position = Vector2( 25.9418, 24.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player/Area2D2"]
 position = Vector2( 2.09503, 4.69334 )
-shape = SubResource( 20 )
+shape = SubResource( 21 )
 
 [node name="E" type="Button" parent="Mount/MainWindow/Editor/Graph/Demo/PlayField/Player"]
 visible = false
