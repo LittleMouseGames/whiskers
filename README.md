@@ -18,12 +18,10 @@ It is ***very*** important that you connect ***all*** dead-end nodes to an `End`
 This project is still being developed, and you *will* encounter bugs! Please be sure to report all issues to this Repository so we can get them fixed ASAP!
 
 # How do I use an exported Dialogue Assets?
-A Dialogue Parser plugin for Godot is coming soon:tm:, but feel free to create your own! We've tried to keep exported assets as simple as possible.
-
-We've also created a Parser for the `demo` portion of the tool, so adding that to your project should work OK!
+There's an awesome parser [GDScript class here](https://github.com/LittleMouseGames/whiskers-parser), which should get you up and running using Whiskers Dialogue assets lightning quick!
 
 # How can I help?
-The best way to help is to use Whiskers and give me your suggestions and feedback! Of course, pull-requests are always welcome!
+The best way to help is to use Whiskers and give me your suggestions and feedback! Pull-requests are always welcome!
 
 Please follow the [GDScript Style Guide](https://docs.godotengine.org/en/3.0/getting_started/scripting/gdscript/gdscript_styleguide.html) when submitting pull-requests! Thank you!
 
