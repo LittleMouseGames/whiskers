@@ -121,7 +121,6 @@ func load_node(type, location, name, text, size):
 	if text:
 		node.get_node('Lines').get_child(0).set_text(text)
 	if size:
-		print(size)
 		size = size.split(',')
 		node.rect_size = Vector2(size[2], size[3])
 	
@@ -286,7 +285,6 @@ func clear_graph():
 	EditorSingleton.update_tab_title(false)
 	get_node("../Demo/Dialogue").reset()
 	get_node("../Demo/Dialogue").data = {}
-	print(get_node("../Demo/Dialogue").data)
 	EditorSingleton.has_graph = false
 	data = {}
 	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")

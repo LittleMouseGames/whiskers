@@ -22,7 +22,7 @@ func _physics_process(delta):
 				get_node("PlayField/Player/E").hide()
 				# we should show our Dialogue Window!
 				get_node("Dialogue").show()
-				get_node("Dialogue").populate()
+				get_node("Dialogue").init()
 
 
 func _on_Area2D2_area_entered(area):
