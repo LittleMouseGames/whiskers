@@ -31,7 +31,7 @@ func change_var(name, value):
 # `export` our functions and documentation about them! 
 var functions = [
 	'give_item()',
-	'change_var(var, value)'
+	'change_var("var", "value")'
 ]
 
 var functionDocs = [

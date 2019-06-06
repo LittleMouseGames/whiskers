@@ -1,26 +1,18 @@
 extends GridContainer
 
 # Menus
-var fileMenu
-var helpMenu
+onready var fileMenu = $File/Menu
+onready var helpMenu = $Help/Menu
+onready var editMenu = $Edit/Menu
+
 
 #Dialog Windows
-var saveDialog
-var openDialog
-var quitDialog
-var aboutDialog
-var newDialog
-var importDialog
-
-func _ready():
-	fileMenu = get_node("File/Menu")
-	helpMenu = get_node("Help/Menu")
-	saveDialog = get_node("../../../Modals/Save")
-	openDialog = get_node("../../../Modals/Open")
-	quitDialog = get_node("../../../Modals/QuitConf")
-	aboutDialog = get_node("../../../Modals/About")
-	newDialog = get_node("../../../Modals/New")
-	importDialog = get_node("../../../Modals/Import")
+onready var saveDialog = get_node("../../../Modals/Save")
+onready var openDialog = get_node("../../../Modals/Open")
+onready var quitDialog = get_node("../../../Modals/QuitConf")
+onready var aboutDialog = get_node("../../../Modals/About")
+onready var newDialog = get_node("../../../Modals/New")
+onready var importDialog = get_node("../../../Modals/Import")
 
 func _on_File_pressed():
 	if(fileMenu.is_visible()):
@@ -40,6 +32,14 @@ func _on_Help_pressed():
 		EditorSingleton.close_all()
 		helpMenu.show()
 		helpMenu.set_as_toplevel(true)
+
+func _on_Edit_pressed():
+	if(editMenu.is_visible()):
+		editMenu.hide()
+	else:
+		EditorSingleton.close_all()
+		editMenu.show()
+		editMenu.set_as_toplevel(true)
 
 func _on_About_pressed():
 	EditorSingleton.close_all()
@@ -67,12 +67,23 @@ func _on_Import_pressed():
 	importDialog.show()
 
 func _on_menAct_mouse_entered():
-	EditorSingleton.inMenu = true
+	EditorSingleton.in_menu = true
 
 func _on_menAct_mouse_exited():
-	if(EditorSingleton.inMenu == true):
-		EditorSingleton.inMenu = false
+	if(EditorSingleton.in_menu == true):
+		EditorSingleton.in_menu = false
 
 func _on_Update_pressed():
 	EditorSingleton.update_demo()
+
+func _on_Undo_pressed():
+	EditorSingleton.close_all()
+	EditorSingleton.undo_history()
+
+func _on_Redo_pressed():
+	EditorSingleton.close_all()
+	EditorSingleton.redo_history()
+
+func _on_source_pressed():
+	OS.shell_open("https://github.com/littleMouseGames/whiskers")
 

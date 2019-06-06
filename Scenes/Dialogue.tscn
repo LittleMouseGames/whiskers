@@ -42,9 +42,7 @@ custom_fonts/bold_italics_font = ExtResource( 2 )
 custom_fonts/italics_font = ExtResource( 3 )
 custom_fonts/bold_font = ExtResource( 4 )
 custom_fonts/normal_font = ExtResource( 5 )
-bbcode_enabled = true
 bbcode_text = "You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!"
-text = "You haven't loaded anything yet! Press Update Demo to load your current graph!"
 
 [node name="Template" type="Button" parent="."]
 visible = false

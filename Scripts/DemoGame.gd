@@ -1,12 +1,9 @@
 extends Panel
 
 export var speed = 1
-var player 
-var currentTab 
+onready var player = get_node("PlayField/Player")
+var currentTab
 var buttonAct
-
-func _ready():
-	player = get_node("PlayField/Player")
 
 func _physics_process(delta):
 	if(currentTab == 1):
@@ -25,8 +22,8 @@ func _physics_process(delta):
 				get_node("PlayField/Player/E").hide()
 				# we should show our Dialogue Window!
 				get_node("Dialogue").show()
-				get_node("Dialogue").populate()
-				
+				get_node("Dialogue").init()
+
 
 func _on_Area2D2_area_entered(area):
 	get_node("PlayField/Player/E").show()
