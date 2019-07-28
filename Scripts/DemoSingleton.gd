@@ -22,9 +22,10 @@ func give_item():
 
 func change_var(name, value):
 	var val = value
+	
 	if(val == "True") or (val == "true"):
 		val = true
-	if(val == "False") or (val == "false"):
+	elif(val == "False") or (val == "false"):
 		val = false
 	set(name, val)
 

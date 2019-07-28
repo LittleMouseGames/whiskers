@@ -176,6 +176,16 @@ func generate_block(node_key : String) -> Dictionary:
 	if "Dialogue" in node_key:
 		block.text = data[node_key].text.format(format_dictionary)
 	
+	if "Jump" in node_key:
+		for key in data:
+			if "Jump" in key and data[node_key].text == data[key].text and node_key != key:
+				block = generate_block(data[key].connects_to[0])
+				break
+	
+	if "Condition" in node_key: # this isn't very DRY
+		block.condition = process_condition(node_key)
+		block = process_block(block)
+	
 	# For each key of the connected nodes we put it on the block
 	for connected_node_key in data[node_key].connects_to:
 		if "Dialogue" in connected_node_key:
@@ -207,34 +217,15 @@ func generate_block(node_key : String) -> Dictionary:
 				print("[WARN]: more than one Condition node connected. Defaulting to the first, key: %s." % block.condition.key)
 				continue
 			
-			# Sadly the only way to find the Expression node that serves as input is to make a linear search
-			var input_logic : String
-			for key in data:
-				if "Expression" in key and data[key].connects_to.front() == connected_node_key:
-					input_logic = data[key].logic
-					break
-			
-			if not input_logic:
-				print("[ERROR]: no input for the condition node %s was found." % connected_node_key)
-				return {}
-			
-			var condition = {
-					key = connected_node_key,
-					logic = input_logic,
-					goes_to_key = {
-							if_true = data[connected_node_key].conditions["true"],
-							if_false = data[connected_node_key].conditions["false"]
-							}
-					}
-			block.condition = condition
+			block.condition = process_condition(connected_node_key)
 			
 			var parse_condition = handle_condition(block.condition)
 			
 			if 'Option' in parse_condition.key:
 				var option = {
-					key = parse_condition.key,
-					text = data[parse_condition.key].text,
-				}
+						key = parse_condition.key,
+						text = data[parse_condition.key].text,
+					}
 				block.options.append(option)
 		
 		elif "Jump" in connected_node_key:
@@ -265,12 +256,34 @@ func generate_block(node_key : String) -> Dictionary:
 				for option in jump_options.options:
 					block.options.append(option)
 			
-		elif "End" in connected_node_key:
+		elif "End" in connected_node_key and not "Jump" in node_key:
 			block.is_final = true
 	
 	current_block = block
-	
 	return current_block
+
+func process_condition(passed_key : String) -> Dictionary:
+	# Sadly the only way to find the Expression node that serves as input is to make a linear search
+	var input_logic : String
+	for key in data:
+		if "Expression" in key and data[key].connects_to.front() == passed_key:
+			input_logic = data[key].logic
+			break
+	
+	if not input_logic:
+		print("[ERROR]: no input for the condition node %s was found." % passed_key)
+		return {}
+	
+	var condition = {
+			key = passed_key,
+			logic = input_logic,
+			goes_to_key = {
+					if_true = data[passed_key].conditions["true"],
+					if_false = data[passed_key].conditions["false"]
+					}
+			}
+	
+	return condition
 
 func set_format_dictionary(value : Dictionary) -> void:
 	format_dictionary = value
