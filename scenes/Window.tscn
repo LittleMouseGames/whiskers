@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/models/menu.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.356863, 0.682353, 0.172549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.729412, 0.203922, 0.203922, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
 
 [node name="Window" type="Control"]
 anchor_right = 1.0
@@ -10,17 +18,93 @@ margin_top = -1.0
 margin_bottom = -1.0
 theme = ExtResource( 1 )
 
-[node name="VSplit" type="VSplitContainer" parent="."]
+[node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-dragger_visibility = 1
+theme = ExtResource( 1 )
+
+[node name="VSplit" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Menu" type="GridContainer" parent="VSplit"]
 margin_right = 1024.0
 columns = 10
 script = ExtResource( 2 )
 
-[node name="Main" type="Control" parent="VSplit"]
-margin_top = 8.0
+[node name="Editor" type="Control" parent="VSplit"]
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 566.0
+size_flags_vertical = 3
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit/Editor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Nodes" type="Panel" parent="VSplit/Editor/HSplit"]
+margin_right = 200.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 200, 0 )
+custom_styles/panel = SubResource( 3 )
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit/Editor/HSplit"]
+editor/display_folded = true
+margin_left = 208.0
+margin_right = 1024.0
+margin_bottom = 562.0
+
+[node name="Graph" type="Panel" parent="VSplit/Editor/HSplit/HSplit"]
+margin_right = 608.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="Settings" type="Panel" parent="VSplit/Editor/HSplit/HSplit"]
+margin_left = 616.0
+margin_right = 816.0
+margin_bottom = 562.0
+rect_min_size = Vector2( 200, 0 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="Footer" type="PanelContainer" parent="VSplit"]
+editor/display_folded = true
+margin_top = 570.0
 margin_right = 1024.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplit/Footer"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 1018.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Version" type="Label" parent="VSplit/Footer/HSplitContainer"]
+margin_right = 851.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Whskers 2.1-rc"
+
+[node name="Nodes" type="GridContainer" parent="VSplit/Footer/HSplitContainer"]
+margin_left = 859.0
+margin_right = 1012.0
+margin_bottom = 22.0
+size_flags_vertical = 0
+columns = 5
+
+[node name="Dialogues" type="Label" parent="VSplit/Footer/HSplitContainer/Nodes"]
+margin_right = 81.0
+margin_bottom = 22.0
+text = "3 dialogues"
+
+[node name="Options" type="Label" parent="VSplit/Footer/HSplitContainer/Nodes"]
+margin_left = 85.0
+margin_right = 153.0
+margin_bottom = 22.0
+text = "3 options"
