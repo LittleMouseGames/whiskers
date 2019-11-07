@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
+[ext_resource path="res://assets/fonts/resources/roboto_reg_sm.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=3]
+
+[node name="Setting" type="MarginContainer"]
+margin_right = 230.0
+margin_bottom = 66.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 8
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 8.0
+margin_right = 220.0
+margin_bottom = 66.0
+custom_constants/separation = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 210.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 2 )
+text = "Name"
+uppercase = true
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+margin_top = 25.0
+margin_right = 210.0
+margin_bottom = 58.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+placeholder_text = "Node Name"

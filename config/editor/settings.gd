@@ -11,11 +11,6 @@ onready var settings_singleton = get_node("/root/settings_singleton")
 #	checkbox
 var settings = [
 	{
-		'name': 'Character Name',
-		'placeholder': 'Characters name',
-		'type': 'text'
-	},
-	{
 		'name': 'Asset Name',
 		'placeholder': 'Dialogue asset name',
 		'type': 'text'
