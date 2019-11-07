@@ -1,5 +1,7 @@
 extends Node
 
+onready var settings_singleton = get_node("/root/settings_singleton")
+
 # Supported types:
 # text
 #	single line
@@ -9,23 +11,26 @@ extends Node
 #	checkbox
 var settings = [
 	{
-		'name': 'Character',
-		'placeholder': 'Characters Name',
+		'name': 'Character Name',
+		'placeholder': 'Characters name',
 		'type': 'text'
 	},
 	{
-		'name': 'Asset',
-		'placeholder': 'Dialogue Asset name',
+		'name': 'Asset Name',
+		'placeholder': 'Dialogue asset name',
 		'type': 'text'
 	},
 	{
-		'name': 'Description',
+		'name': 'Asset Description',
 		'placeholder': 'Description of asset',
 		'type': 'text_long'
 	},
 	{
-		'name': 'Author',
+		'name': 'Asset Author',
 		'placeholder': 'Asset author',
 		'type': 'text'
 	}
 ]
+
+func _ready():
+	settings_singleton.save_path(self.get_path(), settings)

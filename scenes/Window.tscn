@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
 [ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://assets/themes/styles/item_list_bg.tres" type="StyleBox" id=6]
 [ext_resource path="res://scripts/NodeTree.gd" type="Script" id=7]
 [ext_resource path="res://assets/fonts/resources/footer.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/fonts/resources/roboto_reg_sm.tres" type="DynamicFont" id=9]
-[ext_resource path="res://scripts/helpers/settings.gd" type="Script" id=10]
+[ext_resource path="res://config/editor/settings.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
@@ -29,21 +28,13 @@ expand_margin_left = 8.0
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.160784, 0.176471, 0.215686, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [node name="Window" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
@@ -136,7 +127,6 @@ margin_right = 228.0
 margin_bottom = 131.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/guide_color = Color( 0.160784, 0.176471, 0.215686, 1 )
 custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
@@ -206,7 +196,6 @@ margin_bottom = 558.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 scroll_offset = Vector2( -50, -30 )
 
 [node name="Settings" type="PanelContainer" parent="Main/Editor/HSplit/HSplit"]
@@ -264,7 +253,6 @@ margin_bottom = 260.0
 rect_min_size = Vector2( 0, 225 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 custom_styles/selected_focus = ExtResource( 5 )
 custom_styles/bg_focus = ExtResource( 6 )
 custom_styles/selected = ExtResource( 5 )
@@ -278,7 +266,7 @@ script = ExtResource( 7 )
 [node name="Settings" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main"]
 margin_top = 288.0
 margin_right = 250.0
-margin_bottom = 485.0
+margin_bottom = 343.0
 size_flags_vertical = 0
 custom_constants/margin_right = 13
 custom_constants/margin_top = 5
@@ -289,12 +277,12 @@ custom_constants/margin_bottom = 15
 margin_left = 7.0
 margin_top = 5.0
 margin_right = 237.0
-margin_bottom = 182.0
+margin_bottom = 40.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container"]
 margin_right = 230.0
-margin_bottom = 177.0
+margin_bottom = 35.0
 custom_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer"]
@@ -317,78 +305,14 @@ uppercase = true
 [node name="Options" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer"]
 margin_top = 35.0
 margin_right = 230.0
-margin_bottom = 177.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 4 )
-script = ExtResource( 10 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options"]
 margin_right = 230.0
-margin_bottom = 142.0
-
-[node name="Setting" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer"]
-margin_right = 230.0
-margin_bottom = 66.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 8
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting"]
-margin_left = 10.0
-margin_top = 8.0
-margin_right = 220.0
-margin_bottom = 66.0
-custom_constants/separation = 2
-
-[node name="Label" type="Label" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting/VBoxContainer"]
-margin_right = 210.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 9 )
-text = "Name"
-uppercase = true
-
-[node name="LineEdit" type="LineEdit" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting/VBoxContainer"]
-margin_top = 25.0
-margin_right = 210.0
-margin_bottom = 58.0
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = ExtResource( 4 )
-placeholder_text = "Node Name"
-
-[node name="Setting2" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer"]
-margin_top = 70.0
-margin_right = 230.0
-margin_bottom = 142.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting2"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 220.0
-margin_bottom = 62.0
-custom_constants/separation = 1
-
-[node name="Label" type="Label" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting2/VBoxContainer"]
-margin_right = 210.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 9 )
-text = "Description"
-uppercase = true
-
-[node name="LineEdit" type="LineEdit" parent="Main/Editor/HSplit/HSplit/Settings/Main/Settings/Container/VSplitContainer/Options/VBoxContainer/Setting2/VBoxContainer"]
-margin_top = 24.0
-margin_right = 210.0
-margin_bottom = 57.0
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = ExtResource( 4 )
-placeholder_text = "Node Description"
+script = ExtResource( 10 )
 
 [node name="Footer" type="PanelContainer" parent="Main"]
 margin_top = 570.0
