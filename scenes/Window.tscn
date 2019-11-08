@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
 [ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
@@ -14,33 +14,34 @@
 [ext_resource path="res://addons/FontAwesome/fontawesome-webfont.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://scripts/new_character.gd" type="Script" id=13]
 [ext_resource path="res://scripts/delete_character.gd" type="Script" id=14]
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
+[ext_resource path="res://scenes/TestGraph.gd" type="Script" id=15]
+[ext_resource path="res://assets/themes/graph_edit.tres" type="Theme" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
 expand_margin_right = 8.0
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
 expand_margin_left = 8.0
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.160784, 0.176471, 0.215686, 1 )
 
-[sub_resource type="DynamicFont" id=7]
-use_filter = true
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
 
 [node name="Window" type="Control"]
@@ -67,7 +68,7 @@ __meta__ = {
 [node name="ManuContainer" type="PanelContainer" parent="Main"]
 margin_right = 1024.0
 margin_bottom = 12.0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="MenuMargin" type="MarginContainer" parent="Main/ManuContainer"]
 margin_right = 1024.0
@@ -103,7 +104,7 @@ __meta__ = {
 margin_right = 250.0
 margin_bottom = 566.0
 rect_min_size = Vector2( 250, 0 )
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="Main" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes"]
 margin_right = 250.0
@@ -121,7 +122,7 @@ margin_left = 15.0
 margin_top = 15.0
 margin_right = 243.0
 margin_bottom = 146.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container"]
 margin_right = 228.0
@@ -172,7 +173,7 @@ margin_left = 15.0
 margin_top = 15.0
 margin_right = 243.0
 margin_bottom = 119.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes/Container"]
 margin_right = 228.0
@@ -221,8 +222,9 @@ margin_bottom = 566.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
+theme = ExtResource( 16 )
 scroll_offset = Vector2( -250, -30 )
+script = ExtResource( 15 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Main/Editor/HSplit/HSplit"]
 margin_left = 516.0
@@ -239,7 +241,7 @@ margin_bottom = 566.0
 rect_min_size = Vector2( 250, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="Main" type="VSplitContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings"]
 margin_right = 250.0
@@ -258,7 +260,7 @@ margin_left = 7.0
 margin_top = 15.0
 margin_right = 237.0
 margin_bottom = 275.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList/Container"]
 margin_right = 230.0
@@ -320,7 +322,7 @@ margin_left = 7.0
 margin_top = 5.0
 margin_right = 237.0
 margin_bottom = 40.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container"]
 margin_right = 230.0
@@ -350,7 +352,7 @@ margin_right = 230.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container/VSplitContainer/Options"]
 margin_right = 230.0
@@ -371,7 +373,7 @@ margin_left = 7.0
 margin_top = 5.0
 margin_right = 237.0
 margin_bottom = 155.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container"]
 margin_right = 230.0
@@ -401,7 +403,7 @@ margin_right = 230.0
 margin_bottom = 150.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 
 [node name="Container" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container"]
 margin_right = 230.0
@@ -448,7 +450,7 @@ margin_right = 210.0
 margin_bottom = 25.0
 hint_tooltip = "Delete this Character"
 mouse_filter = 1
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 text = ""
 script = ExtResource( 11 )
 __meta__ = {
@@ -487,7 +489,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 7 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Main/Footer"]
 margin_right = 1024.0
