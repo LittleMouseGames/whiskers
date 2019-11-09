@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
 [ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
@@ -6,16 +6,17 @@
 [ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/themes/styles/item_list_sel.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/themes/styles/item_list_bg.tres" type="StyleBox" id=6]
-[ext_resource path="res://scripts/NodeTree.gd" type="Script" id=7]
+[ext_resource path="res://scripts/settings/NodeTree.gd" type="Script" id=7]
 [ext_resource path="res://assets/fonts/resources/footer.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/fonts/resources/roboto_reg_sm.tres" type="DynamicFont" id=9]
 [ext_resource path="res://config/editor/settings.gd" type="Script" id=10]
 [ext_resource path="res://addons/FontAwesome/FontAwesome.gd" type="Script" id=11]
 [ext_resource path="res://addons/FontAwesome/fontawesome-webfont.ttf" type="DynamicFontData" id=12]
-[ext_resource path="res://scripts/new_character.gd" type="Script" id=13]
-[ext_resource path="res://scripts/delete_character.gd" type="Script" id=14]
-[ext_resource path="res://scenes/TestGraph.gd" type="Script" id=15]
+[ext_resource path="res://scripts/settings/new_character.gd" type="Script" id=13]
+[ext_resource path="res://scripts/settings/delete_character.gd" type="Script" id=14]
+[ext_resource path="res://scripts/editor/TestGraph.gd" type="Script" id=15]
 [ext_resource path="res://assets/themes/graph_edit.tres" type="Theme" id=16]
+[ext_resource path="res://config/editor/basic_nodes.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
@@ -65,12 +66,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ManuContainer" type="PanelContainer" parent="Main"]
+[node name="MenuContainer" type="PanelContainer" parent="Main"]
 margin_right = 1024.0
 margin_bottom = 12.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="MenuMargin" type="MarginContainer" parent="Main/ManuContainer"]
+[node name="MenuMargin" type="MarginContainer" parent="Main/MenuContainer"]
 margin_right = 1024.0
 margin_bottom = 12.0
 custom_constants/margin_right = 6
@@ -78,7 +79,7 @@ custom_constants/margin_top = 6
 custom_constants/margin_left = 6
 custom_constants/margin_bottom = 6
 
-[node name="Menu" type="GridContainer" parent="Main/ManuContainer/MenuMargin"]
+[node name="Menu" type="GridContainer" parent="Main/MenuContainer/MenuMargin"]
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 1018.0
@@ -112,7 +113,7 @@ margin_bottom = 566.0
 
 [node name="BasicNodes" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
 margin_right = 250.0
-margin_bottom = 146.0
+margin_bottom = 65.0
 custom_constants/margin_right = 7
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -121,12 +122,12 @@ custom_constants/margin_left = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 243.0
-margin_bottom = 146.0
+margin_bottom = 65.0
 custom_styles/panel = SubResource( 3 )
 
 [node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container"]
 margin_right = 228.0
-margin_bottom = 131.0
+margin_bottom = 50.0
 custom_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container/VSplitContainer"]
@@ -149,21 +150,21 @@ uppercase = true
 [node name="ItemList" type="ItemList" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container/VSplitContainer"]
 margin_top = 35.0
 margin_right = 228.0
-margin_bottom = 131.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/guide_color = Color( 0.160784, 0.176471, 0.215686, 1 )
 custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
 custom_constants/vseparation = 5
-items = [ "Dialogue Node", null, false, "Option Node", null, false, "Jump Node", null, false ]
 auto_height = true
+fixed_icon_size = Vector2( 50, 20 )
+script = ExtResource( 18 )
 
 [node name="AdvancedNodes" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
-margin_top = 150.0
+margin_top = 69.0
 margin_right = 250.0
-margin_bottom = 269.0
+margin_bottom = 188.0
 custom_constants/margin_right = 7
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -223,6 +224,7 @@ rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 16 )
+right_disconnects = true
 scroll_offset = Vector2( -250, -30 )
 script = ExtResource( 15 )
 
@@ -525,5 +527,7 @@ margin_right = 140.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 8 )
 text = "3 options"
+[connection signal="connection_request" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_connection_request"]
+[connection signal="disconnection_request" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_disconnection_request"]
 [connection signal="gui_input" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/HBoxContainer/FontAwesome" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character" method="_on_FontAwesome_gui_input"]
 [connection signal="pressed" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" method="_on_Button_pressed"]
