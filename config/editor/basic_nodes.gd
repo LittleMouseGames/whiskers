@@ -23,8 +23,8 @@ func get_nodes(path):
 			
 			# does the node have a screenshot?
 			var screenshot = File.new()
-			if screenshot.file_exists(node_path + file + '/' + 'screenshot.png'):
-				self.add_item(list_name.capitalize(), load(node_path + file + '/' + 'screenshot.png'))
+			if screenshot.file_exists(node_path + file + '/media/screenshot.png'):
+				self.add_item(list_name.capitalize(), load(node_path + file + '/media/screenshot.png'))
 			else:
 				self.add_item(list_name.capitalize())
 
