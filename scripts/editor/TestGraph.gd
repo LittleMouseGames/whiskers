@@ -12,18 +12,27 @@ func _ready():
 	test_node = test_node.instance()
 	test_node.connect("gui_input", self, "_on_Graph_click", [true])
 	
-	self.add_child(start_node.instance())
+	start_node = start_node.instance()
+	start_node.connect("gui_input", self, "_on_Graph_click", [true])
+	
+	self.add_child(start_node)
 	self.add_child(test_node)
+	
+	loader_singleton.graph_node = self.get_path()
 
 func _on_Node_connection_request(from, from_slot, to, to_slot):
-	connect_node(from, from_slot, to, to_slot)
+	# you can't connect to yourself
+	if from != to:
+		connect_node(from, from_slot, to, to_slot)
 
 func _on_Node_disconnection_request(from, from_slot, to, to_slot):
 	disconnect_node(from, from_slot, to, to_slot)
 
-
 func _on_Node_selected(node):
-	node.list_settings()
+	if node.has_method("list_settings"):
+		node.list_settings()
+	else:
+		print('[WARN]: Missing `list_settings` on node' + ' ' + node.name)
 
 func _on_Graph_click(event, on_node):
 	if event is InputEventMouseButton:
@@ -34,3 +43,11 @@ func _on_Graph_click(event, on_node):
 				if not node_click:
 					settings_singleton.editor_settings()
 				node_click = false
+
+# checks if we can recive the dropped data
+func can_drop_data(pos, data):
+	return true
+
+func drop_data(pos, data):
+	var localMousePos = self.get_child(0).get_local_mouse_position()
+	loader_singleton.init_scene('dialogue', localMousePos)

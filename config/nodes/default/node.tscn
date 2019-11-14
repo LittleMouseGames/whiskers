@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=1]
+[ext_resource path="res://config/nodes/dialogue/styles/frame.tres" type="StyleBox" id=2]
+[ext_resource path="res://config/nodes/dialogue/styles/frame_selected.tres" type="StyleBox" id=3]
+[ext_resource path="res://config/nodes/start/settings/settings.gd" type="Script" id=4]
+
+
+[node name="StartNode" type="GraphNode"]
+margin_right = 197.0
+margin_bottom = 48.0
+custom_styles/commentfocus = ExtResource( 2 )
+custom_styles/comment = ExtResource( 2 )
+custom_styles/frame = ExtResource( 2 )
+custom_styles/selectedframe = ExtResource( 3 )
+custom_styles/position = ExtResource( 2 )
+custom_styles/defaultfocus = ExtResource( 2 )
+custom_styles/breakpoint = ExtResource( 2 )
+custom_styles/defaultframe = ExtResource( 2 )
+custom_fonts/title_font = ExtResource( 1 )
+custom_colors/close_color = Color( 1, 1, 1, 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
+custom_colors/resizer_color = Color( 1, 1, 1, 1 )
+custom_constants/port_offset = 0
+custom_constants/title_offset = 21
+title = "Dialogue Node"
+show_close = true
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 15.0
+margin_top = 40.0
+margin_right = 182.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 167.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 1 )
+text = "Node Name"

@@ -7,11 +7,13 @@ var settings = [
 	},
 	{
 		"name": "Node Description",
-		"placeholder": "Node Description"
+		"placeholder": "Node Description",
+		"type": "text"
 	},
 	{
 		"name": "Node Dialogue",
-		"placeholder": "Node Dialogue"
+		"placeholder": "Node Dialogue",
+		"type": "text"
 	}
 ]
 

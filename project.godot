@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 
 menu_singleton="*res://scripts/singletons/menu.gd"
 settings_singleton="*res://scripts/singletons/settings.gd"
+loader_singleton="*res://scripts/singletons/loader.gd"
 
 [editor_plugins]
 

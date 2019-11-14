@@ -13,16 +13,16 @@ var settings = [
 	{
 		'name': 'Asset Name',
 		'placeholder': 'Dialogue asset name',
-		'type': 'text'
-	},
-	{
-		'name': 'Asset Description',
-		'placeholder': 'Description of asset',
-		'type': 'text_long'
+		'type': 'line'
 	},
 	{
 		'name': 'Asset Author',
 		'placeholder': 'Asset author',
+		'type': 'line'
+	},
+	{
+		'name': 'Asset Description',
+		'placeholder': 'Description of asset',
 		'type': 'text'
 	}
 ]

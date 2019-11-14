@@ -15,15 +15,37 @@ func node_settings(obj : Array) -> void:
 func editor_settings() -> void:
 	list_options(settings_obj)
 
-func list_options(settings : Array) -> void:
+func list_options(settings_obj : Array) -> void:
 	# first, clear our options
 	for i in range(0, settings_node.get_child_count()):
 		settings_node.get_child(i).queue_free()
 	
-	for setting in settings:
-		option_factory(setting['name'], setting['placeholder'])
+	for setting in settings_obj:
+		option_factory(setting)
 
-func option_factory(name : String, placeholder: String) -> void:
+func option_factory(settings : Dictionary) -> void:
+	if 'name' in settings:
+		# these fields are required
+		var container = create_container(settings['name'])
+		
+		# are we explicitly declaring a type
+		var node_type : Node
+		
+		if 'type' in settings:
+			var type = settings['type']
+			
+			# are we a text node?
+			if type == 'line' or type == 'text':
+				node_type = create_text(type, settings)
+		else:
+			node_type = create_text('line', settings)
+		
+		container.add_child(node_type)
+		
+	else:
+		print("[ERROR]: Missing name attribute")
+
+func create_container(name : String) -> Node:
 	var margin_node = MarginContainer.new()
 	margin_node.set("custom_constants/margin_top", 5)
 	margin_node.set("custom_constants/margin_left", 10)
@@ -37,12 +59,32 @@ func option_factory(name : String, placeholder: String) -> void:
 	label_node.uppercase = true
 	label_node.add_font_override('font', load("res://assets/fonts/resources/roboto_reg_sm.tres"))
 	
-	var line_node = LineEdit.new()
-	line_node.placeholder_text = placeholder
-	line_node.add_font_override('font', load("res://assets/fonts/resources/roboto_reg.tres"))
-	
 	margin_node.add_child(vbox_node)
 	vbox_node.add_child(label_node)
-	vbox_node.add_child(line_node)
-	
 	settings_node.add_child(margin_node)
+	
+	return vbox_node
+
+func create_text(type : String, settings : Dictionary) -> Node:
+	var text_node
+	
+	if type == 'text':
+		text_node = TextEdit.new()
+		text_node.rect_min_size = Vector2(100, 65)
+		text_node.wrap_enabled = true
+	else:
+		text_node = LineEdit.new()
+		if 'placeholder' in settings:
+			text_node.placeholder_text = settings['placeholder']
+	
+	text_node.add_font_override('font', load("res://assets/fonts/resources/roboto_reg.tres"))
+	
+	# do we have a value?
+	if 'value' in settings:
+		text_node.set_text(settings['value'])
+
+	# are we read only?
+	if 'readonly' in settings:
+		text_node.editable = settings['readonly']
+	
+	return text_node
