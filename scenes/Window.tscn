@@ -14,7 +14,7 @@
 [ext_resource path="res://addons/FontAwesome/fontawesome-webfont.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://scripts/settings/new_character.gd" type="Script" id=13]
 [ext_resource path="res://scripts/settings/delete_character.gd" type="Script" id=14]
-[ext_resource path="res://scripts/editor/TestGraph.gd" type="Script" id=15]
+[ext_resource path="res://scripts/editor/graph.gd" type="Script" id=15]
 [ext_resource path="res://assets/themes/graph_edit.tres" type="Theme" id=16]
 [ext_resource path="res://config/editor/basic_nodes.gd" type="Script" id=18]
 
@@ -213,6 +213,14 @@ custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
 custom_constants/vseparation = 5
 items = [ "Conditional Node", null, false, "Expression Node", null, false ]
 auto_height = true
+
+[node name="Characters" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
+margin_top = 192.0
+margin_right = 250.0
+margin_bottom = 207.0
+custom_constants/margin_right = 7
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
 
 [node name="HSplit" type="HSplitContainer" parent="Main/Editor/HSplit"]
 margin_left = 258.0

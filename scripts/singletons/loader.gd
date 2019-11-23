@@ -11,5 +11,6 @@ func init_scene(e, location):
 	get_node(graph_node).add_child(node)
 	node.set_offset(offset)
 	node.set_name(node.get_name().replace('@', ''))
+	node.connect("gui_input", get_node(graph_node), "_on_Graph_click", [true])
 	
 	return node.name

@@ -1,7 +1,6 @@
 extends GraphEdit
 
 onready var start_node = load("res://config/nodes/start/node.tscn")
-onready var test_node = load("res://config/nodes/dialogue/node.tscn")
 onready var node_theme : Theme = self.get_theme()
 var node_click : bool = true
 
@@ -9,14 +8,10 @@ func _ready():
 	node_theme.set_constant("title_h_offset", "GraphNode", -5)
 	node_theme.set_constant("close_h_offset", "GraphNode", 10)
 	
-	test_node = test_node.instance()
-	test_node.connect("gui_input", self, "_on_Graph_click", [true])
-	
 	start_node = start_node.instance()
 	start_node.connect("gui_input", self, "_on_Graph_click", [true])
 	
 	self.add_child(start_node)
-	self.add_child(test_node)
 	
 	loader_singleton.graph_node = self.get_path()
 
