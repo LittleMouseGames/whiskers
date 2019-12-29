@@ -85,5 +85,9 @@ func _on_Redo_pressed():
 	EditorSingleton.redo_history()
 
 func _on_source_pressed():
-	OS.shell_open("https://github.com/littleMouseGames/whiskers")
+	var err = OS.shell_open("https://github.com/littleMouseGames/whiskers")
+	
+	if (err):
+		print("Failed to open URL. View it manually in your browser: "
+				+ "https://github.com/littleMouseGames/whiskers")
 

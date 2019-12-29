@@ -43,4 +43,3 @@ TabContainer/icons/menu_highlight = null
 TabContainer/styles/panel = SubResource( 1 )
 TabContainer/styles/tab_bg = SubResource( 2 )
 TabContainer/styles/tab_fg = SubResource( 3 )
-

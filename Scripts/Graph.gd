@@ -7,9 +7,12 @@ var timer = 0
 var path = ''
 
 func _ready():
-	get_node("../../../../Modals/Save").connect("file_selected", self, "_save_whiskers")
-	get_node("../../../../Modals/Open").connect("file_selected", self, "pre_open")
-	get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
+	var err1 = get_node("../../../../Modals/Save").connect("file_selected", self, "_save_whiskers")
+	var err2 = get_node("../../../../Modals/Open").connect("file_selected", self, "pre_open")
+	var err3 = get_node("../../../../Modals/Import").connect("file_selected", self, "_import_singleton")
+	
+	if (err1 or err2 or err3):
+		print("[Graph._ready]: Failed to connect node signals. Please ensure all paths are correct.")
 	
 	get_node("../Demo/Dialogue/Text").parse_bbcode("You haven't loaded anything yet! Press [b]Update Demo[/b] to load your current graph!")
 
@@ -54,7 +57,9 @@ func get_text(from):
 		return ''
 
 func _on_Dialogue_Graph_connection_request(from, from_slot, to, to_slot):
-	connect_node(from, from_slot, to, to_slot)
+	var err = connect_node(from, from_slot, to, to_slot)
+	if (err):
+		print("[Graph._on_Dialogue_Graph_connection_request]: Failed to connect node " + from + " to " + to)
 	var type = EditorSingleton.get_node_type(to)
 	EditorSingleton.add_history(type, to, self.get_node(to).get_offset(), get_text(to), get_connections(to), 'connect')
 
@@ -150,10 +155,9 @@ func process_data():
 				'location':"",
 				'size':""
 		}
-		var currentCTSize = 0
+		
 		var currentConnectsTo 
 		if name in data:
-			currentCTSize = data[name]['connects_to'].size()
 			currentConnectsTo = data[name]['connects_to']
 		
 		# are we a node with a text field?
@@ -247,16 +251,23 @@ func _open_whiskers(path):
 				connectTo = loadData[nodeDataKeys[i]]['conditions']
 				# this is bad because it assumes `true` and `false` can *only* connect to one node
 				# this is a dumb assumption to make, and should be corrected soon:tm:
-				connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
-				connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
+				var err1 = connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
+				var err2 = connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
+				
+				if (err1 or err2):
+					print("[Graph._open_whiskers]: Failed to connect nodes")
 			else:
 				connectTo = loadData[nodeDataKeys[i]]['connects_to']
 				# for each key
 				for x in range(0, connectTo.size()):
 					if 'Expression' in nodeDataKeys[i]:
-						connect_node(nodeDataKeys[i], 0, connectTo[x], 1)
+						var err = connect_node(nodeDataKeys[i], 0, connectTo[x], 1)
+						if (err):
+							print("[Graph._open_whiskers]: Failed to connect nodes")
 					else:
-						connect_node(nodeDataKeys[i], 0, connectTo[x], 0)
+						var err = connect_node(nodeDataKeys[i], 0, connectTo[x], 0)
+						if (err):
+							print("[Graph._open_whiskers]: Failed to connect nodes")
 	
 	var startOffset = self.get_node('Start').offset
 	var graphRect = self.rect_size
@@ -315,11 +326,11 @@ func _import_singleton(path):
 
 #====== DRAG HANDLING
 # checks if we can recive the dropped data
-func can_drop_data(pos, data):
+func can_drop_data(_pos, _data):
 	return true
 
 # triggers on target drop
-func drop_data(pos, data):
+func drop_data(_pos, data):
 	var nodes = EditorSingleton.node_names
 	var inNode = false
 	var localMousePos = self.get_child(0).get_local_mouse_position()

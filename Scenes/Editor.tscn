@@ -226,8 +226,8 @@ window_title = "Save Whiskers Project"
 resizable = true
 access = 2
 filters = PoolStringArray( "*.json; Whiskers JSON File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/home/void/Desktop/devvoid/whiskers"
+current_path = "/home/void/Desktop/devvoid/whiskers/"
 
 [node name="Import" type="FileDialog" parent="Mount/Modals"]
 anchor_left = 0.5
@@ -244,8 +244,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.gd; GDScript File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/home/void/Desktop/devvoid/whiskers"
+current_path = "/home/void/Desktop/devvoid/whiskers/"
 
 [node name="Open" type="FileDialog" parent="Mount/Modals"]
 anchor_left = 0.5
@@ -262,8 +262,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json; Whiskers JSON File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/home/void/Desktop/devvoid/whiskers"
+current_path = "/home/void/Desktop/devvoid/whiskers/"
 
 [node name="QuitConf" type="ConfirmationDialog" parent="Mount/Modals"]
 anchor_left = 0.5
@@ -281,7 +281,6 @@ dialog_text = "Are you sure you want to quit? Any unsaved
 dialog_hide_on_ok = false
 
 [node name="About" type="WindowDialog" parent="Mount/Modals"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1257,7 +1256,6 @@ align = 1
 valign = 1
 
 [node name="Dialogue" parent="Mount/MainWindow/Editor/Graph/Demo" instance=ExtResource( 26 )]
-
 [connection signal="confirmed" from="Mount/Modals/QuitConf" to="Mount/MainWindow/MenuBar/Menus" method="_on_QuitConf_confirmed"]
 [connection signal="pressed" from="Mount/Modals/About/source" to="Mount/MainWindow/MenuBar/Menus" method="_on_source_pressed"]
 [connection signal="confirmed" from="Mount/Modals/New" to="Mount/MainWindow/Editor/Graph/Dialogue Graph" method="_on_New_confirmed"]

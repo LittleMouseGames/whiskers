@@ -44,7 +44,6 @@ hint_tooltip = "Function calling and one line expressions"
 custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 placeholder_text = "Jump Key"
-
 [connection signal="close_request" from="." to="." method="_on_Node_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
 [connection signal="raise_request" from="." to="." method="_on_Node_raise_request"]
