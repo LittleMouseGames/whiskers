@@ -55,12 +55,16 @@ func next(selected_option_key : String = "") -> Dictionary:
 	
 	if current_block.is_final:
 		# It is a final block, but it could be connected to more than an END node, we have to process them
+		# Since there isn't another block after this, ignore the return value
+# warning-ignore:return_value_discarded
 		process_block(current_block)
 		end_dialogue()
 		return {}
 	
 	var next_block = {}
 	
+	# Since this isn't an Options node, the return value of the expression isn't necessary
+# warning-ignore:return_value_discarded
 	handle_expressions(current_block.expressions)
 	
 	# DEALING WITH OPTIONS
@@ -84,6 +88,8 @@ func next(selected_option_key : String = "") -> Dictionary:
 func process_block(block : Dictionary) -> Dictionary:
 	var next_block = {}
 	
+	# Since this isn't an Options node, the return value of the expression isn't necessary
+# warning-ignore:return_value_discarded
 	handle_expressions(block.expressions)
 	
 	if not block.dialogue.empty():
@@ -129,6 +135,8 @@ func handle_jump(jump) -> Dictionary:
 	var next_block = {}
 	
 	# If this node has expressions that it is connected to, than we want to execute them
+	# Return value isn't necessary here
+# warning-ignore:return_value_discarded
 	handle_expressions(jumped_to.expressions)
 	
 	if not jumped_to.dialogue.empty():
