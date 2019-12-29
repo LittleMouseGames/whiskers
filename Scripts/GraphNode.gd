@@ -9,7 +9,7 @@ func _on_Node_close_request():
 func _on_Node_resize_request(new_minsize):
 	self.rect_size = new_minsize
 
-func _on_Node_dragged(from, to):
+func _on_Node_dragged(_from, to):
 	get_node('../').lastNodePosition = to
 	EditorSingleton.add_history(get_type(self.name), self.name, to, get_text(self.name), get_node('../').get_connections(self.name), 'move')
 

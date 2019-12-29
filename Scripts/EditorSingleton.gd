@@ -11,9 +11,10 @@ onready var menu_edit = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Ed
 onready var menu_help = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu")
 
 var in_menu : = false
-var test : = true
 
-var has_player_singleton : = false
+# Used primarily in Graph, but here because it needs to be global.
+# warning-ignore:unused_class_variable
+var has_player_singleton = false
 
 # For history
 var current_history : = 0

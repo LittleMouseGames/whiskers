@@ -23,7 +23,7 @@ func _on_LineEdit_text_changed(new_text):
 			else:
 				DemoSingleton.set(get_node(".").get_child(i).name, val)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if (!isFocused) and (!loadingData):
 		var items = get_node(".").get_child_count()
 		for i in range(1, items):
