@@ -3,6 +3,8 @@ extends VBoxContainer
 var isFocused = false
 var loadingData = false
 
+var loaded_player_vars : = false
+
 func _ready():
 	populate_vars()
 
@@ -30,7 +32,7 @@ func _physics_process(delta):
 			else:
 				get_node(".").get_child(i).get_child(1).set_text(str(DemoSingleton.get(get_node(".").get_child(i).name)))
 	
-	if EditorSingleton.has_player_singleton and !EditorSingleton.loaded_player_vars:
+	if EditorSingleton.has_player_singleton and !loaded_player_vars:
 		loadingData = true
 		clear_vars()
 		populate_vars()
@@ -70,5 +72,5 @@ func clear_vars():
 
 func reset():
 	clear_vars()
-	EditorSingleton.loaded_player_vars = false
+	loaded_player_vars = false
 	populate_vars()

@@ -1,10 +1,12 @@
 extends VBoxContainer
 
+var loaded_player_funcs : = false
+
 func _ready():
 	populate_funcs()
 
 func _physics_process(delta):
-	if EditorSingleton.has_player_singleton and !EditorSingleton.loaded_player_funcs:
+	if EditorSingleton.has_player_singleton and !loaded_player_funcs:
 		print('we loaded our Player Singleton!')
 		clear_funcs()
 		populate_funcs()
@@ -35,5 +37,5 @@ func clear_funcs():
 
 func reset():
 	clear_funcs()
-	EditorSingleton.loaded_player_funcs = false
+	loaded_player_funcs = false
 	populate_funcs()

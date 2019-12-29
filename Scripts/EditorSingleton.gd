@@ -13,8 +13,6 @@ onready var menu_help = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/He
 var in_menu : = false
 var test : = true
 
-var loaded_player_vars : = false
-var loaded_player_funcs : = false
 var has_player_singleton : = false
 
 # For history
