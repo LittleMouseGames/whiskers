@@ -105,7 +105,6 @@ func handle_expressions(expressions_array : Array) -> Array:
 	if expressions_array.empty(): return []
 	
 	var results = []
-	var expression = Expression.new()
 	
 	for dic in expressions_array:
 		results.append(execute_expression(dic.logic))

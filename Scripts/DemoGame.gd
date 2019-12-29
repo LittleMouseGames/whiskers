@@ -5,7 +5,7 @@ onready var player = get_node("PlayField/Player")
 var currentTab
 var buttonAct
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(currentTab == 1):
 		if Input.is_action_pressed("player_right") or buttonAct == 'right':
 			player.set_global_position(Vector2(player.get_global_position().x + speed, player.get_global_position().y))
@@ -25,11 +25,11 @@ func _physics_process(delta):
 				get_node("Dialogue").init()
 
 
-func _on_Area2D2_area_entered(area):
+func _on_Area2D2_area_entered(_area):
 	get_node("PlayField/Player/E").show()
 
 
-func _on_Area2D2_area_exited(area):
+func _on_Area2D2_area_exited(_area):
 	get_node("PlayField/Player/E").hide()
 	get_node("Keys").show()
 	get_node("Dialogue").hide()
