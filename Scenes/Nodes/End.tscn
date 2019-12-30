@@ -5,7 +5,6 @@
 [ext_resource path="res://Scripts/GraphNode.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
-
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -38,7 +37,7 @@ slot/0/right_type = 0
 slot/0/right_color = Color( 1, 1, 1, 1 )
 slot/1/left_enabled = true
 slot/1/left_type = 1
-slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/left_color = Color( 0.901961, 0.85098, 0.0745098, 1 )
 slot/1/right_enabled = false
 slot/1/right_type = 0
 slot/1/right_color = Color( 1, 1, 1, 1 )
@@ -60,7 +59,6 @@ margin_right = 199.0
 margin_bottom = 81.0
 custom_styles/normal = SubResource( 1 )
 text = "expression end-cap"
-
 [connection signal="close_request" from="." to="." method="_on_Node_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
 [connection signal="raise_request" from="." to="." method="_on_Node_raise_request"]
