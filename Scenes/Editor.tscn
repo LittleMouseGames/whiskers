@@ -207,6 +207,7 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Modals" type="Control" parent="Mount"]
+editor/display_folded = true
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
@@ -380,6 +381,7 @@ columns = 3
 script = ExtResource( 3 )
 
 [node name="File" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+editor/display_folded = true
 margin_right = 35.0
 margin_bottom = 22.0
 text = "File"
@@ -585,6 +587,7 @@ text = "CTRL-Q"
 align = 2
 
 [node name="Edit" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+editor/display_folded = true
 margin_left = 39.0
 margin_right = 75.0
 margin_bottom = 22.0
@@ -677,6 +680,7 @@ text = "CTRL-Y"
 align = 2
 
 [node name="Help" type="ToolButton" parent="Mount/MainWindow/MenuBar/Menus"]
+editor/display_folded = true
 margin_left = 79.0
 margin_right = 121.0
 margin_bottom = 22.0

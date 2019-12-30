@@ -36,7 +36,7 @@ slot/1/right_type = 0
 slot/1/right_color = Color( 1, 1, 1, 1 )
 slot/2/left_enabled = true
 slot/2/left_type = 1
-slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/left_color = Color( 0.901961, 0.85098, 0.0745098, 1 )
 slot/2/right_enabled = true
 slot/2/right_type = 0
 slot/2/right_color = Color( 1, 1, 1, 1 )
@@ -119,7 +119,6 @@ margin_right = 75.0
 margin_bottom = 14.0
 text = "false"
 align = 2
-
 [connection signal="close_request" from="." to="." method="_on_Node_close_request"]
 [connection signal="dragged" from="." to="." method="_on_Node_dragged"]
 [connection signal="raise_request" from="." to="." method="_on_Node_raise_request"]

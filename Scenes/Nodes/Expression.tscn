@@ -29,7 +29,7 @@ slot/0/left_type = 0
 slot/0/left_color = Color( 1, 1, 1, 1 )
 slot/0/right_enabled = true
 slot/0/right_type = 1
-slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/0/right_color = Color( 0.901961, 0.85098, 0.0745098, 1 )
 script = ExtResource( 3 )
 
 [node name="Lines" type="VBoxContainer" parent="."]
