@@ -48,4 +48,4 @@ func drop_data(pos, data):
 	loader_singleton.init_scene('dialogue', localMousePos)
 
 func _close_Request(node):
-	node.queue_free()
+	self.remove_child(node)
