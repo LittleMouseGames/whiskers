@@ -2,7 +2,8 @@ extends Node
 
 var settings_node
 var settings_obj
-
+onready var scene_nodes = serializer_singleton.scene.nodes
+	
 func default(path : String, obj : Array) -> void:
 	settings_node = get_node(path)
 	settings_obj = obj
@@ -35,9 +36,9 @@ func option_factory(settings : Dictionary, node_name: String) -> void:
 			
 			# are we a text node?
 			if type == 'line' or type == 'text':
-				node = create_text(type, settings)
+				node = create_text(type, settings, node_name)
 		else:
-			node = create_text('line', settings)
+			node = create_text('line', settings, node_name)
 		
 		container.add_child(node)
 		
@@ -67,7 +68,7 @@ func create_container(name : String) -> Node:
 	
 	return vbox_node
 
-func create_text(type : String, settings : Dictionary) -> Node:
+func create_text(type : String, settings : Dictionary, node_name : String) -> Node:
 	var text_node
 	
 	if type == 'text':
@@ -91,5 +92,10 @@ func create_text(type : String, settings : Dictionary) -> Node:
 	# are we read only?
 	if 'readonly' in settings:
 		text_node.editable = settings['readonly']
+	
+	# do we have a value saved?
+	if 'name' in settings:
+		if node_name in scene_nodes and settings['name'] in scene_nodes[node_name]:
+			text_node.set_text(scene_nodes[node_name][settings['name']])
 	
 	return text_node

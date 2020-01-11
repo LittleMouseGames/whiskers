@@ -6,8 +6,8 @@ var scene = {
 	'name': '',
 	'author': '',
 	'description': '',
-	'characters': [],
-	'nodes': []
+	'characters': {},
+	'nodes': {}
 }
 
 var visual = {
@@ -22,13 +22,6 @@ func save_setting(text: String, setting: String, node_name: String) -> void:
 	print('Node: ', node_name)
 	print('----------')
 	
-	if scene.nodes.has(node_name):
-		if scene.nodes.node_name.has(setting): 
-			# update it
-			pass
-		else:
-			# add it
-			pass
-	else:
-		#add it
-		pass
+	scene.nodes[node_name] = {
+			setting: text
+		}
