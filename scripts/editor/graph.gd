@@ -44,8 +44,18 @@ func can_drop_data(pos, data):
 	return true
 
 func drop_data(pos, data):
-	var localMousePos = self.get_child(1).get_local_mouse_position()
-	loader_singleton.init_scene('dialogue', localMousePos)
+	# Running into issues where this
+	# isn't as accurate as it should be
+	# so we'll average out the values
+	var localMousePos0 = self.get_child(0).get_local_mouse_position()
+	var localMousePos1 = self.get_child(1).get_local_mouse_position()
+	var avgX = (localMousePos0.x + localMousePos1.x) / 2
+	var avgY = (localMousePos0.y + localMousePos1.y) / 2
+	var localAvg = Vector2(avgX, avgY)
+	
+	print('Avg: ', localAvg)
+	
+	loader_singleton.init_scene('dialogue', Vector2(localAvg))
 
 func _close_Request(node):
 	self.remove_child(node)
