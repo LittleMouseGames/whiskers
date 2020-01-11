@@ -44,7 +44,7 @@ func can_drop_data(pos, data):
 	return true
 
 func drop_data(pos, data):
-	var localMousePos = self.get_child(0).get_local_mouse_position()
+	var localMousePos = self.get_child(1).get_local_mouse_position()
 	loader_singleton.init_scene('dialogue', localMousePos)
 
 func _close_Request(node):

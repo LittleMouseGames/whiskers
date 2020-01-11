@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="WhiksersRedux"
+config/description="An Open Source Visual Dialogue Editor"
 run/main_scene="res://scenes/Window.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
@@ -28,7 +29,7 @@ loader_singleton="*res://scripts/singletons/loader.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "FontAwesome" )
+enabled=PoolStringArray( "FontAwesome", "godot-git-control.funabab" )
 
 [rendering]
 
