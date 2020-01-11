@@ -28,4 +28,4 @@ var settings = [
 ]
 
 func _ready():
-	settings_singleton.save_path(self.get_path(), settings)
+	settings_singleton.default(self.get_path(), settings)

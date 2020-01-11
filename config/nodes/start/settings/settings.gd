@@ -17,4 +17,5 @@ var settings = [
 
 # Called when the node enters the scene tree for the first time.
 func list_settings():
-	settings_singleton.node_settings(settings)
+	var node_name = self.name
+	settings_singleton.node_settings(settings, node_name)

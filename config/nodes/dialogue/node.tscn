@@ -5,7 +5,7 @@
 [ext_resource path="res://config/nodes/dialogue/styles/frame_selected.tres" type="StyleBox" id=3]
 [ext_resource path="res://config/nodes/dialogue/settings/settings.gd" type="Script" id=4]
 
-[node name="StartNode" type="GraphNode"]
+[node name="DialogueNode" type="GraphNode"]
 margin_right = 197.0
 margin_bottom = 48.0
 custom_styles/commentfocus = ExtResource( 2 )

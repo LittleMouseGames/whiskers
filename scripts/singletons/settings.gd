@@ -3,44 +3,46 @@ extends Node
 var settings_node
 var settings_obj
 
-func save_path(path : String, obj : Array) -> void:
+func default(path : String, obj : Array) -> void:
 	settings_node = get_node(path)
 	settings_obj = obj
 	
-	list_options(obj)
+	list_options(obj, 'editor')
 
-func node_settings(obj : Array) -> void:
-	list_options(obj)
+func node_settings(obj : Array, node_name: String) -> void:
+	list_options(obj, node_name)
 
 func editor_settings() -> void:
-	list_options(settings_obj)
+	list_options(settings_obj, 'editor')
 
-func list_options(settings_obj : Array) -> void:
+func list_options(settings_obj : Array, node_name: String) -> void:
 	# first, clear our options
 	for i in range(0, settings_node.get_child_count()):
 		settings_node.get_child(i).queue_free()
 	
 	for setting in settings_obj:
-		option_factory(setting)
+		option_factory(setting, node_name)
 
-func option_factory(settings : Dictionary) -> void:
+func option_factory(settings : Dictionary, node_name: String) -> void:
 	if 'name' in settings:
 		# these fields are required
 		var container = create_container(settings['name'])
+		var node : Node
 		
 		# are we explicitly declaring a type
-		var node_type : Node
-		
 		if 'type' in settings:
 			var type = settings['type']
 			
 			# are we a text node?
 			if type == 'line' or type == 'text':
-				node_type = create_text(type, settings)
+				node = create_text(type, settings)
 		else:
-			node_type = create_text('line', settings)
+			node = create_text('line', settings)
 		
-		container.add_child(node_type)
+		container.add_child(node)
+		
+		# wire events to serializer
+		node.connect("text_changed", serializer_singleton, 'save_setting', [settings['name'], node_name])
 		
 	else:
 		print("[ERROR]: Missing name attribute")
@@ -72,6 +74,9 @@ func create_text(type : String, settings : Dictionary) -> Node:
 		text_node = TextEdit.new()
 		text_node.rect_min_size = Vector2(100, 65)
 		text_node.wrap_enabled = true
+		
+		if 'placeholder' in settings:
+			text_node.text = settings['placeholder']
 	else:
 		text_node = LineEdit.new()
 		if 'placeholder' in settings:
