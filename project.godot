@@ -30,7 +30,7 @@ serializer_singleton="*res://scripts/singletons/serializer.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "FontAwesome", "godot-git-control.funabab" )
+enabled=PoolStringArray( "FontAwesome" )
 
 [rendering]
 
