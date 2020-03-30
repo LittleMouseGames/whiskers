@@ -91,7 +91,7 @@ func create_text(type : String, settings : Dictionary, node_name : String) -> No
 
 	# are we read only?
 	if 'readonly' in settings:
-		text_node.editable = settings['readonly']
+		text_node.editable = !settings['readonly']
 	
 	# do we have a value saved?
 	if 'name' in settings:

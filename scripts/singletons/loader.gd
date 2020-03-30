@@ -3,8 +3,11 @@ extends Node
 # path to graphnode
 var graph_node
 
+var node_locations = {}
+
 func init_scene(e, location):
-	var scene = load("res://config/nodes/" + e + "/node.tscn")
+	var path = loader_singleton.node_locations[e]
+	var scene = load(path + e + "/node.tscn")
 	var node = scene.instance()
 	var offset = Vector2(location.x, location.y)
 	

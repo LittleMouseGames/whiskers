@@ -1,11 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=1]
-[ext_resource path="res://config/nodes/dialogue/styles/frame.tres" type="StyleBox" id=2]
-[ext_resource path="res://config/nodes/dialogue/styles/frame_selected.tres" type="StyleBox" id=3]
-[ext_resource path="res://config/nodes/dialogue/settings/settings.gd" type="Script" id=4]
+[ext_resource path="res://config/nodes/basic/dialogue/styles/frame.tres" type="StyleBox" id=2]
+[ext_resource path="res://config/nodes/basic/dialogue/styles/frame_selected.tres" type="StyleBox" id=3]
+[ext_resource path="res://config/nodes/basic/start/settings/settings.gd" type="Script" id=4]
 
-[node name="DialogueNode" type="GraphNode"]
+
+
+[node name="StartNode" type="GraphNode"]
 margin_right = 197.0
 margin_bottom = 48.0
 custom_styles/commentfocus = ExtResource( 2 )

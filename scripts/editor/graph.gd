@@ -1,6 +1,6 @@
 extends GraphEdit
 
-onready var start_node = load("res://config/nodes/start/node.tscn")
+onready var start_node = load("res://config/nodes/basic/start/node.tscn")
 onready var node_theme : Theme = self.get_theme()
 var node_click : bool = true
 
