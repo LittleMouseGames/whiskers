@@ -44,6 +44,8 @@ func option_factory(settings : Dictionary, node_name: String) -> void:
 			# are we a text node?
 			if type == 'line' or type == 'text':
 				node = create_text(type, settings, node_name)
+			elif type == 'option':
+				node = create_dropdown(settings, node_name)
 		else:
 			node = create_text('line', settings, node_name)
 		
@@ -106,3 +108,15 @@ func create_text(type : String, settings : Dictionary, node_name : String) -> No
 			text_node.set_text(scene_nodes[node_name][settings['name']])
 	
 	return text_node
+
+func create_dropdown(settings : Dictionary, node_name : String) -> Node:
+	var option_node = OptionButton.new()
+	
+	# add our options to our dropdown
+	if 'options' in settings:
+		var options = settings['options']
+		
+		for option in options:
+			option_node.add_item(option)
+	
+	return option_node

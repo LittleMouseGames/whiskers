@@ -2,17 +2,27 @@ extends Node
 
 var settings = [
 	{
-		"name": "Node Name",
+		"name": "Name",
 		"placeholder": "Node Name"
 	},
 	{
-		"name": "Node Description",
-		"placeholder": "Node Description",
+		"name": "Character",
+		"type": "option",
+		"character_select": true,
+		"options": [
+			'Test',
+			'Test 2',
+			'Test 3'
+		]
+	},
+	{
+		"name": "Dialogue",
+		"placeholder": "...",
 		"type": "text"
 	},
 	{
-		"name": "Node Dialogue",
-		"placeholder": "Node Dialogue",
+		"name": "Comment / Description",
+		"placeholder": "...",
 		"type": "text"
 	}
 ]
