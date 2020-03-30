@@ -25,6 +25,13 @@ func list_options(settings_obj : Array, node_name: String) -> void:
 		option_factory(setting, node_name)
 
 func option_factory(settings : Dictionary, node_name: String) -> void:
+	# adds title to box
+	var box_title = settings_node.get_parent().get_parent().get_node('TitleContainer').get_node('SettingsTitle')
+	if node_name == 'editor': 
+		box_title.set_text('Scene Settings')
+	else:
+		box_title.set_text('Node Settings')
+	
 	if 'name' in settings:
 		# these fields are required
 		var container = create_container(settings['name'])
