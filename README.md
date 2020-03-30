@@ -11,6 +11,9 @@ Yes, I could. But I'm not :cat:
 - [ ] Make codebase modular, to make it easier to add custom nodes and features
 - [ ] Make user interface less like Godot, and more like a proper graph editor
 - [ ] Make Whiskers dialogue assets smaller and more light-weight. This will be done by having one save file, which contains all graph node positions as well as dialogue text, and also having a `Compile` option which stores *just* the dialogue text.
+- [ ] The ability to test dialogue from specific points
+- [ ] Multiple charcters per dialogue
+- [ ] Better docs
 - [ ] ( Optional ) Switch from JSON to something more readable. Maybe YAML?
 
 ## Can I help?
