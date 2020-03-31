@@ -7,6 +7,7 @@ var node_locations = {}
 
 onready var node_tree_element: Tree = get_tree().current_scene.find_node('NodeTree', true, false)
 onready var tree_item_script = load("res://scripts/settings/TreeItem.gd")
+onready var footer_node_count = get_tree().current_scene.find_node('FooterNodes', true, false)
 
 func init_scene(e, location):
 	var path = loader_singleton.node_locations[e]
@@ -24,6 +25,10 @@ func init_scene(e, location):
 	tree_item.set_text(0, node.get_name())
 	tree_item.set_script(tree_item_script)
 	
+	if e == 'dialogue':
+		var dialogue_node = footer_node_count.get_node('Dialogue').get_node('Count')
+		dialogue_node.set_text(String(int(dialogue_node.get_text()) + 1))
+	
 	return node.name
 
 func remove_node(name):
@@ -35,6 +40,10 @@ func remove_node(name):
 			node_tree_element.update()
 		
 		child = child.get_next()
+	
+	if 'Dialogue' in name:
+		var dialogue_node = footer_node_count.get_node('Dialogue').get_node('Count')
+		dialogue_node.set_text(String(int(dialogue_node.get_text()) - 1))
 
 func update_name(node_name, new): 
 	var child = node_tree_element.get_root().get_children()

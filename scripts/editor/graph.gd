@@ -30,6 +30,8 @@ func _on_Node_selected(node):
 		print('[WARN]: Missing `list_settings` on node' + ' ' + node.name)
 
 func _on_Graph_click(event, on_node):
+	self.get_node('CLAYER').update()
+	
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == BUTTON_LEFT:
 			if on_node:
