@@ -44,9 +44,12 @@ func can_drop_data(pos, data):
 	return true
 
 func drop_data(pos, data):
-	var localMousePos = self.get_node('CLAYER').get_local_mouse_position()
+	var layer = self.get_node('CLAYER')
+	var localMousePos = layer.get_local_mouse_position()
 	
+	layer.update()
 	loader_singleton.init_scene('dialogue', localMousePos)
 
 func _close_Request(node):
 	self.remove_child(node)
+	loader_singleton.remove_node(node.name)

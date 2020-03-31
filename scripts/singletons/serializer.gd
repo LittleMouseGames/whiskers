@@ -17,15 +17,16 @@ var visual = {
 }
 
 func save_setting(text, setting: String, node_name: String) -> void:
-	print('Text: ', text)
-	print('Setting: ', setting)
-	print('Node: ', node_name)
-	print('----------')
+#	print('Text: ', text)
+#	print('Setting: ', setting)
+#	print('Node: ', node_name)
+#	print('----------')
 	
 	# TODO: Clean up
-	if setting == 'Node Name':
+	if setting == 'Name':
 		var node = get_node('/root/Window').find_node('GraphEdit').get_node(node_name)
 		node.find_node('Label', true).set_text(text)
+		loader_singleton.update_name(node_name, text)
 	
 	scene.nodes[node_name] = {
 			setting: text

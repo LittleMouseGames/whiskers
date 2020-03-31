@@ -15,7 +15,7 @@ func _ready():
 		print(get_nodes(node_path + folder + "/"))
 
 func get_nodes(path):
-	var dir = Directory.new()
+	var dir: Directory = Directory.new()
 	dir.open(path)
 	dir.list_dir_begin(true, true)
 	
@@ -40,10 +40,11 @@ func get_nodes(path):
 	dir.list_dir_end()
 
 func get_drag_data(pos):
-	var selected = get_selected_items()
-	var prev = TextureRect.new()
+	var selected: Array = get_selected_items()
+	var prev: TextureRect = TextureRect.new()
 	
-	prev.texture = get_item_icon(selected[0])
-	set_drag_preview(prev)
+	if selected.size() > 0:
+		prev.texture = get_item_icon(selected[0])
+		set_drag_preview(prev)
 	
-	return get_item_text(selected[0])
+		return get_item_text(selected[0])
