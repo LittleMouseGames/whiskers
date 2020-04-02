@@ -24,6 +24,7 @@ func init_scene(e, location):
 	var tree_item = node_tree_element.create_item()
 	tree_item.set_text(0, node.get_name())
 	tree_item.set_script(tree_item_script)
+	tree_item.node_name = node.name
 	
 	if e == 'dialogue':
 		var dialogue_node = footer_node_count.get_node('Dialogue').get_node('Count')
@@ -35,7 +36,7 @@ func remove_node(name):
 	var child = node_tree_element.get_root().get_children()
 	while child != null:
 
-		if child.get_text(0) == name:
+		if child.node_name == name:
 			node_tree_element.get_root().remove_child(child)
 			node_tree_element.update()
 		
