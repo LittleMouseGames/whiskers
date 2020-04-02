@@ -10,4 +10,4 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.397059, 0.423529, 0.482353, 1 )
+border_color = Color( 0.396078, 0.423529, 0.482353, 1 )
