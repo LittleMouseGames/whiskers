@@ -30,6 +30,7 @@ func _on_Node_selected(node):
 		print('[WARN]: Missing `list_settings` on node' + ' ' + node.name)
 
 func _on_Graph_click(event, on_node):
+	self.update()
 	self.get_node('CLAYER').update()
 	
 	if event is InputEventMouseButton:
@@ -40,6 +41,9 @@ func _on_Graph_click(event, on_node):
 				if not node_click:
 					settings_singleton.editor_settings()
 				node_click = false
+		
+		self.update()
+		self.get_node('CLAYER').update()
 
 # checks if we can recive the dropped data
 func can_drop_data(pos, data):

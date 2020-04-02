@@ -4,8 +4,8 @@
 [ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/resources/roboto_medium.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/themes/styles/item_list_sel.tres" type="StyleBox" id=5]
-[ext_resource path="res://assets/themes/styles/item_list_bg.tres" type="StyleBox" id=6]
+[ext_resource path="res://assets/themes/styles/item_list/item_list_sel.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/themes/styles/item_list/item_list_bg.tres" type="StyleBox" id=6]
 [ext_resource path="res://scripts/settings/NodeTree.gd" type="Script" id=7]
 [ext_resource path="res://assets/fonts/resources/footer.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/fonts/resources/roboto_reg_sm.tres" type="DynamicFont" id=9]
@@ -59,6 +59,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_right = 1.0

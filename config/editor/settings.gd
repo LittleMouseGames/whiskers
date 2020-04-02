@@ -22,7 +22,7 @@ var settings = [
 	},
 	{
 		'name': 'Asset Description',
-		'placeholder': 'Description of asset',
+		'placeholder': '...',
 		'type': 'text'
 	}
 ]
