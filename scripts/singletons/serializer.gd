@@ -45,3 +45,6 @@ func character_name_change(text, node_name):
 
 func remove_character(node):
 	scene.characters.erase(node)
+
+func get_characters():
+	return scene.characters

@@ -113,11 +113,16 @@ func create_dropdown(settings : Dictionary, node_name : String) -> Node:
 	var option_node = OptionButton.new()
 	
 	# add our options to our dropdown
-	if 'options' in settings:
+	if 'options' in settings and not 'character_select' in settings:
 		var options = settings['options']
 		
 		for option in options:
 			option_node.add_item(option)
+	elif 'character_select' in settings:
+		var characters = serializer_singleton.get_characters()
+		
+		for character in characters:
+			option_node.add_item(characters[character].name)
 	
 	return option_node
 
