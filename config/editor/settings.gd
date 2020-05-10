@@ -26,3 +26,4 @@ var settings = {
 
 func _ready():
 	settings_singleton.default(self.get_path(), settings)
+	serializer_singleton.instantiate_node('editor', settings)
