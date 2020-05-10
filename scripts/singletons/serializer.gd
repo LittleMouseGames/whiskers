@@ -16,7 +16,14 @@ var visual = {
 	}
 }
 
+func instantiate_node(node_name, settings):
+	scene.nodes[node_name] = settings
+	print(scene.nodes[node_name])
+
 func save_setting(text, setting: String, node_name: String) -> void:
+	if !text:
+		text = settings_singleton.get_value(setting)
+
 #	print('Text: ', text)
 #	print('Setting: ', setting)
 #	print('Node: ', node_name)
@@ -28,6 +35,4 @@ func save_setting(text, setting: String, node_name: String) -> void:
 		node.find_node('Label', true).set_text(text)
 		loader_singleton.update_name(node_name, text)
 	
-	scene.nodes[node_name] = {
-			setting: text
-		}
+	scene.nodes[node_name][setting]['value'] = text

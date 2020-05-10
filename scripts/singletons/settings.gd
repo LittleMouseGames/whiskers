@@ -4,27 +4,29 @@ var settings_node
 var settings_obj
 onready var scene_nodes = serializer_singleton.scene.nodes
 	
-func default(path : String, obj : Array) -> void:
+func default(path : String, obj : Dictionary) -> void:
 	settings_node = get_node(path)
 	settings_obj = obj
 	
 	list_options(obj, 'editor')
 
-func node_settings(obj : Array, node_name: String) -> void:
+func node_settings(obj : Dictionary, node_name : String) -> void:
 	list_options(obj, node_name)
 
 func editor_settings() -> void:
 	list_options(settings_obj, 'editor')
 
-func list_options(settings_obj : Array, node_name: String) -> void:
+func list_options(settings_obj : Dictionary, node_name: String) -> void:
 	# first, clear our options
 	for i in range(0, settings_node.get_child_count()):
 		settings_node.get_child(i).queue_free()
 	
 	for setting in settings_obj:
-		option_factory(setting, node_name)
 
-func option_factory(settings : Dictionary, node_name: String) -> void:
+		option_factory(setting, settings_obj[setting], node_name)
+
+func option_factory(name: String, settings : Dictionary, node_name: String) -> void:
+	var nodeType;
 	# adds title to box
 	var box_title = settings_node.get_parent().get_parent().get_node('TitleContainer').get_node('SettingsTitle')
 	if node_name == 'editor': 
@@ -32,30 +34,31 @@ func option_factory(settings : Dictionary, node_name: String) -> void:
 	else:
 		box_title.set_text('Node Settings')
 	
-	if 'name' in settings:
-		# these fields are required
-		var container = create_container(settings['name'])
-		var node : Node
+	var container = create_container(name)
+	var node : Node
 		
-		# are we explicitly declaring a type
-		if 'type' in settings:
-			var type = settings['type']
+	# are we explicitly declaring a type
+	if 'type' in settings:
+		var type = settings['type']
 			
-			# are we a text node?
-			if type == 'line' or type == 'text':
-				node = create_text(type, settings, node_name)
-			elif type == 'option':
-				node = create_dropdown(settings, node_name)
-		else:
-			node = create_text('line', settings, node_name)
-		
-		container.add_child(node)
-		
-		# wire events to serializer
-		node.connect("text_changed", serializer_singleton, 'save_setting', [settings['name'], node_name])
-		
+		# are we a text node?
+		if type == 'line' or type == 'text':
+			node = create_text(type, settings, node_name)
+			nodeType = type
+		elif type == 'option':
+			node = create_dropdown(settings, node_name)
 	else:
-		print("[ERROR]: Missing name attribute")
+		node = create_text('line', settings, node_name)
+		nodeType = 'line'
+		
+	node.name = name
+	container.add_child(node)
+		
+	# wire events to serializer
+	if nodeType == 'line':
+		node.connect("text_changed", serializer_singleton, 'save_setting', [name, node_name])
+	elif nodeType == 'text':
+		node.connect("text_changed", serializer_singleton, 'save_setting', [null, name, node_name])
 
 func create_container(name : String) -> Node:
 	var margin_node = MarginContainer.new()
@@ -84,9 +87,7 @@ func create_text(type : String, settings : Dictionary, node_name : String) -> No
 		text_node = TextEdit.new()
 		text_node.rect_min_size = Vector2(100, 65)
 		text_node.wrap_enabled = true
-		
-		if 'placeholder' in settings:
-			text_node.text = settings['placeholder']
+	
 	else:
 		text_node = LineEdit.new()
 		if 'placeholder' in settings:
@@ -120,3 +121,6 @@ func create_dropdown(settings : Dictionary, node_name : String) -> Node:
 			option_node.add_item(option)
 	
 	return option_node
+
+func get_value(setting_name: String) -> String:
+	return settings_node.find_node(setting_name, true, false).text
