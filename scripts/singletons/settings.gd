@@ -39,11 +39,11 @@ func option_factory(name: String, settings : Dictionary, node_name: String) -> v
 	# are we explicitly declaring a type
 	if 'type' in settings:
 		var type = settings['type']
+		nodeType = type
 			
 		# are we a text node?
 		if type == 'line' or type == 'text':
 			node = create_text(type, settings, node_name)
-			nodeType = type
 		elif type == 'option':
 			node = create_dropdown(settings, node_name)
 	else:
@@ -58,6 +58,8 @@ func option_factory(name: String, settings : Dictionary, node_name: String) -> v
 		node.connect("text_changed", serializer_singleton, 'save_setting', [name, node_name])
 	elif nodeType == 'text':
 		node.connect("text_changed", serializer_singleton, 'save_setting', [null, name, node_name])
+	elif nodeType == 'option':
+		node.connect("item_selected", serializer_singleton, 'save_selection', [name, node_name])
 
 func create_container(name : String) -> Node:
 	var margin_node = MarginContainer.new()
@@ -102,11 +104,6 @@ func create_text(type : String, settings : Dictionary, node_name : String) -> No
 	if 'readonly' in settings:
 		text_node.editable = !settings['readonly']
 	
-	# do we have a value saved?
-	if 'name' in settings:
-		if node_name in scene_nodes and settings['name'] in scene_nodes[node_name]:
-			text_node.set_text(scene_nodes[node_name][settings['name']])
-	
 	return text_node
 
 func create_dropdown(settings : Dictionary, node_name : String) -> Node:
@@ -124,6 +121,9 @@ func create_dropdown(settings : Dictionary, node_name : String) -> Node:
 		for character in characters:
 			option_node.add_item(characters[character].name)
 	
+	if 'value' in settings:
+		option_node.select(settings['value'])
+
 	return option_node
 
 func get_value(setting_name: String) -> String:

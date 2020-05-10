@@ -37,6 +37,9 @@ func save_setting(text, setting: String, node_name: String) -> void:
 	
 	scene.nodes[node_name][setting]['value'] = text
 
+func save_selection(id, setting, node_name):
+	scene.nodes[node_name][setting]['value'] = id
+
 func add_character(node_name):
 	scene.characters[node_name] = {'name': ''}
 	
