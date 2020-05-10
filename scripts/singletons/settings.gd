@@ -22,7 +22,6 @@ func list_options(settings_obj : Dictionary, node_name: String) -> void:
 		settings_node.get_child(i).queue_free()
 	
 	for setting in settings_obj:
-
 		option_factory(setting, settings_obj[setting], node_name)
 
 func option_factory(name: String, settings : Dictionary, node_name: String) -> void:
