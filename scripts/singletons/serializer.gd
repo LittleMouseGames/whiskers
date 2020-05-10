@@ -36,3 +36,12 @@ func save_setting(text, setting: String, node_name: String) -> void:
 		loader_singleton.update_name(node_name, text, node.get_meta('type'))
 	
 	scene.nodes[node_name][setting]['value'] = text
+
+func add_character(node_name):
+	scene.characters[node_name] = {'name': ''}
+	
+func character_name_change(text, node_name):
+	scene.characters[node_name].name = text
+
+func remove_character(node):
+	scene.characters.erase(node)

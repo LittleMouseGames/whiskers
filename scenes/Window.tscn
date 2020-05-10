@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
 [ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scripts/settings/delete_character.gd" type="Script" id=14]
 [ext_resource path="res://scripts/editor/graph.gd" type="Script" id=15]
 [ext_resource path="res://assets/themes/graph_edit.tres" type="Theme" id=16]
+[ext_resource path="res://scripts/Character.gd" type="Script" id=17]
 [ext_resource path="res://config/editor/basic_nodes.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -484,6 +485,7 @@ margin_right = 210.0
 margin_bottom = 56.0
 theme = ExtResource( 1 )
 placeholder_text = "Character name"
+script = ExtResource( 17 )
 
 [node name="Button" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container"]
 margin_top = 72.0
@@ -576,4 +578,5 @@ text = "option"
 [connection signal="gui_input" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Graph_click" binds= [ false ]]
 [connection signal="node_selected" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_selected"]
 [connection signal="gui_input" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/HBoxContainer/FontAwesome" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character" method="_on_FontAwesome_gui_input"]
+[connection signal="text_changed" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/LineEdit" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/LineEdit" method="_on_LineEdit_text_changed"]
 [connection signal="pressed" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" method="_on_Button_pressed"]
