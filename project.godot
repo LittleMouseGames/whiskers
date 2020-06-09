@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="WhiksersRedux"
+config/description="An Open Source Visual Dialogue Editor"
 run/main_scene="res://scenes/Window.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
@@ -23,6 +24,13 @@ config/icon="res://icon.png"
 [autoload]
 
 menu_singleton="*res://scripts/singletons/menu.gd"
+settings_singleton="*res://scripts/singletons/settings.gd"
+loader_singleton="*res://scripts/singletons/loader.gd"
+serializer_singleton="*res://scripts/singletons/serializer.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "FontAwesome" )
 
 [rendering]
 

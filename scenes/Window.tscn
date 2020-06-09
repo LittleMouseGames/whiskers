@@ -1,57 +1,83 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/themes/editor.tres" type="Theme" id=1]
-[ext_resource path="res://scripts/models/menu.gd" type="Script" id=2]
+[ext_resource path="res://config/editor/menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/resources/roboto_medium.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/resources/roboto_reg.tres" type="DynamicFont" id=4]
-[ext_resource path="res://assets/fonts/resources/footer.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/themes/styles/item_list/item_list_sel.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/themes/styles/item_list/item_list_bg.tres" type="StyleBox" id=6]
+[ext_resource path="res://scripts/settings/NodeTree.gd" type="Script" id=7]
+[ext_resource path="res://assets/fonts/resources/footer.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/fonts/resources/roboto_reg_sm.tres" type="DynamicFont" id=9]
+[ext_resource path="res://config/editor/settings.gd" type="Script" id=10]
+[ext_resource path="res://addons/FontAwesome/FontAwesome.gd" type="Script" id=11]
+[ext_resource path="res://addons/FontAwesome/fontawesome-webfont.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://scripts/settings/new_character.gd" type="Script" id=13]
+[ext_resource path="res://scripts/settings/delete_character.gd" type="Script" id=14]
+[ext_resource path="res://scripts/editor/graph.gd" type="Script" id=15]
+[ext_resource path="res://assets/themes/graph_edit.tres" type="Theme" id=16]
+[ext_resource path="res://scripts/Character.gd" type="Script" id=17]
+[ext_resource path="res://config/editor/basic_nodes.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
 expand_margin_right = 8.0
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.160784, 0.176471, 0.215686, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.160784, 0.176471, 0.215686, 1 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 5
-border_color = Color( 0.160784, 0.176471, 0.215686, 1 )
-
-[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.129412, 0.145098, 0.168627, 1 )
 expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_top = 3.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.160784, 0.176471, 0.215686, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.184314, 0.203922, 0.247059, 1 )
 
 [node name="Window" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VSplit" type="VBoxContainer" parent="."]
+[node name="Main" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="VSplit"]
+[node name="MenuContainer" type="PanelContainer" parent="Main"]
+margin_right = 1024.0
+margin_bottom = 12.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MenuMargin" type="MarginContainer" parent="Main/MenuContainer"]
 margin_right = 1024.0
 margin_bottom = 12.0
 custom_constants/margin_right = 6
@@ -59,7 +85,7 @@ custom_constants/margin_top = 6
 custom_constants/margin_left = 6
 custom_constants/margin_bottom = 6
 
-[node name="Menu" type="GridContainer" parent="VSplit/MarginContainer"]
+[node name="Menu" type="GridContainer" parent="Main/MenuContainer/MenuMargin"]
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 1018.0
@@ -67,141 +93,490 @@ margin_bottom = 6.0
 columns = 10
 script = ExtResource( 2 )
 
-[node name="Editor" type="Control" parent="VSplit"]
+[node name="Editor" type="Control" parent="Main"]
 margin_top = 12.0
 margin_right = 1024.0
-margin_bottom = 570.0
+margin_bottom = 578.0
+rect_clip_content = true
 size_flags_vertical = 3
 
-[node name="HSplit" type="HSplitContainer" parent="VSplit/Editor"]
+[node name="HSplit" type="HSplitContainer" parent="Main/Editor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Nodes" type="PanelContainer" parent="VSplit/Editor/HSplit"]
-margin_right = 200.0
-margin_bottom = 558.0
-rect_min_size = Vector2( 200, 0 )
-custom_styles/panel = SubResource( 1 )
+[node name="Nodes" type="PanelContainer" parent="Main/Editor/HSplit"]
+margin_right = 250.0
+margin_bottom = 566.0
+rect_min_size = Vector2( 250, 0 )
+custom_styles/panel = SubResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VSplit/Editor/HSplit/Nodes"]
-margin_right = 200.0
-margin_bottom = 558.0
+[node name="Main" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes"]
+margin_right = 250.0
+margin_bottom = 566.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer"]
-margin_right = 200.0
-margin_bottom = 119.0
+[node name="BasicNodes" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
+margin_right = 250.0
+margin_bottom = 65.0
 custom_constants/margin_right = 7
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
 
-[node name="Container" type="PanelContainer" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer/MarginContainer"]
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 193.0
-margin_bottom = 119.0
-custom_styles/panel = SubResource( 2 )
+margin_right = 243.0
+margin_bottom = 65.0
+custom_styles/panel = SubResource( 3 )
 
-[node name="VSplitContainer" type="VBoxContainer" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer/MarginContainer/Container"]
-margin_right = 178.0
-margin_bottom = 104.0
+[node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container"]
+margin_right = 228.0
+margin_bottom = 50.0
 custom_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer/MarginContainer/Container/VSplitContainer"]
-margin_right = 178.0
+[node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container/VSplitContainer"]
+margin_right = 228.0
 margin_bottom = 35.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer/MarginContainer/Container/VSplitContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container/VSplitContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 173.0
+margin_right = 223.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 3 )
 text = "Basic Nodes"
 uppercase = true
 
-[node name="ItemList" type="ItemList" parent="VSplit/Editor/HSplit/Nodes/VBoxContainer/MarginContainer/Container/VSplitContainer"]
+[node name="ItemList" type="ItemList" parent="Main/Editor/HSplit/Nodes/Main/BasicNodes/Container/VSplitContainer"]
 margin_top = 35.0
-margin_right = 178.0
-margin_bottom = 104.0
+margin_right = 228.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/selected_focus = SubResource( 3 )
-custom_styles/bg_focus = SubResource( 4 )
-custom_styles/selected = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/guide_color = Color( 0.160784, 0.176471, 0.215686, 1 )
 custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
 custom_constants/vseparation = 5
-items = [ "Dialogue Node", null, false, "Option Node", null, false ]
 auto_height = true
+fixed_icon_size = Vector2( 50, 20 )
+script = ExtResource( 18 )
 
-[node name="HSplit" type="HSplitContainer" parent="VSplit/Editor/HSplit"]
-margin_left = 208.0
-margin_right = 1024.0
-margin_bottom = 558.0
+[node name="AdvancedNodes" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
+margin_top = 69.0
+margin_right = 250.0
+margin_bottom = 188.0
+custom_constants/margin_right = 7
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
 
-[node name="GraphEdit" type="GraphEdit" parent="VSplit/Editor/HSplit/HSplit"]
-margin_right = 608.0
-margin_bottom = 558.0
-rect_min_size = Vector2( 400, 0 )
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 243.0
+margin_bottom = 119.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes/Container"]
+margin_right = 228.0
+margin_bottom = 104.0
+custom_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes/Container/VSplitContainer"]
+margin_right = 228.0
+margin_bottom = 35.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes/Container/VSplitContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 223.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Advanced Nodes"
+uppercase = true
+
+[node name="ItemList" type="ItemList" parent="Main/Editor/HSplit/Nodes/Main/AdvancedNodes/Container/VSplitContainer"]
+margin_top = 35.0
+margin_right = 228.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-scroll_offset = Vector2( 0, -22 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/guide_color = Color( 0.160784, 0.176471, 0.215686, 1 )
+custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
+custom_constants/vseparation = 5
+items = [ "Conditional Node", null, false, "Expression Node", null, false ]
+auto_height = true
 
-[node name="Settings" type="PanelContainer" parent="VSplit/Editor/HSplit/HSplit"]
-margin_left = 616.0
-margin_right = 816.0
-margin_bottom = 558.0
-rect_min_size = Vector2( 200, 0 )
+[node name="Characters" type="MarginContainer" parent="Main/Editor/HSplit/Nodes/Main"]
+margin_top = 192.0
+margin_right = 250.0
+margin_bottom = 207.0
+custom_constants/margin_right = 7
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+
+[node name="HSplit" type="HSplitContainer" parent="Main/Editor/HSplit"]
+margin_left = 258.0
+margin_right = 1024.0
+margin_bottom = 566.0
+
+[node name="GraphEdit" type="GraphEdit" parent="Main/Editor/HSplit/HSplit"]
+margin_right = 508.0
+margin_bottom = 566.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 16 )
+right_disconnects = true
+scroll_offset = Vector2( -250, -30 )
+script = ExtResource( 15 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/Editor/HSplit/HSplit"]
+margin_left = 516.0
+margin_right = 766.0
+margin_bottom = 566.0
+rect_min_size = Vector2( 250, 0 )
+rect_clip_content = false
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="Settings" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer"]
+margin_right = 250.0
+margin_bottom = 566.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 4 )
+
+[node name="Main" type="VSplitContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings"]
+margin_right = 250.0
+margin_bottom = 566.0
+
+[node name="NodeList" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main"]
+margin_right = 250.0
+margin_bottom = 280.0
+custom_constants/margin_right = 13
+custom_constants/margin_top = 15
+custom_constants/margin_left = 7
+custom_constants/margin_bottom = 5
+
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList"]
+margin_left = 7.0
+margin_top = 15.0
+margin_right = 237.0
+margin_bottom = 275.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList/Container"]
+margin_right = 230.0
+margin_bottom = 260.0
+custom_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList/Container/VSplitContainer"]
+margin_right = 230.0
+margin_bottom = 35.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList/Container/VSplitContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 225.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Scene Tree"
+uppercase = true
+
+[node name="NodeTree" type="Tree" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/NodeList/Container/VSplitContainer"]
+margin_top = 35.0
+margin_right = 230.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 0, 225 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_styles/selected_focus = ExtResource( 5 )
+custom_styles/bg_focus = ExtResource( 6 )
+custom_styles/selected = ExtResource( 5 )
+custom_styles/bg = ExtResource( 6 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/guide_color = Color( 0.160784, 0.176471, 0.215686, 1 )
+custom_colors/font_color_selected = Color( 0.8, 0.807843, 0.827451, 1 )
+custom_constants/vseparation = 5
+script = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main"]
+margin_top = 288.0
+margin_right = 250.0
+margin_bottom = 566.0
+custom_constants/separation = 0
+
+[node name="Settings" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 68.0
+size_flags_vertical = 0
+custom_constants/margin_right = 13
+custom_constants/margin_top = 5
+custom_constants/margin_left = 7
+custom_constants/margin_bottom = 15
+
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings"]
+margin_left = 7.0
+margin_top = 5.0
+margin_right = 237.0
+margin_bottom = 53.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container"]
+margin_right = 230.0
+margin_bottom = 48.0
+custom_constants/separation = 0
+
+[node name="TitleContainer" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container/VSplitContainer"]
+margin_right = 230.0
+margin_bottom = 35.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="SettingsTitle" type="Label" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container/VSplitContainer/TitleContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 225.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Scene Settings"
+uppercase = true
+
+[node name="Options" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container/VSplitContainer"]
+margin_top = 35.0
+margin_right = 230.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 5 )
 
-[node name="Footer" type="PanelContainer" parent="VSplit"]
-editor/display_folded = true
-margin_top = 570.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Settings/Container/VSplitContainer/Options"]
+margin_top = 3.0
+margin_right = 230.0
+margin_bottom = 3.0
+script = ExtResource( 10 )
+
+[node name="Characters" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer"]
+margin_top = 68.0
+margin_right = 250.0
+margin_bottom = 251.0
+size_flags_vertical = 0
+custom_constants/margin_right = 13
+custom_constants/margin_top = 5
+custom_constants/margin_left = 7
+custom_constants/margin_bottom = 15
+
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters"]
+margin_left = 7.0
+margin_top = 5.0
+margin_right = 237.0
+margin_bottom = 168.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container"]
+margin_right = 230.0
+margin_bottom = 163.0
+custom_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer"]
+margin_right = 230.0
+margin_bottom = 35.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 225.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Characters"
+uppercase = true
+
+[node name="Container" type="PanelContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer"]
+margin_top = 35.0
+margin_right = 230.0
+margin_bottom = 163.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 5 )
+
+[node name="Container" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container"]
+margin_top = 3.0
+margin_right = 230.0
+margin_bottom = 118.0
+custom_constants/separation = 0
+
+[node name="Container" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container"]
+margin_right = 230.0
+margin_bottom = 72.0
+custom_constants/separation = 0
+
+[node name="Character" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container"]
+margin_right = 230.0
+margin_bottom = 72.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 8
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 8
+script = ExtResource( 14 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character"]
+margin_left = 10.0
+margin_top = 8.0
+margin_right = 220.0
+margin_bottom = 64.0
+custom_constants/separation = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer"]
+margin_right = 210.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 185.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 9 )
+text = "Character Name"
+uppercase = true
+
+[node name="FontAwesome" type="Label" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/HBoxContainer"]
+margin_left = 189.0
+margin_right = 210.0
+margin_bottom = 25.0
+hint_tooltip = "Delete this Character"
+mouse_filter = 1
+custom_fonts/font = SubResource( 6 )
+text = ""
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+size = 16
+icon = "trash"
+filter = true
+
+[node name="LineEdit" type="LineEdit" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer"]
+margin_top = 26.0
+margin_right = 210.0
+margin_bottom = 56.0
+theme = ExtResource( 1 )
+placeholder_text = "Character name"
+script = ExtResource( 17 )
+
+[node name="Button" type="MarginContainer" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container"]
+margin_top = 72.0
+margin_right = 230.0
+margin_bottom = 115.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 2
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 220.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 9 )
+text = "Add Character"
+script = ExtResource( 13 )
+
+[node name="Footer" type="PanelContainer" parent="Main"]
+margin_top = 578.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
+custom_styles/panel = SubResource( 7 )
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VSplit/Footer"]
-margin_left = 6.0
-margin_top = 4.0
-margin_right = 1018.0
-margin_bottom = 26.0
+[node name="HSplitContainer" type="HSplitContainer" parent="Main/Footer"]
+margin_right = 1024.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+dragger_visibility = 1
 
-[node name="Version" type="Label" parent="VSplit/Footer/HSplitContainer"]
-margin_right = 864.0
+[node name="Version" type="Label" parent="Main/Footer/HSplitContainer"]
+margin_right = 884.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 5 )
-text = "Whiskers 2.1-rc"
+custom_fonts/font = ExtResource( 8 )
+text = "Whiskers 2.0-devel"
 
-[node name="Nodes" type="GridContainer" parent="VSplit/Footer/HSplitContainer"]
-editor/display_folded = true
-margin_left = 872.0
-margin_right = 1012.0
+[node name="FooterNodes" type="GridContainer" parent="Main/Footer/HSplitContainer"]
+margin_left = 892.0
+margin_right = 1024.0
 margin_bottom = 22.0
 size_flags_vertical = 0
 columns = 5
 
-[node name="Dialogues" type="Label" parent="VSplit/Footer/HSplitContainer/Nodes"]
-margin_right = 74.0
+[node name="Dialogue" type="HSplitContainer" parent="Main/Footer/HSplitContainer/FooterNodes"]
+margin_right = 70.0
 margin_bottom = 22.0
-custom_fonts/font = ExtResource( 5 )
-text = "3 dialogues"
+size_flags_horizontal = 8
+dragger_visibility = 2
 
-[node name="Options" type="Label" parent="VSplit/Footer/HSplitContainer/Nodes"]
-margin_left = 78.0
-margin_right = 140.0
+[node name="Count" type="Label" parent="Main/Footer/HSplitContainer/FooterNodes/Dialogue"]
+margin_right = 14.0
 margin_bottom = 22.0
-custom_fonts/font = ExtResource( 5 )
-text = "3 options"
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+
+[node name="Name" type="Label" parent="Main/Footer/HSplitContainer/FooterNodes/Dialogue"]
+margin_left = 14.0
+margin_right = 70.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 8 )
+text = "dialogue"
+
+[node name="Option" type="HSplitContainer" parent="Main/Footer/HSplitContainer/FooterNodes"]
+margin_left = 74.0
+margin_right = 132.0
+margin_bottom = 22.0
+size_flags_horizontal = 8
+dragger_visibility = 2
+
+[node name="Count" type="Label" parent="Main/Footer/HSplitContainer/FooterNodes/Option"]
+margin_right = 14.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+
+[node name="Name" type="Label" parent="Main/Footer/HSplitContainer/FooterNodes/Option"]
+margin_left = 14.0
+margin_right = 58.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 8 )
+text = "option"
+[connection signal="connection_request" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_connection_request"]
+[connection signal="disconnection_request" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_disconnection_request"]
+[connection signal="gui_input" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Graph_click" binds= [ false ]]
+[connection signal="node_selected" from="Main/Editor/HSplit/HSplit/GraphEdit" to="Main/Editor/HSplit/HSplit/GraphEdit" method="_on_Node_selected"]
+[connection signal="gui_input" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/HBoxContainer/FontAwesome" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character" method="_on_FontAwesome_gui_input"]
+[connection signal="text_changed" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/LineEdit" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Container/Character/VBoxContainer/LineEdit" method="_on_LineEdit_text_changed"]
+[connection signal="pressed" from="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" to="Main/Editor/HSplit/HSplit/ScrollContainer/Settings/Main/VBoxContainer/Characters/Container/VSplitContainer/Container/Container/Button/Button" method="_on_Button_pressed"]
