@@ -144,8 +144,8 @@ func process_data():
 				'connects_to':[],
 				'logic':"",
 				'conditions':{
-					'true':'',
-					'false':''
+					'true':[],
+					'false':[]
 				},
 				'location':"",
 				'size':""
@@ -165,17 +165,12 @@ func process_data():
 			tempData['logic'] = self.get_node(name).get_node('Lines').get_child(0).get_text()
 		
 		if ('Condition' in name):
-			var routes
 			if name in data:
-				routes = data[name]['conditions']
+				tempData['conditions'] = data[name]['conditions']
 			if connectionList[i]['from_port'] == 0:
-				tempData['conditions']['true'] = connectionList[i].to
-				if (routes) and (routes['false']):
-					tempData['conditions']['false'] = routes['false']
+				tempData['conditions']['true'].append(connectionList[i].to)
 			if connectionList[i]['from_port'] == 1:
-				tempData['conditions']['false'] = connectionList[i].to
-				if (routes) and (routes['true']):
-					tempData['conditions']['true'] = routes['true']
+				tempData['conditions']['false'].append(connectionList[i].to)
 		else:
 			if currentConnectsTo:
 				tempData['connects_to'] = currentConnectsTo
@@ -245,10 +240,10 @@ func _open_whiskers(path):
 			var connectTo
 			if 'Condition' in nodeDataKeys[i]:
 				connectTo = loadData[nodeDataKeys[i]]['conditions']
-				# this is bad because it assumes `true` and `false` can *only* connect to one node
-				# this is a dumb assumption to make, and should be corrected soon:tm:
-				connect_node(nodeDataKeys[i], 0, connectTo['true'], 0) 
-				connect_node(nodeDataKeys[i], 1, connectTo['false'], 0) 
+				for true_node in connectTo['true']:
+					connect_node(nodeDataKeys[i], 0, true_node, 0) 
+				for false_node in connectTo['false']:
+					connect_node(nodeDataKeys[i], 1, false_node, 0) 
 			else:
 				connectTo = loadData[nodeDataKeys[i]]['connects_to']
 				# for each key
