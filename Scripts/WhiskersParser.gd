@@ -274,12 +274,19 @@ func process_condition(passed_key : String) -> Dictionary:
 		print("[ERROR]: no input for the condition node %s was found." % passed_key)
 		return {}
 	
+	var true_key = ""
+	var false_key = ""
+	if len(data[passed_key].conditions["true"]) > 0:
+		true_key = data[passed_key].conditions["true"][0]
+	if len(data[passed_key].conditions["false"]) > 0:
+		false_key = data[passed_key].conditions["false"][0]
+	
 	var condition = {
 			key = passed_key,
 			logic = input_logic,
 			goes_to_key = {
-					if_true = data[passed_key].conditions["true"],
-					if_false = data[passed_key].conditions["false"]
+					if_true = true_key,
+					if_false = false_key
 					}
 			}
 	
