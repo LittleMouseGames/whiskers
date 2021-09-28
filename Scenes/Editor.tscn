@@ -226,8 +226,8 @@ window_title = "Save Whiskers Project"
 resizable = true
 access = 2
 filters = PoolStringArray( "*.json; Whiskers JSON File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/Content/whiskers"
+current_path = "/Content/whiskers/"
 
 [node name="Import" type="FileDialog" parent="Mount/Modals"]
 anchor_left = 0.5
@@ -244,8 +244,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.gd; GDScript File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/Content/whiskers"
+current_path = "/Content/whiskers/"
 
 [node name="Open" type="FileDialog" parent="Mount/Modals"]
 anchor_left = 0.5
@@ -262,8 +262,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json; Whiskers JSON File" )
-current_dir = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers"
-current_path = "/media/sputnik/Data/portfolioStuff/LittleMouseGames/ElectricWhiskers/"
+current_dir = "/Content/whiskers"
+current_path = "/Content/whiskers/"
 
 [node name="QuitConf" type="ConfirmationDialog" parent="Mount/Modals"]
 anchor_left = 0.5
