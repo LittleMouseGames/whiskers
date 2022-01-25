@@ -3,6 +3,22 @@
 ![Godot Version](https://img.shields.io/badge/godot-3.1-brightgreen.svg)
 ![Status](https://img.shields.io/badge/status-beta-blue.svg)
 
+# Archived Notice
+Hey everyone! When I first wrote Whiskers it was meant to be used as a stateful editor to create really simple text based adventure games - which it did pretty well! But my code quality in this MR just isn't that great, so the application can be pretty buggy! While I meant to re-make this at some point using best practices, its just not really on my agenda for any time soon so I've decided to `archive` this project since development on it is no longer going on (and hasn't been for quite some time)
+
+If you're looking for a dialogue editor for Godot, there are lots of really solid options out there! I just discovered this one and it looks pretty solid!
+
+https://github.com/nagidev/DialogueNodes
+
+
+There are also some really great addons for adding `Ink` and `Yarn` support, which I definitely suggest checking out since they're both well established and battle tested tools.
+
+If you'd like to keep up with what I'm working on these days, you can check out [my really cool twitter](https://twitter.com/LittleMouseDev) where I post Dev Logs of prototypes I'm building
+
+
+So long and thanks for all the ~~fish~~ cheese 🐭
+
+
 <img src="/logo.png"  width="170" align="right"/>
 
 # What is Whiskers?
