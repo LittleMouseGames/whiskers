@@ -11,26 +11,35 @@ onready var menu_edit = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Ed
 onready var menu_help = get_node("/root/Editor/Mount/MainWindow/MenuBar/Menus/Help/Menu")
 
 var in_menu : = false
-var test : = true
 
-var loaded_player_vars : = false
-var loaded_player_funcs : = false
-var has_player_singleton : = false
+# Used primarily in Graph, but here because it needs to be global.
+# warning-ignore:unused_class_variable
+var has_player_singleton = false
 
 # For history
 var current_history : = 0
 var history_objects = Dictionary()
 var last_save : = 0
 
+# Used in Graph.gd and GraphNode.gd
+# TODO: Rewrite GraphNode.get_type to not use node_names, so that this can be moved to Graph
+# warning-ignore:unused_class_variable
 var node_names : = ['Dialogue', 'Option', 'Expression', 'Condition', 'Jump', 'End', 'Start', 'Comment']
 var has_graph : = false
 
-func get_node_type(name : String):
+func get_node_type(name : String) -> String:
 	var regex : = RegEx.new()
-	regex.compile("[a-zA-Z]+")
+	var err = regex.compile("[a-zA-Z]+")
+	if (err):
+		print("[EditorSingleton.get_node_type]: Failed to compile regex with string: [a-zA-Z]+")
+	
 	var result : RegExMatch = regex.search(name)
-	if result:
-		return result.get_string()
+	
+	if !result:
+		print("[EditorSingleton.get_node_type]: Invalid regex output from input " + name)
+		return ""
+	
+	return result.get_string()
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event is InputEventKey:
@@ -137,7 +146,10 @@ func undo_history() -> void:
 			else:
 				var last_instance = history_objects[last_instance_of(object['name'])]
 				for i in range(0, last_instance['connects_from'].size()):
-					graph.connect_node(last_instance['connects_from'][i+1], 0, object['name'], 0)
+					var err = graph.connect_node(last_instance['connects_from'][i+1], 0, object['name'], 0)
+					
+					if (err):
+						print("[EditorSingleton.history_undo]: Failed to connect node")
 		
 		current_history -= 1
 		
@@ -178,7 +190,10 @@ func connection_in_timeline(name : String) -> void:
 		if history_objects[i]['connects_from']:
 			for j in range(0, history_objects[i]['connects_from'].size()):
 				if history_objects[i]['connects_from'][j+1] != name and history_objects[i]['name'] == name:
-					graph.connect_node(history_objects[i]['connects_from'][j+1], 0, name, 0)
+					var err = graph.connect_node(history_objects[i]['connects_from'][j+1], 0, name, 0)
+					
+					if (err):
+						print("[EditorSingleton.connection_in_timeline]: Failed to connect nodes")
 
 func redo_history() -> void:
 	var graph : GraphEdit = get_node("/root/Editor/Mount/MainWindow/Editor/Graph/Dialogue Graph")
@@ -200,7 +215,10 @@ func redo_history() -> void:
 		if 'connect' in action:
 			if action == 'connect':
 				for i in range(0, object['connects_from'].size()):
-					graph.connect_node(object['connects_from'][i+1], 0, object['name'], 0)
+					var err = graph.connect_node(object['connects_from'][i+1], 0, object['name'], 0)
+					
+					if (err):
+						print("[EditorSingleton.redo_history]: Failed to connect nodes")
 			else:
 				print('disconnect node')
 				var connections = graph.get_connection_list()
